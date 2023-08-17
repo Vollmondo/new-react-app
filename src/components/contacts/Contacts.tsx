@@ -1,6 +1,6 @@
 import React from 'react';
 import './Contacts.css';
-import { CompanyRequisites } from './Requisites/Company_Requisites';
+import CompanyRequisites from './Requisites/Company_Requisites';
 
 class Contacts extends React.Component {
   render() {
@@ -33,4 +33,4 @@ class Contacts extends React.Component {
   }
 }
 
-export { Contacts };
+export default Contacts;

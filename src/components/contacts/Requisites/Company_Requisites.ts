@@ -22,4 +22,4 @@ const CompanyRequisites = {
   glavBuhName: '',
 };
 
-export { CompanyRequisites };
+export default CompanyRequisites;

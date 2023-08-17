@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Comment from '../comment/Comment';
 
-function AirQualityComponent() {
+function AirQualityComponent(this: any) {
   const [data, setData] = useState({ latitude: '', longitude: '' });
 
   useEffect(() => {
@@ -16,7 +16,12 @@ function AirQualityComponent() {
   if (data.latitude && data.longitude) {
     return (
       <div>
-        <Comment name={data.latitude} text={data.longitude} />
+        <Comment 
+          title={data.latitude} 
+          text={data.longitude}
+          countOfSlides={this.state.countOfSlides} 
+          setSliderState={this.setState.bind(this)}
+        />
       </div>
     );
   }
