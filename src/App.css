@@ -3,7 +3,9 @@
   padding: 0;
 }
 
-.body{
-  display: flex;
+.content{
   width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }

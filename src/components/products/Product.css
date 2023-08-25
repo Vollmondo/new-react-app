@@ -1,0 +1,97 @@
+.product-el{
+    width: 300px;
+    min-height: 400px;
+    border: 1px solid black;
+    margin: 0 20px 20px 0;
+    float: left;
+}
+
+.product-el-link{
+    width: 300px;
+    height: 400px;
+    text-decoration: none;
+    color: black;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow: hidden;
+}
+
+.product-el-link:hover{
+    text-decoration: none;
+    color: black;
+}
+
+.product-el-link:hover .product-el-title{
+    text-decoration: none;
+    color: red;
+}
+
+.product-el-link:visited{
+    text-decoration: none;
+    color: black;
+}
+
+.product-el-title{
+    width: 100%;
+    font-size: large;
+    font-weight: 300;
+    text-align: center;
+}
+
+.product-el-category{
+    font-size: small;
+    text-align: right;
+    color: lightgray;
+    width: 100%;
+}
+
+.product-el-img{
+    height: 40%;
+    max-width: 90%;
+}
+
+.product-el-description{
+    width: 100%;
+    height: 20%;
+    overflow: hidden;
+    line-height: initial;
+    text-overflow: ellipsis;
+}
+
+.product-el-price{
+    width: 100%;
+    text-align: left;
+}
+
+.product-el-rate{
+    width: 100%;
+    text-align: center;
+
+}
+
+.product-el-btn{
+    font-size: medium;
+    border: none;
+}
+
+.show{
+    background-color: blue;
+}
+
+.hide{
+    background-color: yellow;
+}
+
+.product-el-detailsBlock{
+
+}
+
+.product-el-details{
+
+}
+
+.product-el-addToCart{
+    background-color: yellow;
+    font-weight: 300;
+}

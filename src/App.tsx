@@ -4,23 +4,22 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import Header from './components/header/Header';
 import Sidebar from './components/sidebar/Sidebar';
-import Comments from './forms/Comments/Comments';
 import Contacts from './components/contacts/Contacts';
-import HomePage from './components/slider2/SliderPack';
+import { ProductsPage } from './components/products/ProductsPage';
+import Footer from './components/footer/Footer';
+import { ModalWindow } from './components/service/ModalWindow';
 
 
 function App() {
   return (
     <div className="App">
         <Header />
-        <div className="body">
-          <Sidebar />
+         {/*  <Sidebar /> */}
           <main className="content">
-            <HomePage />
-            <Comments />
+            <ProductsPage />
+            
           </main>
-          <Contacts />
-        </div>
+        <Footer />
       </div>
   );
 }

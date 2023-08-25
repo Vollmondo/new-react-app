@@ -1,0 +1,13 @@
+.footer{
+    background-color: burlywood;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.footer-info{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
