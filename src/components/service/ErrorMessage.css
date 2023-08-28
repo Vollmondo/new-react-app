@@ -1,8 +1,8 @@
 
-.fetch-error{
+.error-message{
     text-align: center;
 }
 
-.fetch-error h2{
+.error-message h2{
     color: red;
 }

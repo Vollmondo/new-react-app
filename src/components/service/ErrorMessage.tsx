@@ -1,10 +1,15 @@
 import React from "react";
-import './FetchError.css'
+import './ErrorMessage.css'
 
-export function FetchError(){
+interface Error{
+    error: string
+}
+
+export function ErrorMessage({error}: Error){
     return(
-        <div className="fetch-error">
+        <div className="error-message">
             <h2>Ошибка при загрузке данных</h2>
+            <p>{ error }</p>
             <p>Повторите пожалуйста попытку</p>
         </div>
     )

@@ -1,0 +1,12 @@
+.base-container-x{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.base-container-y{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 1200px;
+}

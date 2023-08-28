@@ -1,13 +1,13 @@
 .product-el{
-    width: 300px;
+    width: 285px;
     min-height: 400px;
     border: 1px solid black;
-    margin: 0 20px 20px 0;
+    margin-bottom: 20px;
     float: left;
 }
 
 .product-el-link{
-    width: 300px;
+    width: 285px;
     height: 400px;
     text-decoration: none;
     color: black;

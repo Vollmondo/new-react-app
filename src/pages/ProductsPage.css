@@ -1,0 +1,25 @@
+.products-page{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.products-container{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.addProduct-btn{
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    font-size: 60pt;
+    color: white;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: green;
+    background: url(../../public/img/icons8-plus-96.png) no-repeat;
+    background-size: 70px;
+}

@@ -1,4 +1,88 @@
 .header{
+    display: flex;
+    justify-content: space-between;
     text-align: center;
-    background-color: burlywood;
+}
+
+.header_logo{
+    margin: 15px;
+}
+
+.logo-img{
+    height: 70px;
+    width: 70px;
+}
+
+.header-content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 40px;
+    padding-top: 10px;
+}
+
+.header-content-block{
+    width: 100%;
+    margin-left: 50px;
+}
+
+.header-catButton-block{
+    height: 40px;
+}
+
+.header-cat-btn-y{
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.header-cat-btn{
+    width: 150px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+    margin-right: 10px;
+    border: 1px solid black;
+}
+
+.header-search{
+    display: inline-flex;
+    height: 40px;
+    box-sizing: border-box;
+
+}
+
+.header-search-input{
+    width: 400px;
+    box-sizing: border-box;
+    height: 40px;
+    border-radius: 10px;
+    margin-right: 10px;
+
+
+}
+
+.header-search-btn{
+    background: url(../../../public/img/icons8-search-64.png) no-repeat;
+    background-size: 40px;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+.header-personal-block{
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header-img{
+    height: 40px;
+    width: 40px;
+}
+
+.header-img.cat{
+    height: 34px;
+    margin: 3px 0;
 }

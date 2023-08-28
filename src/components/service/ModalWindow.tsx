@@ -1,10 +1,20 @@
 import React from "react";
 import './ModalWindow.css';
 
-export function ModalWindow() {
-    return(
-        <div className="modal-window">
+interface ModalWindowProps{
+    children: React.ReactNode
+    title: string
+    onClose: () => void
+}
 
-        </div>
+export function ModalWindow({ children, title, onClose }: ModalWindowProps) {
+    return(
+        <>
+            <div className="modal-window" onClick={onClose}></div>
+            <div className="modal-window-container">
+            <h2 className="modal-window-header">{ title }</h2>
+                { children }
+            </div>
+        </>
     )
 }
