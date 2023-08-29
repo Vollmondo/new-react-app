@@ -1,7 +1,7 @@
 import React from "react";
-import { BasePage } from "./basePage/BasePage";
+import { BasePage } from "../basePage/BasePage";
 
-export function AboutPage(){
+export function HelpPage(){
     return(
         <>
             <BasePage>

@@ -1,0 +1,27 @@
+.profile-container{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.profile-main-block{
+    display: flex;
+    justify-content: space-between;
+    width: 45%;
+}
+
+.profile-photo{
+    width: 150px;
+    height: 200px;
+}
+
+.profile-user-info{
+
+}
+
+.profile-user-info-row{
+    width: 100%;
+    display: inline-flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}

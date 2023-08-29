@@ -1,6 +1,6 @@
 import React from "react";
-import Contacts from "../components/contacts/Contacts";
-import { BasePage } from "./basePage/BasePage";
+import Contacts from "../../components/contacts/Contacts";
+import { BasePage } from "./../basePage/BasePage";
 
 
 

@@ -1,12 +1,12 @@
-.loader-x{
+.base-container-x{
     height: 100vh;
-    width: 100%;
     display: flex;
     justify-content: center;
 }
 
-.loader-y{
+.base-container-y{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
+    max-width: 1200px;
 }

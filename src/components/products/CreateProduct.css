@@ -1,0 +1,42 @@
+.create-product-container{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.create-product-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 80%;
+    font-size: 12pt;
+}
+
+.create-product-row{
+    display: inline-flex;
+    justify-content: space-between;
+}
+
+.create-product-label{
+    width: 300px;
+    margin-top: 10px;
+}
+
+.create-product-el{
+    margin-top: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.create-product-btnBlock{
+    display: inline-flex;
+    justify-content: center;
+}
+
+.create-product-btn{
+    width: 300px;
+    height: 40px;
+    background-color: green;
+    font-size: 18pt;
+    margin: 20px 0;
+}
