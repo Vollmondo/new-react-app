@@ -1,7 +1,7 @@
 import React from 'react';
 import './Footer.css';
-import Contacts from '../contacts/Contacts';
-import CompanyRequisites from '../contacts/Requisites/Company_Requisites';
+import Contacts from '../../../components/contacts/Contacts';
+import CompanyRequisites from '../../../components/contacts/Requisites/Company_Requisites';
 
 export function Footer(){
     return (
