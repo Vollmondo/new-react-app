@@ -22,7 +22,7 @@ export interface IUser{
         number: number,
         zipcode: string
     },
-    id?: 1,
+    id?: number,
     email: string,
     username: string,
     password: string,
@@ -33,5 +33,13 @@ export interface IUser{
         patronymic?: string
     },
     phone: string,
-    __v: number
+    __v: number,
+    role: String,
+    birthdate: Date
+}
+
+export interface ICategory{
+    _id?: string,
+    title: string,
+    parent: string
 }

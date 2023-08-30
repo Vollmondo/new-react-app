@@ -6,7 +6,6 @@ import { Loader } from "../../components/service/Loader";
 import { ProfilePage } from "./ProfilePage";
 import { BasePage } from "../basePage/BasePage";
 
-
 export function ProfilePageWrapper() {
   const { id } = useParams();
   const [userProfile, setUserProfile] = useState<IUser | null>(null);

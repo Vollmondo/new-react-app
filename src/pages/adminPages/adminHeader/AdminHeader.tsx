@@ -11,10 +11,12 @@ export function AdminHeader() {
         <div className='admin-header-content-block'>
             <h1>Панель администратора</h1>
           <div className='admin-header-content'>
-              <Link to='#'>Товары</Link>
-              <Link to='/admin/usersPage'>Пользователи</Link>
+              <Link to='/admin/products'>Товары</Link>
+              <Link to='/admin/categories'>Категории товаров</Link>
+              <Link to='/admin/users'>Пользователи</Link>
               <Link to='#'>Информационные материалы</Link>
               <Link to='#'>Настройки сайта</Link>
+              <Link to='/' target='blank'>Перейти к сайту</Link>
             </div>
           </div>        
       </div>

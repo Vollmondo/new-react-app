@@ -1,10 +1,12 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios, { AxiosError } from "axios";
-import { IUser } from "../../models";
-import { Loader } from "../../components/service/Loader";
-import { ErrorMessage } from "../../components/service/ErrorMessage";
+import { IUser } from "../../../models";
+import { Loader } from "../../../components/service/Loader";
+import { ErrorMessage } from "../../../components/service/ErrorMessage";
 import { User } from "./UserPage";
-import { AdminBasePage } from "./AdminBasePage";
+import { AdminBasePage } from "../AdminBasePage";
+import '../AdminBasePage.css'
+
 
 export function UsersPage(){
 
@@ -38,8 +40,19 @@ export function UsersPage(){
             <AdminBasePage>
                 <div className="profile-container">
                     {loading && <Loader />}
-                    <table>
+                    <table className="admin-table">
+                        <tbody>
+                            <tr className="admin-table-row">
+                                <th className="admin-table-th">ID</th>
+                                <th className="admin-table-th">Имя пользователя</th>
+                                <th className="admin-table-th">Роль</th>
+                                <th className="admin-table-th">E-mail</th>
+                                <th className="admin-table-th">Фамилия</th>
+                                <th className="admin-table-th">Имя</th>
+                                <th className="admin-table-th">Отчество</th>
+                            </tr>
                         {users.map(user => <User user={user} key={user.id}/>)}
+                        </tbody>
                     </table>
                     {error && <ErrorMessage error="Не удалось загрузить товары"/>}
                 </div>

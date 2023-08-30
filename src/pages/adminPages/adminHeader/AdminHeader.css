@@ -5,16 +5,16 @@
     justify-content: center;
     position: sticky;
     top: 0;
-    background-color: rgb(150, 210, 230);
+    background-color: lightblue;
     opacity: 1;
 }
 
 .admin-header_logo{
-    margin: 10px 100px 10px 10px;
+    margin: 10px 50px 10px 10px;
 }
 
 .admin-header-content-block{
-    width: 60%;
+    width: 90%;
     text-align: center;
     
 }
@@ -22,5 +22,5 @@
 .admin-header-content{
     display: flex;
     justify-content: space-between;
-    margin-top: 10px;
+    margin: 10px 20px;
 }

@@ -6,8 +6,10 @@ import { AboutPage } from './pages/infoPages/AboutPage';
 import { ContactsPage } from './pages/infoPages/ContactsPage';
 import { MainPage } from './pages/MainPage';
 import { HelpPage } from './pages/infoPages/HelpPage';
-import { UsersPage } from './pages/adminPages/UsersPage';
+import { UsersPage } from './pages/adminPages/adminUsers/UsersPage';
 import { ProfilePageWrapper } from './pages/userPages/ProfilePageWrapper';
+import { AdminProductsPage } from './pages/adminPages/adminProducts/AdminProductsPage';
+import { AdminCategoriesPage } from './pages/adminPages/adminCategories/AdminCategoriesPage';
  
 
 
@@ -21,8 +23,11 @@ function App() {
         <Route path='/contacts' element={<ContactsPage />}/>
         <Route path='/help' element={<HelpPage />}/>
         <Route path="/userProfile/:id" element={<ProfilePageWrapper />} />
-        <Route path='/admin/usersPage' element={<UsersPage />}/>
+        <Route path='/admin/users' element={<UsersPage />}/>
+        <Route path='/admin/products' element={<AdminProductsPage />}/>
+        <Route path='/admin/categories' element={<AdminCategoriesPage />}/>
 
+        
       </Routes>
     </>
   );
