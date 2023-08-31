@@ -4,9 +4,8 @@ import { IUser } from "../../../models";
 import { Loader } from "../../../components/service/Loader";
 import { ErrorMessage } from "../../../components/service/ErrorMessage";
 import { User } from "./UserPage";
-import { AdminBasePage } from "../AdminBasePage";
-import '../AdminBasePage.css'
-
+import { AdminBasePage } from "../adminBasePage/AdminBasePage";
+import '../adminBasePage/AdminBasePage.css'
 
 export function UsersPage(){
 

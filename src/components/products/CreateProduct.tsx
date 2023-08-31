@@ -32,10 +32,11 @@ export function CreateProduct({ onCreate }: CreateProductProps) {
         event.preventDefault();
         setError('')
 
-        if (titleValue.trim().length === 0 || descriptionValue.trim().length === 0 || photoValue.trim().length === 0 || priceValue === 0){
+        if (titleValue.trim().length === 0 || descriptionValue.trim().length === 0 || priceValue === 0){
             setError('Введите корректное значение')
             return
         }
+        
         newProduct.title = titleValue
         newProduct.price = priceValue
         newProduct.description = descriptionValue
@@ -75,7 +76,6 @@ export function CreateProduct({ onCreate }: CreateProductProps) {
               onChange={changeHandler}
             />
           </div>
-          {error && <ErrorMessage error={error} />}
 {/* ЦЕНА ТОВАРА */}
           <div className="create-product-row">
             <p className="create-product-label">Стоимость товара:</p>
@@ -87,7 +87,6 @@ export function CreateProduct({ onCreate }: CreateProductProps) {
               onChange={changeHandler}
             />
           </div>
-          {error && <ErrorMessage error={error} />}
 {/* ОПИСАНИЕ ТОВАРА */}
           <div className="create-product-row">
             <p className="create-product-label">Описание товара:</p>
@@ -100,7 +99,6 @@ export function CreateProduct({ onCreate }: CreateProductProps) {
               onChange={changeHandler}
             />
           </div>
-          {error && <ErrorMessage error={error} />}
 {/* КАТЕГОРИЯ ТОВАРА */}
           <div className="create-product-row">
             <p className="create-product-label">Категория товара:</p>
@@ -109,13 +107,12 @@ export function CreateProduct({ onCreate }: CreateProductProps) {
               <option>Категория 2</option>
             </select>
           </div>
-          {error && <ErrorMessage error={error} />}
 {/* ФОТО ТОВАРА */}
           <div className="create-product-row">
             <p className="create-product-label">Фото товара:</p>
             <input
               className="create-product-el"
-              type="file"
+              type="text"
               name="photo"
               value={photoValue}
               onChange={changeHandler}

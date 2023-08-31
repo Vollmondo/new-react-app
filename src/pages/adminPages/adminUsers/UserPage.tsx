@@ -1,6 +1,6 @@
 import React from "react";
 import { IUser } from "../../../models";
-import '../AdminBasePage.css'
+import '../adminBasePage/AdminBasePage.css'
 
 interface UserProps {
     user: IUser

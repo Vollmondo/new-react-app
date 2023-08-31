@@ -10,6 +10,7 @@ import { UsersPage } from './pages/adminPages/adminUsers/UsersPage';
 import { ProfilePageWrapper } from './pages/userPages/ProfilePageWrapper';
 import { AdminProductsPage } from './pages/adminPages/adminProducts/AdminProductsPage';
 import { AdminCategoriesPage } from './pages/adminPages/adminCategories/AdminCategoriesPage';
+import { AdminMainPage } from './pages/adminPages/AdminMainPage';
  
 
 
@@ -23,6 +24,8 @@ function App() {
         <Route path='/contacts' element={<ContactsPage />}/>
         <Route path='/help' element={<HelpPage />}/>
         <Route path="/userProfile/:id" element={<ProfilePageWrapper />} />
+        
+        <Route path='/admin' element={<AdminMainPage />}/>
         <Route path='/admin/users' element={<UsersPage />}/>
         <Route path='/admin/products' element={<AdminProductsPage />}/>
         <Route path='/admin/categories' element={<AdminCategoriesPage />}/>

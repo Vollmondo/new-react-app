@@ -5,10 +5,10 @@ export interface IProduct{
     description: string
     category: string
     rating: {
-        rate: number
-        count: number
+        rate?: number
+        count?: number
     }
-    image: string
+    image?: string
 }
 
 export interface IUser{
@@ -41,5 +41,5 @@ export interface IUser{
 export interface ICategory{
     _id?: string,
     title: string,
-    parent: string
+    parent?: string
 }

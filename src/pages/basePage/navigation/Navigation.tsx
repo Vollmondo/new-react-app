@@ -13,6 +13,8 @@ export function Navigation(){
             <Link to='/help'>Помощь</Link>
 
             <Link to='/contacts'>Контакты</Link>
+            <Link to='/admin'>Администрирование</Link>
+
         </nav>
     )
 }

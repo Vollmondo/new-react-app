@@ -13,6 +13,12 @@ export function AdminCategory({cat}: CatProps){
                 <td className="admin-table-col">{cat.title}</td>
                 <td className="admin-table-col">{cat.parent}</td>
                 <td className="admin-table-col">XXX</td>
+                <td className="admin-table-col">
+                    <div className="admin-table-col-y">
+                        <img className="admin-table-img" src="../img/icons8-edit-64.png" alt="options" />
+                        <img className="admin-table-img" src="../img/icons8-trash-64.png" alt="options" />
+                    </div>
+                </td>
         </tr>
     )
 }

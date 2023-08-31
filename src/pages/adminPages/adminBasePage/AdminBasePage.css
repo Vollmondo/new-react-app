@@ -43,3 +43,18 @@
     background-color: rgb(97, 148, 165);
     color: white;
   }
+
+  .admin-table-col-y{
+    display: inline-flex;
+    justify-content: space-between;
+    min-width: 80px;
+  }
+  
+  .admin-table-img{
+    width: 30px;
+    height: 30px;
+  }
+
+  .admin-table-img:hover{
+    opacity: 0.5;
+  }

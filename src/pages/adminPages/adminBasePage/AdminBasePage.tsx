@@ -1,7 +1,7 @@
 import React from "react";
 import './AdminBasePage.css'
-import { AdminHeader } from "./adminHeader/AdminHeader";
-import { AdminFooter } from "./adminFooter/AdminFooter";
+import { AdminHeader } from "../adminHeader/AdminHeader";
+import { AdminFooter } from "../adminFooter/AdminFooter";
 
 interface ContactsPageProps{
     children: React.ReactNode

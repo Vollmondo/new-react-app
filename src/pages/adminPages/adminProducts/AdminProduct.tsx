@@ -9,6 +9,8 @@ interface ProductProps {
 }
 
 export function AdminProduct({product}: ProductProps){
+    const rating = product.rating?.rate ?? 0;
+    const count = product.rating?.count ?? 0;
 
     return(
         <tr className="admin-table-row">
@@ -16,13 +18,13 @@ export function AdminProduct({product}: ProductProps){
                 <td className="admin-table-col">{product.category}</td>
                 <td className="admin-table-col">{product.title}</td>
                 <td className="admin-table-col">{product.description}</td>
-                <td className="admin-table-col">{product.rating.rate}</td>
-                <td className="admin-table-col">{product.rating.count}</td>
+                <td className="admin-table-col">{rating}</td>
+                <td className="admin-table-col">{count}</td>
                 <td className="admin-table-col">{product.price}</td>
                 <td className="admin-table-col">
-                    <div className="product-table-col-y">
-                        <img className="product-table-img" src="../img/icons8-edit-64.png" alt="options" />
-                        <img className="product-table-img" src="../img/icons8-trash-64.png" alt="options" />
+                    <div className="admin-table-col-y">
+                        <img className="admin-table-img" src="../img/icons8-edit-64.png" alt="options" />
+                        <img className="admin-table-img" src="../img/icons8-trash-64.png" alt="options" />
                     </div>
                 </td>
         </tr>

@@ -24,3 +24,27 @@
     justify-content: space-between;
     margin: 10px 20px;
 }
+
+.admin-header-link{
+    padding: 5px 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.admin-header-link:last-child{
+    border: 1px solid red;
+    border-radius: 15px;
+    background-color: red;
+}
+
+.admin-header-link:visited{
+    color: black;
+}
+
+.admin-header-link:hover{
+    color: grey;
+}
+
+.admin-header-link:last-child:hover{
+    background-color: lightcoral;
+}

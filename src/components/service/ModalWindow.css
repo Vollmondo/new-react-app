@@ -12,7 +12,7 @@
 
 .modal-window-container{
     position: absolute;
-    top: 100px;
+    top: 200px;
     right: 200px;
     left: 200px;
     z-index: 2000;
