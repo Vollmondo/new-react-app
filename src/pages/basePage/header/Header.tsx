@@ -26,7 +26,7 @@ export function Header() {
               <button className='header-search-btn'><img className='header-img search' src='../img/icons8-search-64.png' alt='search'/></button>
             </form>
             <div className='header-personal-block'>
-              <Link to='#'><img className='header-img login' src='../img/icons8-enter-64.png' alt='login'/></Link>
+              <Link to='/login'><img className='header-img login' src='../img/icons8-enter-64.png' alt='login'/></Link>
               <Link to='/userProfile/:id'><img className='header-img profile' src='../img/icons8-user-64.png' alt='cart'/></Link>
               <Link to='#'><img className='header-img fav' src='../img/icons8-heart-64.png' alt='favourite'/></Link>
               <Link to='#'><img className='header-img orders' src='../img/icons8-box-64.png' alt='orders'/></Link>

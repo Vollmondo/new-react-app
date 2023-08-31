@@ -29,13 +29,13 @@ export interface IUser{
     avatar?: string,
     name: {
         firstname: string,
-        lastname: string
+        lastname: string,
         patronymic?: string
     },
     phone: string,
     __v: number,
-    role: String,
-    birthdate: Date
+    role: string,
+    birthdate: number
 }
 
 export interface ICategory{

@@ -18,7 +18,7 @@ export function UsersPage(){
         try {
             setError('')
             setLoading(true)
-            const response = await axios.get<IUser[]>('https://fakestoreapi.com/users/')
+            const response = await axios.get<IUser[]>('http://localhost:5000/users/')
             setUsers(response.data)
             setLoading(false)
         } catch (e:unknown) {

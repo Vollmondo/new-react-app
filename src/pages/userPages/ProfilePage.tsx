@@ -3,36 +3,35 @@ import './ProfilePage.css';
 import { IUser } from "../../models";
 
 interface ProfilePageProps {
-  userProfile: IUser;
+  user: IUser;
 }
 
-export function ProfilePage({ userProfile }: ProfilePageProps) {
+export function ProfilePage({ user }: ProfilePageProps) {
   return (
     <div className="profile-container">
         <div className="profile-main-block">
             <div className="profile-photo">
-                <img src={userProfile.avatar} alt="avatar" />
+                <img src={user.avatar} alt="avatar" />
                 </div>
             <div className="profile-user-info">
                 <div className="profile-user-info-row">
-                    <p>Имя:</p>
-                    <input defaultValue={userProfile.name.firstname} ></input>
+                    <p>ID пользователя: {user.id}</p>
                 </div>
                 <div className="profile-user-info-row">
-                    <p>Фамилия:</p>
-                    <input defaultValue={userProfile.name.lastname}></input>
+                    <p>Имя: {user.name.firstname} {user.name.lastname}</p>
+                    {user.name.patronymic && <p>Отчество: {user.name.patronymic}</p>}
                 </div>
                 <div className="profile-user-info-row">
-                    <p>Отчество:</p>
-                    <input defaultValue={userProfile.name.patronymic}></input>
+                    <p>Дата рождения: {user.birthdate}</p>
                 </div>
                 <div className="profile-user-info-row">
-                    <p>E-mail:</p>
-                    <input defaultValue={userProfile.email}></input>
+                    <p>Email: {user.email}</p>
                 </div>
                 <div className="profile-user-info-row">
-                    <p>Телефон:</p>
-                    <input defaultValue={userProfile.phone}></input>
+                    <p>Телефон: {user.phone}</p>
+                </div>
+                <div className="profile-user-info-row">
+                    <p>Адрес: {user.address.street} {user.address.number}, {user.address.zipcode} {user.address.city}</p>
                 </div>
             </div>
         </div>
