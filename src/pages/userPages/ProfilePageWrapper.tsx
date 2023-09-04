@@ -1,15 +1,18 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { IUser } from "../../models";
 import axios from "axios";
-import { Loader } from "../../components/service/Loader";
 import { ProfilePage } from "./ProfilePage";
 import { BasePage } from "../basePage/BasePage";
 import { UserContext } from "../../context/UserContext";
+import { Loader } from "../../components/service/Loader";
+import { ErrorMessage } from "../../components/service/ErrorMessage";
 
 export const ProfilePageWrapper: React.FC = () => {
   const { user } = useContext(UserContext);
-  const [userData, setUserData] = useState<IUser | null>(null); // Изменено имя переменной на userData
+  const [userData, setUserData] = useState<IUser | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -17,24 +20,32 @@ export const ProfilePageWrapper: React.FC = () => {
         const response = await axios.get(`http://localhost:5000/users/${user}`);
         setUserData(response.data);
       } catch (error) {
-        // Обработка ошибки
+        setError("Ошибка загрузки данных пользователя");
+        console.error(error);
       }
     };
     if (user) {
       fetchUser();
     }
-  }, [user]);
+  }, []);
+  
+  useEffect(() => {
+    if (!user){
+      navigate('/login');
+    }
+  }, [user, navigate]);
 
-  if (!user) {
-    return <p>Пожалуйста, выполните вход, чтобы просмотреть информацию о пользователе</p>;
+  if (error) {
+    return <ErrorMessage error={error} />;
   }
 
-  if (!user) {
-    return <p>Загрузка...</p>;
+  if (!userData) {
+    return <Loader />;
   }
+
   return (
     <BasePage>
-      <ProfilePage user={user} />
+      <ProfilePage user={userData} />
     </BasePage>
   );
 };

@@ -3,6 +3,7 @@ import { UserContext } from '../../context/UserContext'
 import axios from "axios";
 import './LoginForm.css'
 import { Navigate, useNavigate } from "react-router-dom";
+import { IUser } from "../../models";
 
 export const LoginForm: React.FC = () => {
     const { setUser } = useContext(UserContext);
@@ -22,7 +23,7 @@ export const LoginForm: React.FC = () => {
 
     const handleSignIn = async () => {
         try {
-            const response = await axios.post("http://localhost:5000/users/login", {
+            const response = await axios.post<IUser>("http://localhost:5000/users/login", {
               username,
               password,
             });
@@ -30,7 +31,15 @@ export const LoginForm: React.FC = () => {
             const user = response.data;
             console.log(user);
             setUser(user);
-            localStorage.setItem("Username", JSON.stringify(username));
+            localStorage.setItem("Username", JSON.stringify(user.username));
+            localStorage.setItem("id", JSON.stringify(user.id));
+            localStorage.setItem("role", JSON.stringify(user.role));
+            localStorage.setItem("avatar", JSON.stringify(user.avatar));
+            localStorage.setItem("firstname", JSON.stringify(user.name.firstname));
+            localStorage.setItem("lastname", JSON.stringify(user.name.lastname));
+
+
+
           } catch (error) {
             setError("Invalid username or password");
           }
@@ -47,7 +56,7 @@ export const LoginForm: React.FC = () => {
               const user = response.data;
               console.log(user);
               setUser(user);
-              localStorage.setItem("Username", username);
+              localStorage.setItem("Username", user.username);
             } catch (error) {
               setError("Error registering user");
             }
