@@ -7,7 +7,7 @@ export function Header() {
     return (
       <div className="header">
         <div className="header_logo">
-          <Link to='/'><img className='logo-img' src='../img/icons8-shop-64.png' alt='logo'/></Link>
+          <Link to='/home'><img className='logo-img' src='../img/icons8-shop-64.png' alt='logo'/></Link>
         </div>
         <div className='header-content-block'>
         <Navigation />

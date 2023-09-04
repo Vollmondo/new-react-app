@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { ProductsPage } from './pages/ProductsPage';
 import { AboutPage } from './pages/infoPages/AboutPage';
 import { ContactsPage } from './pages/infoPages/ContactsPage';
@@ -16,14 +16,25 @@ import { LoginForm } from './pages/userPages/LoginForm';
 
 
 function App() {
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  React.useEffect(() => {
+    if (location.pathname === '/') {
+      navigate('/home');
+    }
+  }, [navigate, location]);
+
   return (
     <>
       <Routes>
-        <Route path='/' element={<MainPage />}/>
+        <Route path='/home' element={<MainPage />}/>
         <Route path='/cat' element={<ProductsPage />}/>
         <Route path='/about' element={<AboutPage />}/>
         <Route path='/contacts' element={<ContactsPage />}/>
         <Route path='/help' element={<HelpPage />}/>
+        
         <Route path="/userProfile/:id" element={<ProfilePageWrapper />} />
         <Route path="/login" element={<LoginForm/>} />
 

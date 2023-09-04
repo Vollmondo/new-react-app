@@ -19,17 +19,6 @@
 	margin: 20px 0 30px;
 }
 
-span {
-	font-size: 12px;
-}
-
-a {
-	color: #333;
-	font-size: 14px;
-	text-decoration: none;
-	margin: 15px 0;
-}
-
 .login-button {
 	border-radius: 20px;
 	border: 1px solid #FF4B2B;
