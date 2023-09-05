@@ -12,7 +12,14 @@
 
 .profile-photo{
     width: 150px;
-    height: 200px;
+    height: 150px;
+    margin-right: 20px;
+}
+
+.profile-photo-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .profile-user-info{

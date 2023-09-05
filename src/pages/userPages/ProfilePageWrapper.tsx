@@ -1,51 +1,79 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { IUser } from "../../models";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import { ProfilePage } from "./ProfilePage";
 import { BasePage } from "../basePage/BasePage";
-import { UserContext } from "../../context/UserContext";
 import { Loader } from "../../components/service/Loader";
 import { ErrorMessage } from "../../components/service/ErrorMessage";
+import './ProfilePage.css';
+import { IUser } from "../../models";
+import { UserContext } from "../../context/UserContext";
 
 export const ProfilePageWrapper: React.FC = () => {
-  const { user } = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
   const [userData, setUserData] = useState<IUser | null>(null);
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const response = await axios.get(`http://localhost:5000/users/${user}`);
-        setUserData(response.data);
-      } catch (error) {
-        setError("Ошибка загрузки данных пользователя");
-        console.error(error);
-      }
-    };
-    if (user) {
-      fetchUser();
-    }
-  }, []);
-  
-  useEffect(() => {
-    if (!user){
+    const storedUserJSON = localStorage.getItem("userJSON");
+    if (storedUserJSON) {
+      const user = JSON.parse(storedUserJSON);
+      const id = user.id;  
+      const LoadProfile = async () => {
+        try {
+          const response = await axios.get<IUser>(`http://localhost:5000/userProfile/${id}`);
+          const userProfileData = response.data;
+          console.log(userProfileData);
+          setUserData(userProfileData);
+          setUser(userProfileData);  
+        } catch (error) {
+          setError("Ошибка загрузки профиля пользователя");
+        }
+      };
+      LoadProfile();
+    } else {
+      setError("Пользователь не найден");
       navigate('/login');
     }
-  }, [user, navigate]);
+  }, []);
 
   if (error) {
     return <ErrorMessage error={error} />;
   }
 
-  if (!userData) {
-    return <Loader />;
-  }
-
   return (
     <BasePage>
-      <ProfilePage user={userData} />
+      {userData ? (
+        <div className="profile-container">
+          <div className="profile-main-block">
+            <div className="profile-photo-container">
+              <img className="profile-photo" src={userData.avatar} alt="avatar" />
+            </div>
+            <div className="profile-user-info">
+              <div className="profile-user-info-row">
+                <p>Потльзователь: {userData.username}</p>
+              </div>
+              <div className="profile-user-info-row">
+                <p>ФИО: {userData.name.lastname} {userData.name.firstname} {userData.name.patronymic}</p>
+              </div>
+              <div className="profile-user-info-row">
+                <p>Дата рождения: {userData.birthdate}</p>
+              </div>
+              <div className="profile-user-info-row">
+                <p>E-mail: {userData.email}</p>
+              </div>
+              <div className="profile-user-info-row">
+                <p>Тел.: {userData.phone}</p>
+              </div>
+              <div className="profile-user-info-row">
+                <p>Адрес: {userData.address.zipcode}, г.{userData.address.city}, ул.{userData.address.street}, д.{userData.address.number}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <Loader />
+      )}
     </BasePage>
   );
 };

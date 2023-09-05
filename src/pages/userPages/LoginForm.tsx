@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from '../../context/UserContext'
 import axios from "axios";
 import './LoginForm.css'
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { IUser } from "../../models";
 
 export const LoginForm: React.FC = () => {
@@ -31,17 +31,12 @@ export const LoginForm: React.FC = () => {
             const user = response.data;
             console.log(user);
             setUser(user);
-            localStorage.setItem("Username", JSON.stringify(user.username));
-            localStorage.setItem("id", JSON.stringify(user.id));
-            localStorage.setItem("role", JSON.stringify(user.role));
-            localStorage.setItem("avatar", JSON.stringify(user.avatar));
-            localStorage.setItem("firstname", JSON.stringify(user.name.firstname));
-            localStorage.setItem("lastname", JSON.stringify(user.name.lastname));
+            localStorage.setItem("userJSON", JSON.stringify(user))
 
 
 
           } catch (error) {
-            setError("Invalid username or password");
+            setError("Неверное имя пользователя или пароль");
           }
         };
 
@@ -66,7 +61,7 @@ export const LoginForm: React.FC = () => {
         };
 
     useEffect(() => {
-        const user = localStorage.getItem("Username") || ''
+        const user = localStorage.getItem("userJSON") || ''
         setUsername(user)
         if (user){
             return (navigate('/home'))
