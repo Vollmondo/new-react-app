@@ -102,19 +102,19 @@ export const LoginForm: React.FC = () => {
                     
                     <form className="login-form" action="#">
                         <h1>Создайте пользователя</h1>
-                        <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
-                        <input type="password" placeholder="Password" value={userPass1} onChange={(e) => setUserPass1(e.target.value)} autoComplete="new-password" />
-                        <input type="password" placeholder="Password" value={userPass2} onChange={(e) => setUserPass2(e.target.value)} autoComplete="new-password" />
-                        <button onClick={handleSignUp}>Зарегистрироваться</button>
+                        <input className="login-form-input" type="text" placeholder="Придумайте имя пользователя" value={username} onChange={(e) => setUsername(e.target.value)} />
+                        <input className="login-form-input" type="password" placeholder="Придумайте пароль" value={userPass1} onChange={(e) => setUserPass1(e.target.value)} autoComplete="new-password" />
+                        <input className="login-form-input" type="password" placeholder="Подтвердите пароль" value={userPass2} onChange={(e) => setUserPass2(e.target.value)} autoComplete="new-password" />
+                        <button className="login-button" onClick={handleSignUp}>Зарегистрироваться</button>
                     </form>
                 </div>
     {/* Код для правой панели (вход) */}
                 <div className="form-container sign-in-container">
                     <form className="login-form" action="#">
                         <h1>Войти</h1>
-                        <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
-                        <input type="text" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                        <button onClick={handleSignIn}>Войти</button>
+                        <input className="login-form-input" type="text" placeholder="Введите имя пользователя" value={username} onChange={(e) => setUsername(e.target.value)} />
+                        <input className="login-form-input" type="text" placeholder="Введите пароль" value={password} onChange={(e) => setPassword(e.target.value)} />
+                        <button className="login-button" onClick={handleSignIn}>Войти</button>
                     </form>
                 </div>
                 <div className="overlay-container">
@@ -122,13 +122,13 @@ export const LoginForm: React.FC = () => {
                         <div className="overlay-panel overlay-left">
     {/* Код для левой панели (регистрация) */}
                             <h1>Уже зарегистрирован?</h1>
-                            <button className="ghost" onClick={handleTogglePanel}>Заходи!</button>
+                            <button className="login-button ghost" onClick={handleTogglePanel}>Заходи!</button>
                         </div>
                         <div className="overlay-panel overlay-right">
     {/* Код для правой панели (вход) */}
                             <h1>Нет аккаунта?</h1>
                             <p>Не беда!</p>
-                            <button className="ghost" onClick={handleTogglePanel}>Регистрируйся!</button>
+                            <button className="login-button ghost" onClick={handleTogglePanel}>Регистрируйся!</button>
                         </div>
                     </div>
                 </div>
