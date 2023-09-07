@@ -1,17 +1,22 @@
 import React from 'react';
 import './Header.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Navigation } from '../navigation/Navigation';
 
 export function Header() {
-
+  const navigate = useNavigate();
   const userJSON = localStorage.getItem('userJSON');
   let id = 0;
   
   if (userJSON !== null) {
     const userObj = JSON.parse(userJSON);
-    id = userObj.id;
+    id = userObj._id;
   }
+
+  const handleLogout = () => {
+    localStorage.removeItem('userJSON');
+    navigate('/home');
+  };
 
     return (
       <div className="header">
@@ -41,6 +46,7 @@ export function Header() {
                   <Link to='#'><img className='header-img fav' src='../img/icons8-heart-64.png' alt='favourite'/></Link>
                   <Link to='#'><img className='header-img orders' src='../img/icons8-box-64.png' alt='orders'/></Link>
                   <Link to='#'><img className='header-img cart' src='../img/icons8-shopping-bag-64.png' alt='cart'/></Link>
+                  <Link to='/home' className='header-logout-link' onClick={handleLogout}><img className='header-img logout' src='../img/icons8-logout-64.png' alt='cart'/></Link>
                 </>
               ) : (
                 <Link to='/login'><img className='header-img login' src='../img/icons8-enter-64.png' alt='login'/></Link>

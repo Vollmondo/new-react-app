@@ -18,7 +18,7 @@ export const ProfilePageWrapper: React.FC = () => {
     const storedUserJSON = localStorage.getItem("userJSON");
     if (storedUserJSON) {
       const user = JSON.parse(storedUserJSON);
-      const id = user.id;  
+      const id = user._id;  
       const LoadProfile = async () => {
         try {
           const response = await axios.get<IUser>(`http://localhost:5000/userProfile/${id}`);
@@ -54,7 +54,7 @@ export const ProfilePageWrapper: React.FC = () => {
                 <p>Потльзователь: {userData.username}</p>
               </div>
               <div className="profile-user-info-row">
-                <p>ФИО: {userData.name.lastname} {userData.name.firstname} {userData.name.patronymic}</p>
+                <p>ФИО: {userData.name?.lastname} {userData.name?.firstname} {userData.name?.patronymic}</p>
               </div>
               <div className="profile-user-info-row">
                 <p>Дата рождения: {userData.birthdate}</p>
@@ -66,7 +66,7 @@ export const ProfilePageWrapper: React.FC = () => {
                 <p>Тел.: {userData.phone}</p>
               </div>
               <div className="profile-user-info-row">
-                <p>Адрес: {userData.address.zipcode}, г.{userData.address.city}, ул.{userData.address.street}, д.{userData.address.number}</p>
+                <p>Адрес: {userData.address?.zipcode}, г.{userData.address?.city}, ул.{userData.address?.street}, д.{userData.address?.number}</p>
               </div>
             </div>
           </div>

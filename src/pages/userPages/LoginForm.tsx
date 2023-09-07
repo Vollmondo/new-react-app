@@ -5,6 +5,30 @@ import './LoginForm.css'
 import { useNavigate } from "react-router-dom";
 import { IUser } from "../../models";
 
+const newUser: IUser ={
+    address: {
+        geolocation: {
+            lat: '',
+            long: ''
+        },
+        city: '',
+        street: '',
+        number: 0,
+        zipcode: ''
+    },
+    email: '',
+    username: '',
+    password: '',
+    avatar: '',
+    name: {
+        firstname: '',
+        lastname: '',
+    },
+    phone: '',
+    __v: 0,
+    role: 'user',
+}
+
 export const LoginForm: React.FC = () => {
     const { setUser } = useContext(UserContext);
     const [username, setUsername] = useState("");
@@ -43,20 +67,19 @@ export const LoginForm: React.FC = () => {
     const handleSignUp = async () => {
         if (username && userPass1 && userPass1 === userPass2) {
             try {
-              const response = await axios.post("http://localhost:5000/users/register", {
-                username,
-                password: userPass1,
-              });
-      
-              const user = response.data;
-              console.log(user);
-              setUser(user);
-              localStorage.setItem("Username", user.username);
+                newUser.username = username
+                newUser.password = userPass1
+                const response = await axios.post<IUser>("http://localhost:5000/users/register", newUser);
+                
+                const user = response.data;
+                console.log(user);
+                setUser(user);
+                localStorage.setItem("userJSON", JSON.stringify(user));
             } catch (error) {
-              setError("Error registering user");
+                setError("Error registering user");
             }
           } else {
-            setError("Invalid registration details");
+                setError("Invalid registration details");
           }
         };
 
@@ -80,8 +103,8 @@ export const LoginForm: React.FC = () => {
                     <form className="login-form" action="#">
                         <h1>Создайте пользователя</h1>
                         <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
-                        <input type="password" placeholder="Password" value={userPass1} onChange={(e) => setUserPass1(e.target.value)} />
-                        <input type="password" placeholder="Password" value={userPass2} onChange={(e) => setUserPass2(e.target.value)} />
+                        <input type="password" placeholder="Password" value={userPass1} onChange={(e) => setUserPass1(e.target.value)} autoComplete="new-password" />
+                        <input type="password" placeholder="Password" value={userPass2} onChange={(e) => setUserPass2(e.target.value)} autoComplete="new-password" />
                         <button onClick={handleSignUp}>Зарегистрироваться</button>
                     </form>
                 </div>

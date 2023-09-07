@@ -12,30 +12,30 @@ export interface IProduct{
 }
 
 export interface IUser{
-    address: {
-        geolocation: {
-            lat: string,
-            long: string
+    address?: {
+        geolocation?: {
+            lat?: string,
+            long?: string
         },
-        city: string,
-        street: string,
-        number: number,
-        zipcode: string
+        city?: string,
+        street?: string,
+        number?: number,
+        zipcode?: string
     },
-    id?: number,
-    email: string,
+    _id?: string,
+    email?: string,
     username: string,
     password: string,
     avatar?: string,
-    name: {
-        firstname: string,
-        lastname: string,
+    name?: {
+        firstname?: string,
+        lastname?: string,
         patronymic?: string
     },
-    phone: string,
-    __v: number,
-    role: string,
-    birthdate: number
+    phone?: string,
+    __v?: number,
+    role?: string,
+    birthdate?: number
 }
 
 export interface ICategory{

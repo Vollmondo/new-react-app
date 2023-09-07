@@ -50,7 +50,7 @@ export function UsersPage(){
                                 <th className="admin-table-th">Имя</th>
                                 <th className="admin-table-th">Отчество</th>
                             </tr>
-                        {users.map(user => <User user={user} key={user.id}/>)}
+                        {users.map(user => <User user={user} key={user._id}/>)}
                         </tbody>
                     </table>
                     {error && <ErrorMessage error="Не удалось загрузить товары"/>}

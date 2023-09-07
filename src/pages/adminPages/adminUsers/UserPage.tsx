@@ -10,13 +10,13 @@ export function User({user}: UserProps){
 
     return(
         <tr className="admin-table-row">
-                <td className="admin-table-col">{user.id}</td>
+                <td className="admin-table-col">{user._id}</td>
                 <td className="admin-table-col">{user.username}</td>
                 <td className="admin-table-col">{user.role}</td>
                 <td className="admin-table-col">{user.email}</td>
-                <td className="admin-table-col">{user.name.lastname}</td>
-                <td className="admin-table-col">{user.name.firstname}</td>
-                <td className="admin-table-col">{user.name.patronymic}</td>
+                <td className="admin-table-col">{user.name?.lastname}</td>
+                <td className="admin-table-col">{user.name?.firstname}</td>
+                <td className="admin-table-col">{user.name?.patronymic}</td>
         </tr>
     )
 }

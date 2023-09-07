@@ -89,3 +89,7 @@
     height: 34px;
     margin: 3px 0;
 }
+
+.header-img.logout{
+    transform: rotate(90deg);
+}
