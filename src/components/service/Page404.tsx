@@ -2,7 +2,7 @@ import React from 'react';
 import './Page404.css'
 import { Link } from 'react-router-dom';
 
-const Page404 = () => {
+export const Page404 = () => {
   return (
     <div className='container404'>
         <img className='img404' src='../img/icons8-error-64.png' alt='cart'/>
@@ -12,5 +12,3 @@ const Page404 = () => {
     </div>
   );
 };
-
-export default Page404;

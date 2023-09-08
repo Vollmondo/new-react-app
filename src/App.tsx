@@ -12,7 +12,7 @@ import { AdminProductsPage } from './pages/adminPages/adminProducts/AdminProduct
 import { AdminCategoriesPage } from './pages/adminPages/adminCategories/AdminCategoriesPage';
 import { AdminMainPage } from './pages/adminPages/AdminMainPage';
 import { AuthForm } from './pages/userPages/AuthForm';
-import Page404 from './components/service/Page404';
+import {Page404} from './components/service/Page404';
  
 
 
