@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { Loader } from './Loader';
+import { SelfGeolocInput } from './SelfGeolocInput';
 
-export const GeoLocation = () => {
+interface CheckLocProps{
+  onCheck: () => void
+}
+
+export const GeoLocation = ({ onCheck }: CheckLocProps) => {
   const [latitude, setLatitude] = useState<number | null>(null);
   const [longitude, setLongitude] = useState<number | null>(null);
   const [city, setCity] = useState<string | null>(null);
+  const [showInput, setShowInput] = useState(false);
   const [confirmed, setConfirmed] = useState<boolean>(false);
 
   useEffect(() => {
@@ -14,6 +20,7 @@ export const GeoLocation = () => {
     if (savedLatitude && savedLongitude) {
       setLatitude(parseFloat(savedLatitude));
       setLongitude(parseFloat(savedLongitude));
+      setConfirmed(true);
     } else {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
@@ -22,8 +29,6 @@ export const GeoLocation = () => {
             const lon = position.coords.longitude;
             setLatitude(lat);
             setLongitude(lon);
-            localStorage.setItem('latitude', lat.toString());
-            localStorage.setItem('longitude', lon.toString());
           },
           (error) => {
             console.log(error);
@@ -33,7 +38,7 @@ export const GeoLocation = () => {
         console.log('Geolocation is not supported by this browser.');
       }
     }
-  }, []);
+  }, [latitude, longitude, confirmed]);
 
   useEffect(() => {
     if (latitude && longitude) {
@@ -43,24 +48,26 @@ export const GeoLocation = () => {
         .then((response) => response.json())
         .then((data) => {
           const coords = data.response.GeoObjectCollection.metaDataProperty.GeocoderResponseMetaData.request;
-          const location = data.response.GeoObjectCollection.featureMember[0].GeoObject.description;
+          const location = (data.response.GeoObjectCollection.featureMember[0].GeoObject.metaDataProperty.GeocoderMetaData.AddressDetails.Country.AdministrativeArea.SubAdministrativeArea.Locality.LocalityName).split(',');
           setCity(location);
+          if (latitude && longitude && confirmed) {
+            localStorage.setItem('Coordinates', coords.toString());
+            localStorage.setItem('Location', location)
+          }
         })
         .catch((error) => {
           console.log(error);
         });
     }
-  }, [latitude, longitude]);
-
-  useEffect(() => {
-    if (latitude && longitude && confirmed) {
-      localStorage.setItem('latitude', latitude.toString());
-      localStorage.setItem('longitude', longitude.toString());
-    }
   }, [latitude, longitude, confirmed]);
 
-  const handleConfirmation = () => {
-    setConfirmed(true);
+  const handleConfirmation = async() => {
+    await setConfirmed(true);
+    onCheck()
+  };
+
+  const handleSelfInput= () => {
+    setShowInput(true);
   };
 
   return (
@@ -71,6 +78,9 @@ export const GeoLocation = () => {
           <p>Широта: {latitude}</p>
           <p>Долгота: {longitude}</p>
           {!confirmed && <button onClick={handleConfirmation}>Подтвердить</button>}
+          {!confirmed && <button onClick={handleSelfInput}>Ввести данные вручную</button>}
+          {showInput && <SelfGeolocInput action={''} />}
+
         </div>
         
       ) : (

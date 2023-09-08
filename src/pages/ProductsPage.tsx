@@ -9,8 +9,6 @@ import { ModalWindow } from "../components/service/ModalWindow";
 import { CreateProduct } from "../components/products/CreateProduct";
 import { ModalWindowContext } from "../context/ModalWindowContext";
 import { BasePage } from "./basePage/BasePage";
-import { Link } from "react-router-dom";
-
 
 export function ProductsPage(){
     
