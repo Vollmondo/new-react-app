@@ -48,6 +48,7 @@
 
 .login-form {
 	background-color: #FFFFFF;
+	width: 50%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -85,7 +86,7 @@
 
 .sign-in-container {
 	left: 0;
-	width: 50%;
+	width: 100%;
 	z-index: 2;
 }
 
@@ -95,13 +96,13 @@
 
 .sign-up-container {
 	left: 0;
-	width: 50%;
+	width: 100%;
 	opacity: 0;
 	z-index: 1;
 }
 
 .container.right-panel-active .sign-up-container {
-	transform: translateX(100%);
+	transform: translateX(50%);
 	opacity: 1;
 	z-index: 5;
 	animation: show 0.6s;
@@ -170,6 +171,7 @@
 }
 
 .overlay-left {
+	left: 0;
 	transform: translateX(-20%);
 }
 

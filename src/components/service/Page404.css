@@ -1,0 +1,17 @@
+.container404{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding-top: 10%;
+}
+
+.header404{
+    font-size: 40pt;
+    color: blue;
+}
+
+.text404{
+    font-size: 20pt;
+    color:dodgerblue;
+
+}
