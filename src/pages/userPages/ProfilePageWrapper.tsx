@@ -24,6 +24,9 @@ export const ProfilePageWrapper: React.FC = () => {
           const response = await axios.get<IUser>(`http://localhost:5000/userProfile/${id}`);
           const userProfileData = response.data;
           console.log(userProfileData);
+          if (userProfileData.avatar === "") {
+            userProfileData.avatar = "https://cdn-icons-png.flaticon.com/512/149/149452.png";
+          }
           setUserData(userProfileData);
           setUser(userProfileData);  
         } catch (error) {
