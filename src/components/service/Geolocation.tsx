@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Loader } from './Loader';
 import { SelfGeolocInput } from './SelfGeolocInput';
+import axios from 'axios';
 
-interface CheckLocProps{
-  onCheck: () => void
+interface CheckLocProps {
+  onCheck: () => void;
 }
 
 export const GeoLocation = ({ onCheck }: CheckLocProps) => {
@@ -35,7 +36,7 @@ export const GeoLocation = ({ onCheck }: CheckLocProps) => {
           }
         );
       } else {
-        console.log('Geolocation is not supported by this browser.');
+        console.log('Ваш браузер не поддерживает геолокацию.');
       }
     }
   }, [latitude, longitude, confirmed]);
@@ -44,15 +45,18 @@ export const GeoLocation = ({ onCheck }: CheckLocProps) => {
     if (latitude && longitude) {
       const API_KEY_YANDEX = '85eaff1b-ef9e-4c11-89bc-ca01d1ae43de';
       const API_URL_GEO_DATA = `https://geocode-maps.yandex.ru/1.x/?apikey=${API_KEY_YANDEX}&geocode=${longitude},${latitude}&results=1&format=json`;
-      fetch(API_URL_GEO_DATA)
-        .then((response) => response.json())
-        .then((data) => {
-          const coords = data.response.GeoObjectCollection.metaDataProperty.GeocoderResponseMetaData.request;
-          const location = (data.response.GeoObjectCollection.featureMember[0].GeoObject.metaDataProperty.GeocoderMetaData.AddressDetails.Country.AdministrativeArea.SubAdministrativeArea.Locality.LocalityName).split(',');
+      axios
+        .get(API_URL_GEO_DATA)
+        .then((response) => response.data)
+        .then(async (data) => {
+          const coords = await (data.response.GeoObjectCollection.metaDataProperty.GeocoderResponseMetaData.request.split(',').reverse());
+          console.log(coords)
+          const location = await (data.response.GeoObjectCollection.featureMember[0].GeoObject.metaDataProperty.GeocoderMetaData.AddressDetails.Country.AdministrativeArea.AdministrativeAreaName);
           setCity(location);
           if (latitude && longitude && confirmed) {
             localStorage.setItem('Coordinates', coords.toString());
             localStorage.setItem('Location', location)
+            window.location.reload();
           }
         })
         .catch((error) => {
@@ -61,18 +65,18 @@ export const GeoLocation = ({ onCheck }: CheckLocProps) => {
     }
   }, [latitude, longitude, confirmed]);
 
-  const handleConfirmation = async() => {
+  const handleConfirmation = async () => {
     await setConfirmed(true);
-    onCheck()
+    onCheck();
   };
 
-  const handleSelfInput= () => {
+  const handleSelfInput = () => {
     setShowInput(true);
   };
 
   return (
     <div>
-      {city && <p>Город: {city}</p>}
+      {city && <p>{city}</p>}
       {latitude && longitude ? (
         <div>
           <p>Широта: {latitude}</p>
@@ -80,9 +84,7 @@ export const GeoLocation = ({ onCheck }: CheckLocProps) => {
           {!confirmed && <button onClick={handleConfirmation}>Подтвердить</button>}
           {!confirmed && <button onClick={handleSelfInput}>Ввести данные вручную</button>}
           {showInput && <SelfGeolocInput action={''} />}
-
         </div>
-        
       ) : (
         <Loader />
       )}

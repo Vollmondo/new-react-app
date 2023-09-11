@@ -2,6 +2,7 @@ import React from 'react';
 import './Header.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { Navigation } from '../navigation/Navigation';
+import { LocationProvider } from '../../../context/LocationContext';
 
 export function Header() {
   const navigate = useNavigate();
@@ -24,7 +25,9 @@ export function Header() {
           <Link to='/home'><img className='logo-img' src='../img/icons8-shop-64.png' alt='logo'/></Link>
         </div>
         <div className='header-content-block'>
-        <Navigation />
+          <LocationProvider>
+            <Navigation />
+          </LocationProvider>
           <div className='header-content'>
             <div className='header-catButton-block'>
                 <Link to='/cat'>

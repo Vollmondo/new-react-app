@@ -12,10 +12,10 @@ export interface IProduct{
 }
 
 export interface IUser{
-    address?: {
-        geolocation?: {
-            lat?: string,
-            long?: string
+    address: {
+        geolocation: {
+            lat: string,
+            long: string
         },
         city?: string,
         street?: string,
