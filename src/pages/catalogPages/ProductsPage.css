@@ -20,6 +20,6 @@
     height: 70px;
     border-radius: 50%;
     border: green;
-    background: url(../../public/img/icons8-plus-96.png) no-repeat;
+    background: url(../../../public/img/icons8-plus-96.png) no-repeat;
     background-size: 70px;
 }

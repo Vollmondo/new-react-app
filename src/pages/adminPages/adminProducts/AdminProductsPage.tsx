@@ -26,7 +26,7 @@ export function AdminProductsPage() {
         setError("");
         setLoading(true);
         const response = await axios.get<IProduct[]>(
-          "https://fakestoreapi.com/products/"
+          "http://localhost:5000/products/"
         );
         setProducts(response.data);
         setLoading(false);
@@ -78,7 +78,7 @@ export function AdminProductsPage() {
                   </th>
                 </tr>
                 {products.map((product) => (
-                  <AdminProduct product={product} key={product.id} />
+                  <AdminProduct product={product} key={product._id} />
                 ))}
               </tbody>
             </table>

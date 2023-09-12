@@ -61,6 +61,8 @@
     border: none;
     background-color: #ccc;
     cursor: pointer;
+    outline: none;
+    
   }
 
   .left {
@@ -74,12 +76,19 @@
     right: 5%;
   }
   
-  .slider-btn:hover,
-  .slider-btn:focus {
+  .slider-btn:hover{
     background-color: grey;
-    outline: none;
+    
   }
 
   .slider-btn:active{
     background-color: #ccc;
+  }
+
+  .slider-slide-detailsbtn{
+    position: absolute;
+    z-index: 20;
+    top: 80%;
+    left: 50%;
+    border: 2px solid black;
   }

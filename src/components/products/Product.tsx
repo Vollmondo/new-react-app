@@ -15,12 +15,12 @@ export function Product({product}: ProductProps){
 
     return(
         <div className="product-el">
-            <a href="#" target="blank" className="product-el-link">
+            <div className="product-el-link">
                 <p className="product-el-category">{product.category}</p>
                 <img className="product-el-img" src={product.image} alt="Фото товара" loading="lazy"/>
                 <p className="product-el-title">{product.title}</p>
                 <p className="product-el-price">{product.price}</p>
-            </a>           
+            </div>           
            {/*  <button
                 className={btnDetailsClassName.join(' ')}
                 onClick={() => setDetails(prev => !prev)}

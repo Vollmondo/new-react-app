@@ -42,7 +42,7 @@ export function CreateProduct({ onCreate }: CreateProductProps) {
         newProduct.description = descriptionValue
         newProduct.image = photoValue
 
-        const response = await axios.post<IProduct>('https://fakestoreapi.com/products', newProduct)
+        const response = await axios.post<IProduct>('http://localhost:5000/products/', newProduct)
         console.log(response)
         onCreate(response.data)
     };

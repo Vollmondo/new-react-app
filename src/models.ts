@@ -1,5 +1,5 @@
 export interface IProduct{
-    id?: number
+    _id?: string
     title: string
     price: number
     description: string
@@ -45,6 +45,13 @@ export interface ICategory{
 }
 
 export interface ISliderData{
+    _id: string | undefined, 
+    title: string, 
+    image: string | undefined, 
+    content: string
+}
+
+export interface IArticle{
     id: number | undefined, 
     title: string, 
     image: string | undefined, 

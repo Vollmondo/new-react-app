@@ -5,9 +5,10 @@ import "./Slider.css"
 
 interface SliderProps {
   sliderData: ISliderData[];
+  detailsPath: string;
 }
 
-export function Slider({ sliderData }: SliderProps) {
+export function Slider({ sliderData, detailsPath }: SliderProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handlePreviousSlide = () => {
@@ -18,11 +19,9 @@ export function Slider({ sliderData }: SliderProps) {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % sliderData.length);
   };
 
-  const slides = [];
-  for (let i = 0; i < sliderData.length; i++) {
-    const slide = sliderData[i];
-    slides.push(<Slide key={i} slideData={slide} isActive={i === currentIndex} />);
-  }
+  const slides = sliderData.map((slide, index) => (
+    <Slide key={index} slideData={slide} isActive={index === currentIndex} detailsPath={detailsPath} />
+  ));
 
   return (
     <>

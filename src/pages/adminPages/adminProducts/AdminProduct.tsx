@@ -14,7 +14,7 @@ export function AdminProduct({product}: ProductProps){
 
     return(
         <tr className="admin-table-row">
-                <td className="admin-table-col">{product.id}</td>
+                <td className="admin-table-col">{product._id}</td>
                 <td className="admin-table-col">{product.category}</td>
                 <td className="admin-table-col">{product.title}</td>
                 <td className="admin-table-col">{product.description}</td>

@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
-import { ProductsPage } from './pages/ProductsPage';
+import { ProductsPage } from './pages/catalogPages/ProductsPage';
 import { AboutPage } from './pages/infoPages/AboutPage';
 import { ContactsPage } from './pages/infoPages/ContactsPage';
 import { MainPage } from './pages/MainPage';
@@ -13,6 +13,7 @@ import { AdminCategoriesPage } from './pages/adminPages/adminCategories/AdminCat
 import { AdminMainPage } from './pages/adminPages/AdminMainPage';
 import { AuthForm } from './pages/userPages/AuthForm';
 import {Page404} from './components/service/Page404';
+import { ProductDetails } from './pages/catalogPages/ProductDetails';
  
 
 
@@ -31,7 +32,11 @@ function App() {
     <>
       <Routes>
         <Route path='/home' element={<MainPage />}/>
+
         <Route path='/cat' element={<ProductsPage />}/>
+        <Route path='/cat/:id' element={<ProductDetails />}/>
+
+
         <Route path='/about' element={<AboutPage />}/>
         <Route path='/contacts' element={<ContactsPage />}/>
         <Route path='/help' element={<HelpPage />}/>
