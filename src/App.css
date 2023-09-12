@@ -7,3 +7,14 @@
 html, body{
   height: 100vh;
 }
+
+.center-x{
+  display: flex;
+  justify-content: center;
+}
+
+.center-y{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

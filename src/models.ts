@@ -43,3 +43,10 @@ export interface ICategory{
     title: string,
     parent?: string
 }
+
+export interface ISliderData{
+    id: number | undefined, 
+    title: string, 
+    image: string | undefined, 
+    content: string
+}

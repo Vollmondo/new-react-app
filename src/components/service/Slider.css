@@ -1,0 +1,85 @@
+.slider {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  height: 300px;
+  width: 100%;
+  margin: 10px 0;
+}
+
+.slider-slide-container{
+  position: relative;
+  left: 15%;
+  width: 70%;
+  padding: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.slide-navigation {
+  position: absolute;
+  top: 50%;
+  z-index: 5;
+  width: 10%;
+}
+  
+.slider-slide {
+  position: absolute;
+  flex: 0 0 100%;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  height: 100%;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+}
+  
+.slider-slide.active {
+  opacity: 1;
+}
+  
+.slider-slide-img {
+  height: 300px;
+  object-fit: cover;
+}
+  
+.slider-content {
+  
+}
+  
+  .slider-slide-content h3 {
+    margin: 0;
+    font-size: 24px;
+  }
+  
+  
+  .slider-btn {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: url('../../../public/img/icons8-arrow-64.png') center no-repeat;
+    border-radius: 50%;
+    border: none;
+    background-color: #ccc;
+    cursor: pointer;
+  }
+
+  .left {
+    position: absolute;
+    left: 5%;
+    transform: rotate(180deg);
+  }
+
+  .right{
+    position: absolute;
+    right: 5%;
+  }
+  
+  .slider-btn:hover,
+  .slider-btn:focus {
+    background-color: grey;
+    outline: none;
+  }
+
+  .slider-btn:active{
+    background-color: #ccc;
+  }
