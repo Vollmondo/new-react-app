@@ -9,7 +9,14 @@ export function AboutPage(){
             <BasePage>
                 <div className="about">
                     <h1>О НАС</h1>
-                    <p className="about-p"></p>
+                    <p className="about-p">Наша организация самая лучшая!</p>
+                    <h3 className="about-h3">Наше производство:</h3>
+                    <p className="about-p">Lorem ipsum, dolor sit amezzt consectetur adipisicing elit. Adipisci vero velit quisquam quia enim, ratione odio exercitationem sint expedita delectus est voluptate, accusamus earum maxime ipsum minima temporibus in vitae!</p>
+                    <h3 className="about-h3">Наши результаты:</h3>
+                    <p className="about-p">Lorem ipsum, dolor sit amezzt consectetur adipisicing elit. Adipisci vero velit quisquam quia enim, ratione odio exercitationem sint expedita delectus est voluptate, accusamus earum maxime ipsum minima temporibus in vitae!</p>
+                    <h3 className="about-h3">Наши преимущества:</h3>
+                    <p className="about-p">Lorem ipsum, dolor sit amezzt consectetur adipisicing elit. Adipisci vero velit quisquam quia enim, ratione odio exercitationem sint expedita delectus est voluptate, accusamus earum maxime ipsum minima temporibus in vitae!</p>
+                    <h3 className="about-h3">Нам доверяют:</h3>
                     <p className="about-p">Lorem ipsum, dolor sit amezzt consectetur adipisicing elit. Adipisci vero velit quisquam quia enim, ratione odio exercitationem sint expedita delectus est voluptate, accusamus earum maxime ipsum minima temporibus in vitae!</p>
                 </div>
                 <h2 className="about-reqTableHeader">Реквизиты организации:</h2>
