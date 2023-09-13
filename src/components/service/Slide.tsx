@@ -19,11 +19,15 @@ export function Slide({ slideData, isActive, detailsPath }: SlideProps) {
 
   return (
     <div className={`slider-slide ${active ? "active" : ""}`}>
-      {image && <img className="slider-slide-img" src={image} alt={title} />}
-      <div>
+      <div className="slider-imgContainer">
+        {image && <img className="slider-slide-img" src={image} alt={title} />}
+      </div>
+      <div className="slider-contentContainer">
         <h2 className="slider-slide-title">{title}</h2>
-        <p className="slider-slide-content" dangerouslySetInnerHTML={{ __html: content}}></p>
-        {_id && <Link to={`/${detailsPath}/${_id.toString()}`} className="slider-slide-detailsbtn">Подробнее</Link>}
+        <div className="slider-descriptionContainer">
+          <p className="slider-slide-content" dangerouslySetInnerHTML={{ __html: content}}></p>
+          {_id && <Link to={`/${detailsPath}/${_id.toString()}`} className="slider-slide-detailsbtn">Подробнее&hellip;</Link>}
+        </div>
       </div>
     </div>
   );
