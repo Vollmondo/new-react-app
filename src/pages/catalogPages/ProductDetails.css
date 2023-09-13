@@ -1,0 +1,49 @@
+.productDetails{
+
+}
+
+.product-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.productDetails-mainBlock{
+    width: 100%;
+    display: inline-flex;
+}
+
+.productDetails-imgCont{
+
+}
+
+.productDetails-img{
+    height: 500px;
+}
+
+.productDetails-infoblock{
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.productDetails-cat{
+
+}
+
+.productDetails-title{
+
+}
+
+.productDetails-price{
+
+}
+
+.productDetails-additionalBlock{
+
+}
+
+.productDetails-description{
+    
+}
+

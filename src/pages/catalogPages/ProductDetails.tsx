@@ -5,6 +5,7 @@ import { Loader } from "../../components/service/Loader";
 import { ErrorMessage } from "../../components/service/ErrorMessage";
 import { BasePage } from "../basePage/BasePage";
 import { useParams } from "react-router-dom";
+import './ProductDetails.css'
 
 export function ProductDetails() {
   const { id } = useParams();
@@ -50,13 +51,28 @@ export function ProductDetails() {
           <ErrorMessage error="Не удалось загрузить информацию о товаре" />
         )}
         <div className="product-container">
-          <div className="productDetails-img">
-            <img className="profile-photo" src={product.image} alt={product.title} />
+          <div className="productDetails-title">
+            <h2>{product.title}</h2>
           </div>
-          <div className="productDetails-img">{product.category}</div>
-          <div className="productDetails-img">{product.title}</div>
-          <div className="productDetails-img">{product.price}</div>
-          <div className="productDetails-img">{product.description}</div>
+          <div className="productDetails-mainBlock">
+            <div className="productDetails-imgCont">
+              <img className="productDetails-img" src={product.image} alt={product.title} />
+            </div>
+            <div className="productDetails-infoblock">
+              <div className="productDetails-cat">
+                <p>{product.category}</p>
+              </div>
+              <div className="productDetails-price">
+                <p>{product.price}</p>
+                <input type="number" step="1" placeholder="Кол-во"></input>
+              </div>
+            </div>
+          </div>
+          <div className="productDetails-additionalBlock">
+            <div className="productDetails-description">
+              <p>{product.description}</p>
+            </div>
+          </div>
         </div>
       </div>
     </BasePage>
