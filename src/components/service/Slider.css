@@ -11,7 +11,7 @@
   position: relative;
   left: 15%;
   width: 70%;
-  padding: 10px;
+  margin: 10px;
   transition: transform 0.3s ease-in-out;
 }
 
@@ -38,7 +38,7 @@
 }
   
 .slider-slide-img {
-  height: 95%;
+  height: 100%;
   width: 90%;
   object-fit: scale-down;
 }
