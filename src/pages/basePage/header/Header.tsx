@@ -45,11 +45,21 @@ export function Header() {
             <div className='header-personal-block'>
               {userJSON ? (
                 <>
-                  <Link to={`/userProfile/${id}`}><img className='header-img profile' src='../img/icons8-user-64.png' alt='cart'/></Link>
-                  <Link to='#'><img className='header-img fav' src='../img/icons8-heart-64.png' alt='favourite'/></Link>
-                  <Link to='#'><img className='header-img orders' src='../img/icons8-box-64.png' alt='orders'/></Link>
-                  <Link to='#'><img className='header-img cart' src='../img/icons8-shopping-bag-64.png' alt='cart'/></Link>
-                  <Link to='/home' className='header-logout-link' onClick={handleLogout}><img className='header-img logout' src='../img/icons8-logout-64.png' alt='cart'/></Link>
+                  <Link to={`/userProfile/${id}`}>
+                    <img className='header-img profile' src='../img/icons8-user-64.png' alt='profile'/>
+                    </Link>
+                  <Link to={`/userProfile/fav`}>
+                    <img className='header-img fav' src='../img/icons8-heart-64.png' alt='favourite'/>
+                  </Link>
+                  <Link to={`/userProfile/orders`}>
+                    <img className='header-img orders' src='../img/icons8-box-64.png' alt='orders'/>
+                  </Link>
+                  <Link to={`/userProfile/cart`}>
+                    <img className='header-img cart' src='../img/icons8-shopping-bag-64.png' alt='cart'/>
+                  </Link>
+                  <Link to='/home' className='header-logout-link' onClick={handleLogout}>
+                    <img className='header-img logout' src='../img/icons8-logout-64.png' alt='logOut'/>
+                  </Link>
                 </>
               ) : (
                 <Link to='/login'><img className='header-img login' src='../img/icons8-enter-64.png' alt='login'/></Link>

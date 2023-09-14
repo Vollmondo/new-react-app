@@ -14,8 +14,31 @@ import { AdminMainPage } from './pages/adminPages/AdminMainPage';
 import { AuthForm } from './pages/userPages/AuthForm';
 import {Page404} from './components/service/Page404';
 import { ProductDetails } from './pages/catalogPages/ProductDetails';
+import { CartPage } from './pages/userPages/CartPage';
+import { FavPage } from './pages/userPages/FavPage';
+import { OrdersPage } from './pages/userPages/OrdersPage';
  
+function UserProfile() {
+  return (
+    <Routes>
+      <Route path="/:id" element={<ProfilePageWrapper />} />
+      <Route path="/fav" element={<FavPage />} />
+      <Route path="/orders" element={<OrdersPage />} />
+      <Route path="/cart" element={<CartPage />} />
+    </Routes>
+  );
+}
 
+function Admin() {
+  return (
+    <Routes>
+      <Route path='/' element={<AdminMainPage />}/>
+      <Route path='/users' element={<UsersPage />}/>
+      <Route path='/products' element={<AdminProductsPage />}/>
+      <Route path='/categories' element={<AdminCategoriesPage />}/>
+    </Routes>
+  );
+}
 
 function App() {
 
@@ -41,14 +64,11 @@ function App() {
         <Route path='/contacts' element={<ContactsPage />}/>
         <Route path='/help' element={<HelpPage />}/>
         
-        <Route path="/userProfile/:id" element={<ProfilePageWrapper />} />
         <Route path="/login" element={<AuthForm/>} />
+        <Route path="/userProfile/*" element={<UserProfile />} />
 
-        <Route path='/admin' element={<AdminMainPage />}/>
-        <Route path='/admin/users' element={<UsersPage />}/>
-        <Route path='/admin/products' element={<AdminProductsPage />}/>
-        <Route path='/admin/categories' element={<AdminCategoriesPage />}/>
-
+        <Route path='/admin/*' element={<Admin />}/>
+        
         <Route path='*' element={<Page404/>} />
       </Routes>
     </>

@@ -48,6 +48,7 @@ export const ProfilePageWrapper: React.FC = () => {
     <BasePage>
       {userData ? (
         <div className="profile-container">
+          <h1>Профиль пользователя</h1>
           <div className="profile-main-block">
             <div className="profile-photo-container">
               <img className="profile-photo" src={userData.avatar} alt="avatar" />
