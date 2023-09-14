@@ -1,46 +1,16 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+ОПРЕДЕЛЕНИЕ ГЕОЛОКАЦИИ НА ОСНОВЕ ДАННЫХ БРАУЗЕРА
+![2023-09-14_11-54-38](https://github.com/Vollmondo/new-react-app/assets/138674368/078efd12-b735-49c8-b0b5-c7399ec63f16)
+ГЛАВНАЯ СТРАНИЦА
+![2023-09-14_11-52-44](https://github.com/Vollmondo/new-react-app/assets/138674368/7c7918bc-7f6e-4afc-aa9e-1aff09b00d6c)
+О НАС
+![2023-09-14_11-54-18](https://github.com/Vollmondo/new-react-app/assets/138674368/3b702df9-5fac-401e-b9f8-3cfeb356cd6b)
+СТРАНИЦА КАТАЛОГА
+![2023-09-14_11-53-00](https://github.com/Vollmondo/new-react-app/assets/138674368/d2da702f-0819-4d24-ae66-f77d97ec6bc8)
+СТРАНИЦА ТОВАРА
+![2023-09-14_11-53-30](https://github.com/Vollmondo/new-react-app/assets/138674368/b1fdaa9d-4d4a-49a5-89a0-f2b5c3f98c42)
+СТРАНИЦА ВХОДА / РЕГИСТРАЦИИ
+![2023-09-14_11-59-12](https://github.com/Vollmondo/new-react-app/assets/138674368/efdc6029-6b7b-4bf2-a8ff-81e043c92e01)
+СТРАНИЦА ПРОФИЛЯ ПОЛЬЗОВАТЕЛЯ
+![2023-09-14_11-53-54](https://github.com/Vollmondo/new-react-app/assets/138674368/99d98c15-f827-4c05-9540-d72057aa5266)
+СТРАНИЦА АДМИНИСТРИРОВАНИЯ
+![2023-09-14_11-55-08](https://github.com/Vollmondo/new-react-app/assets/138674368/bd18a6c4-d9a6-4b83-982f-34dd44a1b1fb)
