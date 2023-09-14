@@ -1,5 +1,4 @@
 .productDetails{
-
 }
 
 .product-container{
@@ -17,7 +16,9 @@
 }
 
 .productDetails-img{
-    height: 500px;
+    max-height: 500px;
+    max-width: 500px;
+    margin: 20px;
 }
 
 .productDetails-infoblock{
@@ -25,6 +26,12 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    width: 100%;
+}
+
+.productDetails-upperRow{
+    display: inline-flex;
+    justify-content: flex-end;
 }
 
 .productDetails-cat{
@@ -35,15 +42,64 @@
 
 }
 
-.productDetails-price{
-
-}
 
 .productDetails-additionalBlock{
 
 }
 
 .productDetails-description{
-    
+
 }
 
+.productDetails-lowerRow{
+    display: inline-flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+
+.productDetails-price{
+    font-size: 30pt;
+    margin-left: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.productDetails-addToCart{
+    display: inline-flex;
+}
+
+.productDetails-quantity{
+    width: 100px;
+    height: 80px;
+    background-color: #eee;
+    border: none;
+    border-radius: 20px;
+    padding: 10px;
+    margin: 10px;
+    font-size: 16pt;
+}
+
+.productDetails-buyBtn{
+    width: 80px;
+    height: 80px;
+    background-color: #eee;
+    border-radius: 20px;
+    padding: 12px 15px;
+    margin: 10px;
+    font-size: large;
+    background: url('../../../public/img/icons8-shopping-basket-64.png') no-repeat center;
+    background-size: 60px;
+}
+
+.productDetails-viewedProducts{
+    display: flex;
+    overflow: auto;
+    white-space: nowrap;
+    flex-wrap: nowrap;
+}
+
+.viewedProductsLink{
+    margin-right: 10px;
+}

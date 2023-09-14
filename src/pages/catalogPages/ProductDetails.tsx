@@ -6,6 +6,7 @@ import { ErrorMessage } from "../../components/service/ErrorMessage";
 import { BasePage } from "../basePage/BasePage";
 import { useParams } from "react-router-dom";
 import './ProductDetails.css'
+import { ViewedProducts } from "./ViewedProducts";
 
 export function ProductDetails() {
   const { id } = useParams();
@@ -23,6 +24,14 @@ export function ProductDetails() {
       );
       setProduct(response.data);
       setLoading(false);
+
+      const viewedProducts = localStorage.getItem("viewedProducts") || "";
+      const updatedViewedProducts = viewedProducts + productId + ",";
+
+      if (!viewedProducts.includes(productId)) {
+        localStorage.setItem("viewedProducts", updatedViewedProducts);
+      }
+
     } catch (e: unknown) {
       const error = e as AxiosError;
       setLoading(false);
@@ -59,18 +68,31 @@ export function ProductDetails() {
               <img className="productDetails-img" src={product.image} alt={product.title} />
             </div>
             <div className="productDetails-infoblock">
-              <div className="productDetails-cat">
-                <p>{product.category}</p>
+              <div className="productDetails-upperRow">
+                <div className="productDetails-cat">
+                  <p>{product.category}</p>
+                </div>
               </div>
-              <div className="productDetails-price">
-                <p>{product.price}</p>
-                <input type="number" step="1" placeholder="Кол-во"></input>
+              <div className="productDetails-midRow">
+
+              </div>
+              <div className="productDetails-lowerRow">
+                <div className="productDetails-price">
+                  <p>{product.price} &#127820;</p>
+                </div>
+                <div className="productDetails-addToCart">
+                  <input className="productDetails-quantity" type="number" step="1" placeholder="Кол-во"></input>
+                  <button className="productDetails-buyBtn"></button>
+                </div>
               </div>
             </div>
           </div>
           <div className="productDetails-additionalBlock">
             <div className="productDetails-description">
               <p>{product.description}</p>
+            </div>
+            <div className="productDetails-viewedProducts">
+              <ViewedProducts />
             </div>
           </div>
         </div>
