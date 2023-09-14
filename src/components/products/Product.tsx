@@ -19,7 +19,7 @@ export function Product({product}: ProductProps){
                 <p className="product-el-category">{product.category}</p>
                 <img className="product-el-img" src={product.image} alt="Фото товара" loading="lazy"/>
                 <p className="product-el-title">{product.title}</p>
-                <p className="product-el-price">{product.price}</p>
+                <p className="product-el-price">{product.price} &#127820;</p>
             </div>           
            {/*  <button
                 className={btnDetailsClassName.join(' ')}
