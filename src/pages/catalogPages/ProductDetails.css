@@ -12,13 +12,26 @@
 }
 
 .productDetails-imgCont{
-
+    display: inline-flex;
 }
 
 .productDetails-img{
     max-height: 500px;
     max-width: 500px;
     margin: 20px;
+}
+
+.productDetails-additionalImgs{
+    width: 200px;
+    max-height: 500px;
+    overflow-y: scroll;
+}
+
+.testimg{
+    width: 150px;
+    height: 200px;
+    background-color: violet;
+    margin-bottom: 10px;
 }
 
 .productDetails-infoblock{
@@ -38,16 +51,20 @@
 
 }
 
+.productDetails-midRow{
+    height: 100%;
+    width: 100%;
+    background-color: yellow;
+}
+
+.productDetails-chars{
+    height: 90%;
+    width: 90%;
+    margin: 20px 0 20px 20px;
+    background-color: goldenrod;
+}
+
 .productDetails-title{
-
-}
-
-
-.productDetails-additionalBlock{
-
-}
-
-.productDetails-description{
 
 }
 
@@ -60,7 +77,7 @@
 
 .productDetails-price{
     font-size: 30pt;
-    margin-left: 40%;
+    margin-left: 10%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -141,13 +158,53 @@
 .productDetails-buyBtn{
     width: 80px;
     height: 80px;
-    background-color: #eee;
     border-radius: 20px;
     padding: 12px 15px;
     margin: 10px;
     font-size: large;
     background: url('../../../public/img/icons8-shopping-basket-64.png') no-repeat center;
     background-size: 60px;
+    background-color: rgb(104, 190, 104);
+    outline: none;
+}
+
+.productDetails-additionalBlock{
+
+}
+
+.productDetails-description{
+
+}
+
+.productDetails-tab{
+    overflow: hidden;
+    border: 1px solid #ccc;
+    border-radius: 20px 20px 0 0;
+    background-color: #f1f1f1;
+}
+
+.productDetails-tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+
+.productDetails-tab button:hover {
+    background-color: #ddd;
+}
+
+.productDetails-tab button.active {
+    background-color: #ccc;
+}
+
+.productDetails-tabcontent{
+    padding: 20px 10px;
+    border: 1px solid #ccc;
+    border-top: none;
 }
 
 .productDetails-viewedProducts{
