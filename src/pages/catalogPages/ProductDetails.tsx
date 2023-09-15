@@ -14,6 +14,7 @@ export function ProductDetails() {
   const [product, setProduct] = useState<IProduct | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [quantity, setQuantity] = useState(0);
 
   async function fetchProductDetails(productId: string) {
     try {
@@ -81,7 +82,11 @@ export function ProductDetails() {
                   <p>{product.price} &#127820;</p>
                 </div>
                 <div className="productDetails-addToCart">
-                  <input className="productDetails-quantity" type="number" step="1" placeholder="Кол-во"></input>
+                  <div className="productDetails-number">
+                    <button className="number-minus" type="button" onClick={() => setQuantity(quantity > 0 ? quantity - 1 : 0)}>-</button>
+                    <input className="productDetails-quantity" type="number" min="0" max="99" required step="1" placeholder="Кол-во" value={quantity} onChange={(e) => setQuantity(parseInt(e.target.value))}></input>
+                    <button className="number-plus" type="button" onClick={() => setQuantity(quantity + 1)}>+</button>
+                  </div>
                   <button className="productDetails-buyBtn"></button>
                 </div>
               </div>
