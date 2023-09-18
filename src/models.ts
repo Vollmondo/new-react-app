@@ -1,15 +1,22 @@
-export interface IProduct{
-    _id?: string
-    title: string
-    price: number
-    description: string
-    category: string
+export interface IProduct {
+    _id?: string;
+    title: string;
+    price: number;
+    description: string;
+    category: string;
     rating: {
-        rate?: number
-        count?: number
-    }
-    image?: string
-}
+      rate?: number;
+      count?: number;
+    };
+    image?: string;
+    addImg?: string[];
+    chars?: Characteristic[];
+  }
+  
+  export interface Characteristic {
+    title: string;
+    value: string;
+  }
 
 export interface IUser{
     address: {

@@ -13,7 +13,8 @@ const newProduct: IProduct ={
         rating: {
             rate: 0,
             count: 0
-        }
+        },
+        chars: []
 }
 
 interface CreateProductProps{

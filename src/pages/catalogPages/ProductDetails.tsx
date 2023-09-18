@@ -9,6 +9,7 @@ import './ProductDetails.css'
 import { ViewedProducts } from "./ViewedProducts";
 import { TabComp } from "./productDetailsComponents/TabComp";
 import { PhotoComp } from "./productDetailsComponents/PhotoComp";
+import { CharComp } from "./productDetailsComponents/CharComp";
 
 export function ProductDetails() {
   const { id } = useParams();
@@ -24,7 +25,7 @@ export function ProductDetails() {
       const response = await axios.get<IProduct>(
         `http://localhost:5000/products/${productId}`
       );
-      setProduct(response.data);
+      setProduct(response.data);     
       setLoading(false);
 
       const viewedProducts = localStorage.getItem("viewedProducts") || "";
@@ -76,7 +77,7 @@ export function ProductDetails() {
                 </div>
               </div>
               <div className="productDetails-midRow">
-                <div className="productDetails-chars">ХАРАКТЕРИСТИКИ ТОВАРА</div>
+                <CharComp product={product}/>
               </div>
               <div className="productDetails-lowerRow">
                 <div className="productDetails-price">
