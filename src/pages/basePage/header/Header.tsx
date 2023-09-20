@@ -3,6 +3,7 @@ import './Header.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { Navigation } from '../navigation/Navigation';
 import { LocationProvider } from '../../../context/LocationContext';
+import { CartLink } from '../../cart/CartLink';
 
 export function Header() {
   const navigate = useNavigate();
@@ -57,6 +58,7 @@ export function Header() {
                   <Link to={`/userProfile/cart`}>
                     <img className='header-img cart' src='../img/icons8-shopping-bag-64.png' alt='cart'/>
                   </Link>
+                  <CartLink />
                   <Link to='/home' className='header-logout-link' onClick={handleLogout}>
                     <img className='header-img logout' src='../img/icons8-logout-64.png' alt='logOut'/>
                   </Link>

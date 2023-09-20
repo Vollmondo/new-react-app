@@ -7,7 +7,7 @@ import { AdminCategory } from "./AdminCategory";
 import { AdminBasePage } from "../adminBasePage/AdminBasePage";
 import { ModalWindow } from "../../../components/service/ModalWindow";
 import { ModalWindowContext } from "../../../context/ModalWindowContext";
-import { CreateCategory } from "../../../components/products/CreateCategory";
+import { CreateCategory } from "../../catalogPages/products/CreateCategory";
 
 export function AdminCategoriesPage() {
     const [categories, setCategories] = useState<ICategory[]>([]);

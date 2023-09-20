@@ -10,6 +10,9 @@ import { ViewedProducts } from "./ViewedProducts";
 import { TabComp } from "./productDetailsComponents/TabComp";
 import { PhotoComp } from "./productDetailsComponents/PhotoComp";
 import { CharComp } from "./productDetailsComponents/CharComp";
+import { addToCart } from "../../store/Cart.Slice";
+import { useAppDispatch } from "../../store/hooks";
+import { getProductItem } from "../../api/api";
 
 export function ProductDetails() {
   const { id } = useParams();
@@ -17,15 +20,15 @@ export function ProductDetails() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [quantity, setQuantity] = useState(0);
+  const dispatch = useAppDispatch()
+
 
   async function fetchProductDetails(productId: string) {
     try {
       setError("");
       setLoading(true);
-      const response = await axios.get<IProduct>(
-        `http://localhost:5000/products/${productId}`
-      );
-      setProduct(response.data);     
+      const productItem = await getProductItem(productId);
+      setProduct(productItem); 
       setLoading(false);
 
       const viewedProducts = localStorage.getItem("viewedProducts") || "";
@@ -48,13 +51,8 @@ export function ProductDetails() {
     }
   }, [id]);
 
-  if (loading) {
-    return <Loader />;
-  }
-
-  if (!product) {
-    return <ErrorMessage error="Не удалось загрузить информацию о товаре" />;
-  }
+  if (loading) {return <Loader />;}
+  if (!product) {return <ErrorMessage error="Не удалось загрузить информацию о товаре" />;} 
 
   return (
     <BasePage>
@@ -89,7 +87,7 @@ export function ProductDetails() {
                     <input className="productDetails-quantity" type="number" min="0" max="99" required step="1" placeholder="Кол-во" value={quantity} onChange={(e) => setQuantity(parseInt(e.target.value))}></input>
                     <button className="number-plus" type="button" onClick={() => setQuantity(quantity + 1)}>+</button>
                   </div>
-                  <button className="productDetails-buyBtn"></button>
+                  <button className="productDetails-buyBtn" onClick={() => dispatch(addToCart(product._id))}></button>
                 </div>
               </div>
             </div>

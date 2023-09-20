@@ -33,7 +33,7 @@ export function CharComp({ product }: CharCompProps) {
       };
 
     fetchData();
-  }, []);
+  }, [product.chars]);
 
   return (
     <div className="productDetails-chars">ХАРАКТЕРИСТИКИ ТОВАРА:

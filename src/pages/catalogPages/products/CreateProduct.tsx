@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import './CreateProduct.css';
-import { IProduct } from "../../models";
+import { IProduct } from "../../../models";
 import axios from "axios";
-import { ErrorMessage } from "../service/ErrorMessage";
+import { ErrorMessage } from "../../../components/service/ErrorMessage";
 
 const newProduct: IProduct ={
+        _id: '',
         title: '',
         price: 0,
         description: '',

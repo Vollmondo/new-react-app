@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import './CreateProduct.css';
-import { ICategory } from "../../models";
+import { ICategory } from "../../../models";
 import axios from "axios";
-import { ErrorMessage } from "../service/ErrorMessage";
+import { ErrorMessage } from "../../../components/service/ErrorMessage";
 
 const newCat: ICategory ={
         title: '',

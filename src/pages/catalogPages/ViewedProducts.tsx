@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { Product } from "../../components/products/Product";
+import { Product } from "./products/Product";
 import { IProduct } from "../../models";
 
 export function ViewedProducts() {

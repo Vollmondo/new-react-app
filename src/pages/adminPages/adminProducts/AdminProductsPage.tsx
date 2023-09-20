@@ -7,7 +7,7 @@ import { AdminProduct } from "./AdminProduct";
 import { AdminBasePage } from "../adminBasePage/AdminBasePage";
 import { ModalWindowContext } from "../../../context/ModalWindowContext";
 import { ModalWindow } from "../../../components/service/ModalWindow";
-import { CreateProduct } from "../../../components/products/CreateProduct";
+import { CreateProduct } from "../../catalogPages/products/CreateProduct";
 
 
 export function AdminProductsPage() {
