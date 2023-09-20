@@ -17,7 +17,7 @@ export async function getProducts(): Promise<IProduct[]> {
   
   export async function checkout(items: CartItems): Promise<CheckoutResponse> {
     const modifier = Object.keys(items).length > 0 ? "success" : "error";
-    const url = `/checkout-${modifier}.json`;
+    const url = `http://localhost:5000/checkout-${modifier}.json`;
     await sleep(500);
     const response = await fetch(url, {
       method: "POST",
