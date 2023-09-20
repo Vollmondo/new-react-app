@@ -1,12 +1,15 @@
 import React from "react";
 import { BasePage } from "../basePage/BasePage";
 import "./CartPage.css";
-import { useAppSelector } from "../../store/hooks";
+import { useAppSelector, useAppDispatch } from "../../store/hooks";
+import { getTotalPrice, removeFromCart } from "../../store/Cart.Slice";
 
 export function CartPage() {
-    const userJSON = localStorage.getItem('userJSON');
-    const products = useAppSelector((state) => state.products.products);
-    const items = useAppSelector((state) => state.cart.items)
+  const dispatch = useAppDispatch();
+  const userJSON = localStorage.getItem('userJSON');
+  const products = useAppSelector((state) => state.products.products);
+  const items = useAppSelector((state) => state.cart.items);
+  const totalPrice = useAppSelector(getTotalPrice);
 
     return(
         <BasePage>
@@ -30,9 +33,8 @@ export function CartPage() {
             </td>
             <td>${products[id].price}</td>
             <td>
-              <button aria-label={`Remove ${products[id].title} Cart`}>
-                X
-              </button>
+              <button aria-label={`Remove ${products[id].title} Cart`} onClick={() => dispatch(removeFromCart(id))}
+              >X</button>
             </td>
           </tr>
         ))}
@@ -41,12 +43,12 @@ export function CartPage() {
           <tr>
             <td>Total</td>
             <td></td>
-            <td className='total'>${0.0}</td>
+            <td className='total'>${totalPrice}</td>
             <td></td>
           </tr>
         </tfoot>
       </table>
-      <form>
+      <form id="usersCart">
         <button className='button' type="submit">
           Checkout
         </button>
