@@ -3,7 +3,7 @@ import { BasePage } from "../basePage/BasePage";
 import classNames from "classnames";
 import styles from "./CartPage.module.css";
 import { useAppSelector, useAppDispatch } from "../../store/hooks";
-import { getTotalPrice, removeFromCart, updateQuantity, checkoutCart } from "../../store/Cart.Slice";
+import { getTotalPrice, removeFromCart, updateQuantity, checkoutCart, getMemoizedNumItems } from "../../store/Cart.Slice";
 import { ErrorMessage } from "../../components/service/ErrorMessage";
 
 export function CartPage() {
@@ -14,7 +14,8 @@ export function CartPage() {
   const totalPrice = useAppSelector(getTotalPrice);
   const checkoutState = useAppSelector((state) => state.cart.checkoutState);
   const errorMessage = useAppSelector(state => state.cart.errorMessage)
-  
+  const NumItems = useAppSelector(getMemoizedNumItems)
+
   function onQuantityChanged(e: React.FocusEvent<HTMLInputElement>, id: string){
     const quantity = Number(e.target.value) || 0;
     dispatch(updateQuantity({id, quantity}))
@@ -37,20 +38,22 @@ export function CartPage() {
                 <table className={tableClasses}>
         <thead>
           <tr>
-            <th>Product</th>
-            <th>Quantity</th>
-            <th>Total</th>
-            <th>Remove</th>
+            <th>Наименование товара</th>
+            <th>Цена за 1 ед.</th>
+            <th>Кол-во</th>
+            <th>Общая стоимость</th>
+            <th>Удалить</th>
           </tr>
         </thead>
         <tbody>
         {Object.entries(items).map(([id, quantity]) => (
           <tr>
             <td>{products[id].title}</td>
+            <td>&#127820;&nbsp;{products[id].price}</td>
             <td>
               <input type="number" className={styles.input} defaultValue={quantity} onBlur={(e) => {onQuantityChanged(e, id)}}/>
             </td>
-            <td>${products[id].price}</td>
+            <td>&#127820;&nbsp;{products[id].price * quantity}</td>
             <td>
               <button aria-label={`Remove ${products[id].title} Cart`} onClick={() => dispatch(removeFromCart(id))}
               >X</button>
@@ -60,9 +63,10 @@ export function CartPage() {
         </tbody>
         <tfoot>
           <tr>
-            <td>Total</td>
             <td></td>
-            <td className={styles.total}>${totalPrice}</td>
+            <td>ИТОГО</td>
+            <td className={styles.total}>{NumItems} ед. товара</td>
+            <td className={styles.total}>на сумму &#127820;&nbsp;{totalPrice}</td>
             <td></td>
           </tr>
         </tfoot>
@@ -70,7 +74,7 @@ export function CartPage() {
       <form id="usersCart" onSubmit={onCheckout}>
         {checkoutState === "ERROR" && errorMessage ? (<ErrorMessage error={errorMessage}/>) : null}
         <button className={styles.button} type="submit">
-          Checkout
+          Оформить заказ
         </button>
       </form>                
             </div>

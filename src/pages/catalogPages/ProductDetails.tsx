@@ -79,7 +79,7 @@ export function ProductDetails() {
               </div>
               <div className="productDetails-lowerRow">
                 <div className="productDetails-price">
-                  <p>{product.price} &#127820;</p>
+                  <p>&#127820;&nbsp;{product.price}</p>
                 </div>
                 <div className="productDetails-addToCart">
                   <div className="productDetails-number">

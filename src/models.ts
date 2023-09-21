@@ -42,7 +42,8 @@ export interface IUser{
     phone?: string,
     __v?: number,
     role?: string,
-    birthdate?: number
+    birthdate?: number,
+    fav: string[],
 }
 
 export interface ICategory{
