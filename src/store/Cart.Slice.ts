@@ -16,7 +16,9 @@ const initialState: CartState = {
     errorMessage: "",
 }
 
-export const checkoutCart = createAsyncThunk("cart/checkout", async (items: CartItems) => {
+export const checkoutCart = createAsyncThunk("cart/checkout", async (_, thunkAPI) => {
+    const state = thunkAPI.getState() as RootState;
+    const items = state.cart.items
     const response = await checkout(items);
     return response
 })
@@ -45,8 +47,14 @@ const cartSlice = createSlice({
         builder.addCase(checkoutCart.pending, (state, action) =>{
             state.checkoutState = "LOADING"
         }) 
-        builder.addCase(checkoutCart.fulfilled, (state, action) =>{
-            state.checkoutState = "READY"
+        builder.addCase(checkoutCart.fulfilled, (state, action: PayloadAction<{success: boolean}>) =>{
+            const { success } = action.payload;
+            if (success){
+                state.checkoutState = "READY"
+                state.items = {};
+            } else {
+                state.checkoutState = "ERROR";
+            }
         })
         builder.addCase(checkoutCart.rejected, (state, action) =>{
             state.checkoutState = "ERROR";
