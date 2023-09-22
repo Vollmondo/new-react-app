@@ -51,6 +51,6 @@ export async function getProducts(): Promise<IProduct[]> {
     return favoriteProducts;
   } catch (error) {
     console.error("Ошибка при получении избранных товаров:", error);
-    throw error;
+    return[];
   }
 }

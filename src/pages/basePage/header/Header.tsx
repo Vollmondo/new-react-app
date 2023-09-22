@@ -4,9 +4,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Navigation } from '../navigation/Navigation';
 import { LocationProvider } from '../../../context/LocationContext';
 import { CartLink } from '../../cart/CartLink';
+import { useAppDispatch } from '../../../store/hooks';
+import { resetFavProducts } from '../../../store/FavProducts.Slice';
 
 export function Header() {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const userJSON = localStorage.getItem('userJSON');
   let id = 0;
   
@@ -17,6 +20,7 @@ export function Header() {
 
   const handleLogout = () => {
     localStorage.removeItem('userJSON');
+    dispatch(resetFavProducts());
     navigate('/home');
   };
 

@@ -19,9 +19,14 @@ const favProductsSlice = createSlice({
             products.forEach(product => {
                 state.favProducts[product._id] = product
             })
+        },
+        resetFavProducts(state) {
+            state.favProducts = {};
         }
     }
 })
 
-export const { receivedFavProducts } = favProductsSlice.actions;
+export const { receivedFavProducts, resetFavProducts } = favProductsSlice.actions;
 export default favProductsSlice.reducer;
+
+export const selectFavProducts = (state: RootState) => state.favProducts.favProducts;
