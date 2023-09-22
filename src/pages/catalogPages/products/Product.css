@@ -40,6 +40,18 @@
     text-align: center;
 }
 
+.product-el-addBlock{
+    width: 90%;
+    display: inline-flex;
+    justify-content: space-between;
+    margin: 0 15px;
+}
+
+.product-el-fav{
+    height: 50px;
+    width: 50px;
+}
+
 .product-el-category{
     font-size: small;
     text-align: right;

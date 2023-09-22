@@ -25,12 +25,7 @@ export function ProductsPage(){
 
     const products = useAppSelector ((state) => state.products.products)
     
-    /* const sliderData: ISliderData[] = products.map((product) => ({
-        _id: product._id ? product._id.toString() : undefined,
-        title: product.title,
-        image: product.image,
-        content: product.description,
-      })); */
+    
 
     return(
         <>
@@ -39,12 +34,9 @@ export function ProductsPage(){
                     {loading && <Loader />}
                     {error && <ErrorMessage error="Не удалось загрузить товары"/>}
                     <div className="products-container">
-                    {Object.values(products).map((product) => (
-                        <Link to={`/cat/${product._id}`} key={product._id}>
+                    {Object.values(products).map((product) => (                   
                         <Product product={product} />
-                    </Link>
                     ))}
-                        {/* <Slider sliderData={sliderData} detailsPath={"cat"}></Slider>*/}
                     </div>
                 </div>
             </BasePage>

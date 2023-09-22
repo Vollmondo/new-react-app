@@ -35,6 +35,7 @@
   
 .slider-slide.active {
   opacity: 1;
+  z-index: 100;
 }
   
 .slider-slide-img {
