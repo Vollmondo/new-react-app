@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { IProduct } from "../../models";
-import axios, { AxiosError } from "axios";
+import { AxiosError } from "axios";
 import { Loader } from "../../components/service/Loader";
 import { ErrorMessage } from "../../components/service/ErrorMessage";
 import { BasePage } from "../basePage/BasePage";
@@ -13,6 +13,7 @@ import { CharComp } from "./productDetailsComponents/CharComp";
 import { addToCart } from "../../store/Cart.Slice";
 import { useAppDispatch } from "../../store/hooks";
 import { getProductItem } from "../../api/api";
+import { FavButton } from "../../components/service/FavButton";
 
 export function ProductDetails() {
   const { id } = useParams();
@@ -21,7 +22,15 @@ export function ProductDetails() {
   const [error, setError] = useState("");
   const [quantity, setQuantity] = useState(0);
   const dispatch = useAppDispatch()
+  const storedUserJSON = localStorage.getItem("userJSON");
+  const [userId, setUserId] = useState<string>("");
 
+  useEffect(() => {
+    if (storedUserJSON) {
+      const user = JSON.parse(storedUserJSON);
+      setUserId(user._id);
+    }
+  }, [storedUserJSON]);
 
   async function fetchProductDetails(productId: string) {
     try {
@@ -72,6 +81,7 @@ export function ProductDetails() {
               <div className="productDetails-upperRow">
                 <div className="productDetails-cat">
                   <p>{product.category}</p>
+                  <FavButton favProduct={product} userId={userId} />
                 </div>
               </div>
               <div className="productDetails-midRow">

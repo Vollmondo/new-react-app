@@ -48,8 +48,34 @@
 }
 
 .product-el-fav{
-    height: 50px;
-    width: 50px;
+    border: none;
+    background-color: white;
+    background-image: url(../../../../public/img/icons8-heart-100.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50px;
+    height: 60px;
+    width: 70px;
+    cursor: pointer;
+}
+
+.product-el-fav:hover{
+    background-size: 55px;
+    background-image: url(../../../../public/img/icons8-heart-100_1.png);
+
+}
+
+.product-el-fav:active{
+    background-image: url(../../../../public/img/icons8-heart-100_2.png);
+}
+
+.product-el-fav-active{
+    background-image: url(../../../../public/img/icons8-heart-100_2.png);
+}
+
+.product-el-fav-active:hover{
+    background-size: 55px;
+    background-image: url(../../../../public/img/icons8-heart-100_2.png);
 }
 
 .product-el-category{

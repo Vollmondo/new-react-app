@@ -1,6 +1,6 @@
 import {PayloadAction, createSelector, createSlice, createAsyncThunk} from "@reduxjs/toolkit";
-import { checkout, CartItems } from "../api/api";
-import { RootState, AppDispatch } from "./store";
+import { checkout } from "../api/api";
+import { RootState } from "./store";
 
 type CheckoutState = "LOADING" | "READY" | "ERROR";
 
@@ -78,7 +78,6 @@ export function getNumItems(state: RootState) {
 export const getMemoizedNumItems = createSelector(
     (state: RootState) => state.cart.items,
     (items) => {
-        console.log("MEMnums")
         let numItems = 0;
         for (let id in items){
             numItems += items[id];
