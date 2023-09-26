@@ -8,9 +8,7 @@ import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { getCategories, getProducts } from "../../api/api";
 import { receivedProducts } from "../../store/Products.Slice";
 import { Sidebar } from "../basePage/sidebar/Sidebar";
-import { ICategory } from "../../models";
 import { receivedCategories } from "../../store/Categories.Slice";
-import { Link } from "react-router-dom";
 
 export function ProductsPage() {
   const [loading, setLoading] = useState(false);
@@ -43,14 +41,27 @@ export function ProductsPage() {
       <div className="products-page-container">
         <Sidebar onCategorySelect={handleCategorySelect} categories={categories} children={[]} />
         <div className="products-page">
-          {loading && <Loader />}
-          {error && <ErrorMessage error={error} />}
-          <div className="products-container">
-            {Object.values(products)
-              .filter((product) => selectedCategory === "" || product.category === selectedCategory)
-              .map((product) => (
-                <Product key={product._id} product={product} />
-              ))}
+            {loading && <Loader />}
+            {error && <ErrorMessage error={error} />}
+            <div className="products-container">
+                {Object.values(products)
+                    .filter((product) => {
+                        if (selectedCategory === "") {
+                            return true;
+                        } else if (product.category === selectedCategory) {
+                            return true;
+                        } else {
+                            const selectedCategoryObj = categories.find((category) => category.title === selectedCategory);
+                            if (selectedCategoryObj && selectedCategoryObj.children) {
+                                return selectedCategoryObj.children.includes(product.category);
+                            }
+                        }
+                        return false;
+                    })
+                    .map((product) => (
+                        <Product key={product._id} product={product} />
+                    ))
+                }
           </div>
         </div>
       </div>

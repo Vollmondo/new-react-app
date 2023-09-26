@@ -2,34 +2,36 @@
     background-color: #fff;
     padding: 0 25px;
     border-radius: 5px;
-    width: 300px;
+    width: 350px;
     height: 100vh;
     font-size: 0.65em;
+    
 }
 
 .sidebar-nav {
     margin: 0 15%;
     text-align: right;
     font-weight: bold;
-}
-
-.sidebar-nav:hover{
-    background: radial-gradient(circle, rgba(193,193,193,1) 0%, rgba(217,217,217,1) 10%, rgba(255,255,255,1) 100%);
-}
-  
-.nav ul {
     list-style: none;
 }
-.nav ul li {
-    margin: 3.2em 0;
+
+.sidebar-nav-item:hover{
+    background: linear-gradient(90deg, rgba(255,255,255,1) 30%, rgba(217,217,217,1) 55%, rgba(193,193,193,1) 70%, rgba(217,217,217,1) 85%, rgba(255,255,255,1) 100%);
+}
+  
+.sidebar-nav ul {
+    list-style: none;
+}
+.sidebar-nav ul li {
+    margin: 0;
 }
 
 .sidebar-nav-item {
     line-height: 5em;
     text-transform: uppercase;
     text-decoration: none;
-    letter-spacing: 0.4em;
-    color: rgba(#FFF, 0.35);
+    letter-spacing: 0.2em;
+    color: black;
     display: block;
     transition: all ease-out 300ms;
 }

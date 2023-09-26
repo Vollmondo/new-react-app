@@ -28,15 +28,15 @@ export function Sidebar({ children, onCategorySelect, categories }: SidebarProps
     
 
     return (
-      <li key={category._id}>
-        <Link to={""} onClick={() => handleCategoryClick(category.title)}>
+      <li className="sidebar-nav" key={category._id}>
+        <Link to={""} className="sidebar-nav-item" onClick={() => handleCategoryClick(category.title)}>
           {category.title}
         </Link>
         {hasChildren && isExpanded && (
           <ul>
             {category.children && category.children.map((child, index) => (
-              <li key={index}>
-                <Link to={""} onClick={() => handleCategoryClick(child)}>
+              <li className="sidebar-nav" key={index}>
+                <Link className="sidebar-nav-item" to={""} onClick={() => handleCategoryClick(child)}>
                   {child}
                 </Link>
               </li>
@@ -50,7 +50,6 @@ export function Sidebar({ children, onCategorySelect, categories }: SidebarProps
   const renderCategories = (categories: ICategory[]) => {
     return categories.map((category: ICategory) => {
       if (category.parent) {
-        // Если у категории есть родитель, пропускаем ее при рендере категорий первого уровня
         return null;
       }
       return renderCategory(category);
@@ -60,9 +59,9 @@ export function Sidebar({ children, onCategorySelect, categories }: SidebarProps
   return (
     <div className="sidebar">
       <ul>
-        <div className="sidebar-nav">
-          <li>
-            <Link to={""} onClick={() => handleCategoryClick("")}>
+        <div>
+          <li className="sidebar-nav">
+            <Link to={""} className="sidebar-nav-item" onClick={() => handleCategoryClick("")}>
               Все товары
             </Link>
           </li>
