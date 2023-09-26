@@ -18,7 +18,7 @@
 }
 
 .nav-geolocation:hover{
-    color: lightgray;
+    opacity: 0.5;
 }
 
 .nav-geolocation:hover .geolocation-img{
@@ -31,5 +31,5 @@
 }
 
 .header-btn-link:hover{
-    color: lightgray;
+    opacity: 0.5;
 }
