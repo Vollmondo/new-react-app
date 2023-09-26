@@ -5,8 +5,8 @@ import axios from "axios";
 import { ErrorMessage } from "../../../components/service/ErrorMessage";
 
 const newCat: ICategory ={
-        title: '',
-        parent: ''
+  title: '',
+  parent: '',
 }
 
 interface CreateCatProps{

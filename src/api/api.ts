@@ -1,7 +1,13 @@
-import { IProduct } from "../models";
+import { ICategory, IProduct } from "../models";
 
 export async function getProducts(): Promise<IProduct[]> {
-  const response = await fetch("http://localhost:5000/products/");
+  const response = await fetch("http://localhost:5000/products");
+  const products = await response.json();
+  return products;
+}
+
+export async function getCategories(): Promise<ICategory[]> {
+  const response = await fetch("http://localhost:5000/categories");
   const products = await response.json();
   return products;
 }
@@ -102,3 +108,4 @@ export async function removeFavProduct(userId: string, productId: string): Promi
     throw error;
   }
 }
+

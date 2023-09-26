@@ -49,7 +49,8 @@ export interface IUser{
 export interface ICategory{
     _id?: string,
     title: string,
-    parent?: string
+    parent?: string,
+    children?: string[],
 }
 
 export interface ISliderData{
