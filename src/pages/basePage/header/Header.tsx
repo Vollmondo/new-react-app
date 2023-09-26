@@ -35,10 +35,10 @@ export function Header() {
           </LocationProvider>
           <div className='header-content'>
             <div className='header-catButton-block'>
-                <Link to='/cat'>
+                <Link to='/cat' className='header-cat-btn-link'>
                   <div className='header-cat-btn'><img className='header-img cat' src='../img/icons8-list-64.png' alt='catalog'/>
                     <div className='header-cat-btn-y'>
-                      <p>Каталог</p>
+                      Каталог
                     </div>
                 </div>
               </Link>

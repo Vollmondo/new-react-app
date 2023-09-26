@@ -24,3 +24,12 @@
 .nav-geolocation:hover .geolocation-img{
     transform: scale(1.2);
 }
+
+.header-btn-link{
+    color: black;
+    text-decoration: none;
+}
+
+.header-btn-link:hover{
+    color: lightgray;
+}

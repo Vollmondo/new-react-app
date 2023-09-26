@@ -18,6 +18,11 @@
 .sidebar-nav-item:hover{
     background: linear-gradient(90deg, rgba(255,255,255,1) 30%, rgba(217,217,217,1) 55%, rgba(193,193,193,1) 70%, rgba(217,217,217,1) 85%, rgba(255,255,255,1) 100%);
 }
+
+.header-cat-btn-link{
+    color: black;
+    text-decoration: none;
+}
   
 .sidebar-nav ul {
     list-style: none;
