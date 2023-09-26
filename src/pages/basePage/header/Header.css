@@ -52,7 +52,7 @@
 }
 
 .header-cat-btn:hover{
-    background: linear-gradient(90deg, rgba(255,255,255,1) 30%, rgba(217,217,217,1) 55%, rgba(193,193,193,1) 70%, rgba(217,217,217,1) 85%, rgba(255,255,255,1) 100%);
+    opacity: 0.5;
 }
 
 .header-search{
@@ -68,8 +68,17 @@
     height: 40px;
     border-radius: 10px;
     margin-right: 10px;
+    padding: 3px 20px;
+    background-color: #e5e5e5;
+}
 
+.header-search-input::placeholder {
+    color: black;
+    opacity: 0.4;
+}
 
+.header-search-input:focus{
+    background-color: #fff;
 }
 
 .header-search-btn{

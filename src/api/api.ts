@@ -109,3 +109,19 @@ export async function removeFavProduct(userId: string, productId: string): Promi
   }
 }
 
+export async function SearchProductItem(productTitle: string): Promise<IProduct[]> {
+  const response = await fetch('http://localhost:5000/search', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ productTitle })
+  });
+
+  if (!response.ok) {
+    throw new Error('Ошибка при получении товара');
+  }
+
+  const productItems = await response.json();
+  return productItems;
+}

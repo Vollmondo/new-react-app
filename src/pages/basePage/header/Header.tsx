@@ -6,6 +6,7 @@ import { LocationProvider } from '../../../context/LocationContext';
 import { CartLink } from '../../cart/CartLink';
 import { useAppDispatch } from '../../../store/hooks';
 import { resetFavProducts } from '../../../store/FavProducts.Slice';
+import { Search } from '../../../components/service/Search';
 
 export function Header() {
   const navigate = useNavigate();
@@ -42,11 +43,8 @@ export function Header() {
                     </div>
                 </div>
               </Link>
-            </div>   
-            <form className='header-search'>
-              <input className='header-search-input'></input>
-              <button className='header-search-btn header-img search'></button>
-            </form>
+            </div>
+            <Search />
             <div className='header-personal-block'>
               {userJSON ? (
                 <>

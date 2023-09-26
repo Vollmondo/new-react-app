@@ -17,6 +17,7 @@ import { ProductDetails } from './pages/catalogPages/ProductDetails';
 import { CartPage } from './pages/userPages/CartPage';
 import { FavPage } from './pages/userPages/FavPage';
 import { OrdersPage } from './pages/userPages/OrdersPage';
+import { SearchResults } from './components/service/SearchRezults';
  
 function UserProfile() {
   return (
@@ -68,6 +69,8 @@ function App() {
         <Route path="/userProfile/*" element={<UserProfile />} />
 
         <Route path='/admin/*' element={<Admin />}/>
+
+        <Route path="/search" element={<SearchResults />} />
         
         <Route path='*' element={<Page404/>} />
       </Routes>
