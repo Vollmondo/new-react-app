@@ -3,6 +3,8 @@ import { IProduct } from "../../../models";
 import './ProductRow.css';
 import { Link } from "react-router-dom";
 import { FavButton } from "../../../components/service/FavButton";
+import { useAppDispatch } from "../../../store/hooks";
+import { addToCart } from "../../../store/Cart.Slice";
 
 interface ProductProps {
   product: IProduct
@@ -11,6 +13,7 @@ interface ProductProps {
 export function ProductRow({ product }: ProductProps) {
   const storedUserJSON = localStorage.getItem("userJSON");
   const [userId, setUserId] = useState<string>("");
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
     if (storedUserJSON) {
@@ -36,7 +39,7 @@ export function ProductRow({ product }: ProductProps) {
         {userId && <FavButton favProduct={product} userId={userId} />}
       </div>
       <div className="productItem-row-icon-container">
-        <button className=""></button>
+        <button className="productItem-row-btn" onClick={() => dispatch(addToCart(product._id))}></button>
       </div>
     </div>
   );

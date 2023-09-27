@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { BasePage } from "../basePage/BasePage";
 import { getFavoriteProducts } from "../../api/api";
 import { useAppSelector, useAppDispatch } from "../../store/hooks";
-import { Product } from "../catalogPages/products/Product";
+import { ProductRow } from "../catalogPages/products/ProductRow";
 import { loadFavProducts } from "../../store/FavProducts.Slice";
 import { Loader } from "../../components/service/Loader";
 import { ErrorMessage } from "../../components/service/ErrorMessage";
@@ -44,7 +44,7 @@ export function FavPage() {
         <div className="products-container">
           {Object.values(products).map((product) => (
             <div key={product._id}>
-                <Product key={product._id} product={product} />
+                <ProductRow key={product._id} product={product} />
             </div>
             ))}
         </div>

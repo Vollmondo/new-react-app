@@ -43,7 +43,7 @@ export interface IUser{
     __v?: number,
     role?: string,
     birthdate?: number,
-    fav: string[],
+    fav?: string[],
 }
 
 export interface ICategory{

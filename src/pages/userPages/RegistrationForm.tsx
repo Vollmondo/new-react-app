@@ -1,187 +1,116 @@
-import React, { ChangeEvent, useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from '../../context/UserContext'
 import axios from "axios";
 import './LoginForm.css'
-import { IUser } from "../../models";
-import { InputText } from "../../components/service/InputForm";
 import { ErrorMessage } from "../../components/service/ErrorMessage";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 interface RegistrationFormProps {
   onTogglePanel: () => void;
 }
 
+type FormData = {
+  username: string;
+  email: string;
+  pass1: string;
+  pass2: string;
+}
+
 export const RegistrationForm: React.FC<RegistrationFormProps> = ({ onTogglePanel }) => {
   const { setUser } = useContext(UserContext);
-  const [username, setUsername] = useState("");
-  const [mail, setUserMail] = useState("");
-  const [userPass1, setUserPass1] = useState("");
-  const [userPass2, setUserPass2] = useState("");
+  const { register, handleSubmit, formState: { errors, isDirty }, reset, watch } = useForm<FormData>({ mode: 'onChange' });
   const [error, setError] = useState("");
-  const [usernameError, setUsernameError] = useState("");
-  const [mailError, setMailError] = useState("");
-  const [pass1Error, setPass1Error] = useState("");
-  const [pass2Error, setPass2Error] = useState("");
-  
-  const validateUsername = (value: string) => {
-    const usernameRegEx = /^[a-zA-Z0-9]+$/;
-    if (!usernameRegEx.test(value)) {
-      setUsernameError("Имя пользователя может содержать только латинские буквы и цифры");
-    } else {
-      setUsernameError("");
-    }
-  };
-  
-  const validateEmail = (value: string) => {
-    const mailRegEx = /@/;
-    if (!mailRegEx.test(value)) {
-      setMailError('Указан неверный формат e-mail. Отсутствует символ "@"')
-    } else {
-      setMailError("");
-    }
-  };
-  
-  const validatePassword1 = (value: string) => {
-    const pass1RegEx = /^[a-z]+$/;
-    if (!pass1RegEx.test(value)) {
-      setPass1Error("Пароль должен содержать только латинские буквы в нижнем регистре");
-    } else {
-      setPass1Error("");
-    }
-  };
-  
+  const [coordinates, setCoordinates] = useState<number[]>([]);
+  const username = watch("username");
+  const email = watch("email");
+  const userPass1 = watch("pass1");
+  const userPass2 = watch("pass2");
+  const navigate = useNavigate();
+
+
   useEffect(() => {
-    if (userPass1 !== userPass2) {
-      setPass2Error("Пароли не совпадают");
-    } else {
-      setPass2Error("");
+    const coord = localStorage.getItem('Coordinates');
+    if (coord !== null) {
+      const parsedCoordinates = coord.split(',').map(parseFloat);
+      setCoordinates(parsedCoordinates);
     }
-  }, [userPass1, userPass2]);
-  
-  const handleSignUp = async () => {
-    setUsernameError("");
-    setMailError("");
-    setPass1Error("");
-    setPass2Error("");
-    setError("");
-    
-    if (username && userPass1 && userPass1 === userPass2) {
-      const usernameRegEx = /^[a-zA-Z0-9]+$/;
-      const mailRegEx = /@/;
-      const pass1RegEx = /^[a-z]+$/;
-      
-      if (!usernameRegEx.test(username)) {
-        setUsernameError("Имя пользователя может содержать только латинские буквы и цифры");
-        return;
-      }
-      
-      if (!mailRegEx.test(mail)) {
-        setMailError('Указан неверный формат e-mail');
-        return;
-      }
-      
-      if (!pass1RegEx.test(userPass1)) {
-        setPass1Error("Пароль должен содержать хотя бы одну заглавную букву");
-        return;
-      }
-      
-      if (userPass1 !== userPass2) {
-        setPass2Error("Пароли не совпадают");
-        return;
-      }
-      
-      try {
-      let coordinates: any[] = []
-      if (localStorage.getItem('Coordinates') !=null) {
-        const coord = localStorage.getItem('Coordinates')
-        console.log(coord)
-        if (coord !== null) {
-          coordinates = coord.split(',');
-        }
-      }
-  
+  }, []);
+
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
+    try {
       const newUser = {
         lat: coordinates[0].toString(),
         long: coordinates[1].toString(),
-        email: '',
-        username: '',
-        password: '',
+        email: data.email,
+        username: data.username,
+        password: data.pass1,
       };
-  
-      newUser.username = username;
-      newUser.email = mail
-      newUser.password = userPass1;
+
       localStorage.setItem("newUser", JSON.stringify(newUser));
-      
+
       const response = await axios.post("http://localhost:5000/users/register", newUser);
       const user = response.data;
       console.log(user);
       setUser(user);
       localStorage.setItem("userJSON", JSON.stringify(user));
+      reset();
+      navigate("/home");
     } catch (error) {
       setError("Ошибка при регистрации пользователя");
     }
-  } else {
-    if (!username) {
-      setUsernameError("Введите имя пользователя");
-    }
-    if (!userPass1) {
-      setPass1Error("Введите пароль");
-    }
-    if (userPass1 !== userPass2) {
-      setPass2Error("Пароли не совпадают");
-    }
-      setError("Некорректные данные для регистрации");
   }
-};
 
-return (
-  <>
-    <form className="login-form" action="#">
-    <h1>Создайте пользователя</h1>
-    <InputText
-    type="text"
-    placeholder="Придумайте имя пользователя"
-    value={username}
-    onChange={(e: ChangeEvent<HTMLInputElement>) => {
-    setUsername(e.target.value);
-    validateUsername(e.target.value);
-    }}
-    />
-    {usernameError && <ErrorMessage error={usernameError} />}
-    <InputText
-    type="email"
-    placeholder="Введите адрес электронной почты"
-    value={mail}
-    onChange={(e: ChangeEvent<HTMLInputElement>) => {
-    setUserMail(e.target.value);
-    validateEmail(e.target.value);
-    }}
-    />
-    {mailError && <ErrorMessage error={mailError} />}
-    <InputText
-    type="password"
-    placeholder="Придумайте пароль"
-    value={userPass1}
-    onChange={(e: ChangeEvent<HTMLInputElement>) => {
-    setUserPass1(e.target.value);
-    validatePassword1(e.target.value);
-    }}
-    />
-    {pass1Error && <ErrorMessage error={pass1Error} />}
-    <InputText
-    type="password"
-    placeholder="Подтвердите пароль"
-    value={userPass2}
-    onChange={(e: ChangeEvent<HTMLInputElement>) => {
-    setUserPass2(e.target.value);
-    }}
-    />
-    {pass2Error && <ErrorMessage error={pass2Error} />}
-    <button className="login-button" onClick={handleSignUp} type="submit" disabled={!username || !userPass1 || userPass1 !== userPass2}>
-    Зарегистрироваться
-    </button>
-    {error && <ErrorMessage error={error} />}
-    </form>
+  return (
+    <>
+      <form className="login-form" action="#" onSubmit={handleSubmit(onSubmit)}>
+        <h1>Создайте пользователя</h1>
+        <input
+          className={`input-text ${errors.username ? 'error' : ''} ${ !errors.username && isDirty ? 'valid' : ''}`}
+          type="text"
+          placeholder="Придумайте имя пользователя"
+          {...register('username', { required: true, minLength: 5, maxLength: 20, pattern: /^[a-zA-Z0-9]+$/ })}
+        />
+        {errors.username && errors.username.type === "required" && (
+          <ErrorMessage error={"Введите имя пользователя"} />)}
+        {errors.username && errors.username.type === "pattern" && (
+          <ErrorMessage error={"Имя пользователя может содержать только латинские буквы и цифры"} />)}
+        {errors.username && (username.length < 5 || username.length > 20) && (
+          <ErrorMessage error={"Имя пользователя должно содержать не менее 5 и не более 20 символов"} />)}
+        <input
+          className={`input-text ${errors.email ? 'error' : ''}`}
+          type="email"
+          placeholder="Введите адрес электронной почты"
+          {...register('email', { required: true, pattern: /@/ })}
+        />
+        {errors.email && errors.email.type === "required" && (
+          <ErrorMessage error={"Введите email"} />)}
+        {errors.email && errors.email.type === "pattern" && (
+          <ErrorMessage error={'Указан неверный формат e-mail'} />)}
+        <input
+          className={`input-text ${errors.pass1 ? 'error' : ''}`}
+          type="password"
+          placeholder="Придумайте пароль"
+          {...register('pass1', { required: true, pattern: /^[0-9a-z_,*-]+$/})}
+        />
+        {errors.pass1 && errors.pass1.type === "required" && (
+          <ErrorMessage error={"Введите пароль"} />)}
+        {errors.pass1 && errors.pass1.type === "pattern" && (
+          <ErrorMessage error={'Пароль должен содержать только цифры и малые латинские буквы, а также один из символов "_", "-", "*" на Ваш выбор'} />)}
+        <input
+          className={`input-text ${userPass1 !== userPass2 ? 'error' : ''}`}
+          placeholder="Подтвердите пароль"
+          type="password"
+          {...register('pass2', { required: true })}
+        />
+        {errors.pass2 && <ErrorMessage error={"Подтвердите пароль"} />}
+        {userPass1 && userPass2 && userPass1 !== userPass2 && (
+          <ErrorMessage error={'Введенные пароли не совпадают'} />)}
+        <button className="login-button" type="submit" disabled={!username || !email || !userPass1 || userPass1 !== userPass2}>
+          Зарегистрироваться
+        </button>
+        {error && <ErrorMessage error={error} />}
+      </form>
     </>
-    );
-    };
+  );
+};

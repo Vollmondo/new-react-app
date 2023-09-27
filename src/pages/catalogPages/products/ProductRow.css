@@ -57,3 +57,14 @@
 .productItem-row-icon-container:last-child{
    margin-left: 10px;
 }
+
+.productItem-row-btn{
+    height: 100px;
+    width: 100px;
+    border: none;
+    background-color: white;
+    background-image: url("../../../../public/img/icons8-shopping-bag-64.png");
+    background-repeat: no-repeat;
+    background-size: 60px;
+    background-position: center;
+}
