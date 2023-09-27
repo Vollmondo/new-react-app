@@ -4,6 +4,7 @@ import productsReducer from "./Products.Slice";
 import favProductsReducer from "./FavProducts.Slice";
 import categoriesReducer from "./Categories.Slice"
 import storage from "redux-persist/lib/storage";
+import userReducer from "./User.Slice";
 import {persistReducer} from "redux-persist";
 import { combineReducers } from "@reduxjs/toolkit"
 
@@ -18,6 +19,7 @@ const reducer = combineReducers({
   products: productsReducer,
   favProducts: favProductsReducer,
   categories: categoriesReducer,
+  user: userReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducer);

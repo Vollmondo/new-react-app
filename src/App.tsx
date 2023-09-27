@@ -18,8 +18,15 @@ import { CartPage } from './pages/userPages/CartPage';
 import { FavPage } from './pages/userPages/FavPage';
 import { OrdersPage } from './pages/userPages/OrdersPage';
 import { SearchResults } from './components/service/SearchRezults';
- 
+import { useAppSelector } from './store/hooks';
+import { Navigate } from 'react-router-dom';
+
 function UserProfile() {
+  const user = useAppSelector((state) => state.user.user);
+
+  if (!user) {
+    return <Navigate to="/login" />;
+  }
   return (
     <Routes>
       <Route path="/:id" element={<ProfilePageWrapper />} />
@@ -31,6 +38,11 @@ function UserProfile() {
 }
 
 function Admin() {
+  const user = useAppSelector((state) => state.user.user);
+
+  if (!user) {
+    return <Navigate to="/login" />;
+  }
   return (
     <Routes>
       <Route path='/' element={<AdminMainPage />}/>
