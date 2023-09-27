@@ -31,10 +31,9 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onTogglePanel }) => {
         password,
       });
       const user = response.data;
-      console.log(user);
       setUser(user);
       localStorage.setItem("userJSON", JSON.stringify(user));
-      window.location.reload();
+      navigate("/home");
     } catch (error) {
       setError("Неверное имя пользователя или пароль");
     }
