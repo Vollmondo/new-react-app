@@ -6,6 +6,9 @@ import { IUser } from "../../models";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { ErrorMessage } from "../../components/service/ErrorMessage";
+import { useAppDispatch } from "../../store/hooks";
+import { setUser } from "../../store/User.Slice";
+
 
 interface LoginFormProps {
   onTogglePanel: () => void;
@@ -17,7 +20,7 @@ type FormData = {
 }
 
 export const LoginForm: React.FC<LoginFormProps> = ({ onTogglePanel }) => {
-  const { setUser } = useContext(UserContext);
+  const dispatch = useAppDispatch()
   const { register, handleSubmit, formState: { errors, isDirty }, watch } = useForm<FormData>({ mode: 'onChange' });
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -31,8 +34,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onTogglePanel }) => {
         password,
       });
       const user = response.data;
-      setUser(user);
-      localStorage.setItem("userJSON", JSON.stringify(user));
+      dispatch(setUser(user));
       navigate("/home");
     } catch (error) {
       setError("Неверное имя пользователя или пароль");

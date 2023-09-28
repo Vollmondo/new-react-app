@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { ProductsPage } from './pages/catalogPages/ProductsPage';
 import { AboutPage } from './pages/infoPages/AboutPage';
 import { ContactsPage } from './pages/infoPages/ContactsPage';
@@ -19,7 +19,6 @@ import { FavPage } from './pages/userPages/FavPage';
 import { OrdersPage } from './pages/userPages/OrdersPage';
 import { SearchResults } from './components/service/SearchRezults';
 import { useAppSelector } from './store/hooks';
-import { Navigate } from 'react-router-dom';
 
 function UserProfile() {
   const user = useAppSelector((state) => state.user.user);

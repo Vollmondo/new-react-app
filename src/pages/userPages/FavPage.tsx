@@ -11,25 +11,28 @@ export function FavPage() {
   const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const storedUserJSON = localStorage.getItem("userJSON");
+  const user = useAppSelector((state) => state.user);
 
   useEffect(() => {
-    if (storedUserJSON) {
-      const user = JSON.parse(storedUserJSON);
-      const id = user._id;
+    if (user) {
+      const id = user.user?._id;
 
-      setLoading(true);
-      getFavoriteProducts(id)
-        .then((products) => {
-          dispatch(loadFavProducts(id));
-          setLoading(false);
-        })
-        .catch((error) => {
-          setError("Не удалось загрузить товары");
-          setLoading(false);
-        });
+      if (id) {
+        setLoading(true);
+        getFavoriteProducts(id)
+          .then((products) => {
+            dispatch(loadFavProducts(id));
+            setLoading(false);
+          })
+          .catch((error) => {
+            setError("Не удалось загрузить товары");
+            setLoading(false);
+          });
+      } else {
+        setError("ID пользователя отсутствует");
+      }
     }
-  }, [dispatch, storedUserJSON]);
+  }, [dispatch, user]);
 
   const products = useAppSelector((state) => state.favProducts.favProducts);
 

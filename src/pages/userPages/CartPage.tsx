@@ -8,7 +8,6 @@ import { ErrorMessage } from "../../components/service/ErrorMessage";
 
 export function CartPage() {
   const dispatch = useAppDispatch();
-  const userJSON = localStorage.getItem('userJSON');
   const products = useAppSelector((state) => state.products.products);
   const items = useAppSelector((state) => state.cart.items);
   const totalPrice = useAppSelector(getTotalPrice);

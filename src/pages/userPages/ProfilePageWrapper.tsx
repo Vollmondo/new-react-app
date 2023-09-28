@@ -7,27 +7,28 @@ import { ErrorMessage } from "../../components/service/ErrorMessage";
 import './ProfilePage.css';
 import { IUser } from "../../models";
 import { UserContext } from "../../context/UserContext";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { setUser } from "../../store/User.Slice";
 
 export const ProfilePageWrapper: React.FC = () => {
-  const { setUser } = useContext(UserContext);
+  const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => state.user);
   const [userData, setUserData] = useState<IUser | null>(null);
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const storedUserJSON = localStorage.getItem("userJSON");
-    if (storedUserJSON) {
-      const user = JSON.parse(storedUserJSON);
-      const id = user._id;  
+    if (user) {
+      const id = user.user?._id;
       const LoadProfile = async () => {
         try {
           const response = await axios.get<IUser>(`http://localhost:5000/userProfile/${id}`);
           const userProfileData = response.data;
           if (userProfileData.avatar === "") {
-            userProfileData.avatar = "https://cdn-icons-png.flaticon.com/512/149/149452.png";
+            userProfileData.avatar = "../img/149452.png";
           }
           setUserData(userProfileData);
-          setUser(userProfileData);  
+          dispatch(setUser(userProfileData)); 
         } catch (error) {
           setError("Ошибка загрузки профиля пользователя");
         }
@@ -55,21 +56,27 @@ export const ProfilePageWrapper: React.FC = () => {
             <div className="profile-user-info">
               <div className="profile-user-info-row">
                 <p>Потльзователь: {userData.username}</p>
+                <img className="profile-user-info-edit" src="../img/icons8-edit-64.png" alt="edit"/>
               </div>
               <div className="profile-user-info-row">
                 <p>ФИО: {userData.name?.lastname} {userData.name?.firstname} {userData.name?.patronymic}</p>
+                <img className="profile-user-info-edit" src="../img/icons8-edit-64.png" alt="edit"/>
               </div>
               <div className="profile-user-info-row">
                 <p>Дата рождения: {userData.birthdate}</p>
+                <img className="profile-user-info-edit" src="../img/icons8-edit-64.png" alt="edit"/>
               </div>
               <div className="profile-user-info-row">
                 <p>E-mail: {userData.email}</p>
+                <img className="profile-user-info-edit" src="../img/icons8-edit-64.png" alt="edit"/>
               </div>
               <div className="profile-user-info-row">
                 <p>Тел.: {userData.phone}</p>
+                <img className="profile-user-info-edit" src="../img/icons8-edit-64.png" alt="edit"/>
               </div>
               <div className="profile-user-info-row">
                 <p>Адрес: {userData.address?.zipcode}, г.{userData.address?.city}, ул.{userData.address?.street}, д.{userData.address?.number}</p>
+                <img className="profile-user-info-edit" src="../img/icons8-edit-64.png" alt="edit"/>
               </div>
             </div>
           </div>

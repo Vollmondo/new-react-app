@@ -4,24 +4,19 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Navigation } from '../navigation/Navigation';
 import { LocationProvider } from '../../../context/LocationContext';
 import { CartLink } from '../../cart/CartLink';
-import { useAppDispatch } from '../../../store/hooks';
+import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { resetFavProducts } from '../../../store/FavProducts.Slice';
 import { Search } from '../../../components/service/Search';
+import { resetUser } from '../../../store/User.Slice';
 
 export function Header() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const userJSON = localStorage.getItem('userJSON');
-  let id = 0;
-  
-  if (userJSON !== null) {
-    const userObj = JSON.parse(userJSON);
-    id = userObj._id;
-  }
+  const user = useAppSelector(state => state.user); 
 
   const handleLogout = () => {
-    localStorage.removeItem('userJSON');
     dispatch(resetFavProducts());
+    dispatch(resetUser())
     navigate('/home');
   };
 
@@ -46,9 +41,9 @@ export function Header() {
             </div>
             <Search />
             <div className='header-personal-block'>
-              {userJSON ? (
+              {user.user?._id ? (
                 <>
-                  <Link to={`/userProfile/${id}`}>
+                  <Link to={`/userProfile/${user.user?._id}`}>
                     <img className='header-img profile' src='../img/icons8-user-64.png' alt='profile'/>
                     </Link>
                   <Link to={`/userProfile/fav`}>
@@ -71,7 +66,6 @@ export function Header() {
             </div>
           </div>
         </div>
-        
       </div>
     );
   }
