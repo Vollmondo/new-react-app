@@ -19,10 +19,10 @@ export interface IProduct {
   }
 
 export interface IUser{
-    address: {
-        geolocation: {
-            lat: string,
-            long: string
+    address?: {
+        geolocation?: {
+            lat?: string,
+            long?: string
         },
         city?: string,
         street?: string,
@@ -31,8 +31,8 @@ export interface IUser{
     },
     _id?: string,
     email?: string,
-    username: string,
-    password: string,
+    username?: string,
+    password?: string,
     avatar?: string,
     name?: {
         firstname?: string,
@@ -42,7 +42,7 @@ export interface IUser{
     phone?: string,
     __v?: number,
     role?: string,
-    birthdate?: number,
+    birthdate?: string,
     fav?: string[],
 }
 

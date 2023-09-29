@@ -15,13 +15,6 @@ export const AuthForm: React.FC = () => {
   
     const containerClass = isSign ? "container right-panel-active" : "container";
 
-    /* useEffect(() => {
-        const user = localStorage.getItem("userJSON") || ''
-        if (user){
-            return (navigate('/home'))
-        }
-    }, []) */
-  
     return (
       <div className="login-page">
         <div className={containerClass} id="login-container">
