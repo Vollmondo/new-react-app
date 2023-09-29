@@ -1,15 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { MouseEventHandler, useEffect, useState } from "react";
 import { IUser } from "../../models";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { saveUser, setUser } from "../../store/User.Slice";
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { ErrorMessage } from "../../components/service/ErrorMessage";
-
-type FormData = IUser & {
-    pass1: string; 
-    pass2: string; 
-    pass3: string; 
-  };
+import { ChangePassword } from "./ChangePassword";
 
 export function EditProfile(){
 
@@ -17,15 +12,11 @@ export function EditProfile(){
     const user = useAppSelector((state) => state.user);
     const [userData, setUserData] = useState<IUser | null>(null);
     const [editingItem, setEditingItem] = useState<boolean>(false);
-    const { register, formState: { errors, isDirty }, watch, handleSubmit } = useForm<FormData>({ mode: 'onChange' });
-    const [data, setData] = useState<string | null>(null);
+    const { register, formState: { errors, isDirty }, watch, handleSubmit } = useForm<IUser>({ mode: 'onChange' });
     const username = watch("username");
     const email = watch("email");
-    const userPass1 = watch("pass1");
-    const userPass2 = watch("pass2");
-    const userPass3 = watch("pass3");
 
-    const handleEdit: SubmitHandler<FormData> = async (data) => {
+    const handleEdit: SubmitHandler<IUser> = async (data) => {
         if (user.user && user.user._id) {
         const formData = new FormData();
         if (data.address && data.address.geolocation) {
@@ -79,66 +70,113 @@ export function EditProfile(){
     }
   };
 
+  const handleChangePassword: MouseEventHandler<HTMLParagraphElement> = async (data) => {
+    setEditingItem(!editingItem) 
+ };
+  
     return(
         <>
         <form onSubmit={handleSubmit(handleEdit)}>
         <div className="profile-user-info">
-              <input
+            <input
                 className={`input-text ${errors.username ? 'error' : ''} ${ !errors.username && isDirty ? 'valid' : ''}`}
                 type="text"
                 defaultValue={user.user?.username}
-                placeholder="Придумайте имя пользователя"
+                placeholder="Придумайте логин"
                 {...register('username', { required: true, minLength: 5, maxLength: 20, pattern: /^[a-zA-Z0-9]+$/ })}
-              />
-              {errors.username && errors.username.type === "required" && (
+            />
+            {errors.username && errors.username.type === "required" && (
                 <ErrorMessage error={"Введите имя пользователя"} />)}
-              {errors.username && errors.username.type === "pattern" && (
+            {errors.username && errors.username.type === "pattern" && (
                 <ErrorMessage error={"Имя пользователя может содержать только латинские буквы и цифры"} />)}
-              {errors.username && username && (username.length < 5 || username.length > 20) && (
+            {errors.username && username && (username.length < 5 || username.length > 20) && (
                 <ErrorMessage error={"Имя пользователя должно содержать не менее 5 и не более 20 символов"} />)}
-              <input
-                className={`input-text ${errors.email ? 'error' : ''}`}
+            <input
+                className={`input-text ${errors.email ? 'error' : ''} ${ !errors.email && isDirty ? 'valid' : ''}`}
                 defaultValue={user.user?.email}
                 type="email"
                 placeholder="Введите адрес электронной почты"
                 {...register('email', { required: true, pattern: /@/ })}
-              />
-              {errors.email && errors.email.type === "required" && (
+            />
+            {errors.email && errors.email.type === "required" && (
                 <ErrorMessage error={"Введите email"} />)}
-              {errors.email && errors.email.type === "pattern" && (
+            {errors.email && errors.email.type === "pattern" && (
                 <ErrorMessage error={'Указан неверный формат e-mail'} />)}
-              <input
-                className={`input-text ${errors.pass1 ? 'error' : ''}`}
-                type="password"
-                placeholder="Введите старый пароль"
-                {...register('pass1', { pattern: /^[0-9a-z_,*-]+$/})}
-              />
-              {errors.pass1 && errors.pass1.type === "required" && (
-                <ErrorMessage error={"Введите пароль"} />)}
-                <input
-                className={`input-text ${errors.pass2 ? 'error' : ''}`}
-                type="password"
-                placeholder="Введите новый пароль"
-                {...register('pass2', { pattern: /^[0-9a-z_,*-]+$/})}
-              />
-              {errors.pass2 && errors.pass2.type === "required" && (
-                <ErrorMessage error={"Введите пароль"} />)}
-              {errors.pass2 && errors.pass2.type === "pattern" && (
-                <ErrorMessage error={'Пароль должен содержать только цифры и малые латинские буквы, а также один из символов "_", "-", "*" на Ваш выбор'} />)}
-              <input
-                className={`input-text ${userPass2 !== userPass3 ? 'error' : ''}`}
-                placeholder="Подтвердите пароль"
-                type="password"
-                {...register('pass3', { })}
-              />
-              {errors.pass3 && <ErrorMessage error={"Подтвердите пароль"} />}
-              {userPass2 && userPass3 && userPass2 !== userPass3 && (
-                <ErrorMessage error={'Введенные пароли не совпадают'} />)}
-            <button className="login-button" type="submit" disabled={!username || !email || !userPass2 || userPass2 !== userPass3}>
+            <input
+                className={`input-text ${errors.name?.firstname ? 'error' : ''} ${ !errors.name?.firstname && isDirty ? 'valid' : ''}`}
+                type="text"
+                defaultValue={user.user?.name?.firstname}
+                placeholder="Укажите фамилию"
+                {...register('name.firstname', { })}
+            />
+            <input
+                className={`input-text ${errors.name?.lastname ? 'error' : ''} ${ !errors.name?.lastname && isDirty ? 'valid' : ''}`}
+                type="text"
+                defaultValue={user.user?.name?.lastname}
+                placeholder="Укажите имя"
+                {...register('name.lastname', { })}
+            />
+            <input
+                className={`input-text ${errors.name?.patronymic ? 'error' : ''} ${ !errors.name?.patronymic && isDirty ? 'valid' : ''}`}
+                type="text"
+                defaultValue={user.user?.name?.patronymic}
+                placeholder="Укажите отчество"
+                {...register('name.patronymic', { })}
+            />
+            <input
+                className={`input-text ${errors.birthdate ? 'error' : ''} ${ !errors.birthdate && isDirty ? 'valid' : ''}`}
+                type="text"
+                defaultValue={user.user?.birthdate}
+                placeholder="Укажите дату рождения"
+                {...register('birthdate', { })}
+            />
+            <input
+                className={`input-text ${errors.phone ? 'error' : ''} ${ !errors.phone && isDirty ? 'valid' : ''}`}
+                type="text"
+                defaultValue={user.user?.phone}
+                placeholder="Укажите телефон"
+                {...register('phone', { })}
+            />
+            <div className="profile-user-info-row">Адрес: </div>
+            <input
+                className={`input-text ${errors.address?.zipcode ? 'error' : ''} ${ !errors.address?.zipcode && isDirty ? 'valid' : ''}`}
+                type="text"
+                defaultValue={user.user?.address?.zipcode}
+                placeholder="Укажите почтовый индекс"
+                {...register('address.zipcode', { })}
+            />
+            <input
+                className={`input-text ${errors.address?.city ? 'error' : ''} ${ !errors.address?.city && isDirty ? 'valid' : ''}`}
+                type="text"
+                defaultValue={user.user?.address?.city}
+                placeholder="Укажите телефон"
+                {...register('address.city', { })}
+            />
+            <input
+                className={`input-text ${errors.address?.street ? 'error' : ''} ${ !errors.address?.street && isDirty ? 'valid' : ''}`}
+                type="text"
+                defaultValue={user.user?.address?.street}
+                placeholder="Укажите телефон"
+                {...register('address.street', { })}
+            />
+            <input
+                className={`input-text ${errors.address?.number ? 'error' : ''} ${ !errors.address?.number && isDirty ? 'valid' : ''}`}
+                type="text"
+                defaultValue={user.user?.address?.number}
+                placeholder="Укажите телефон"
+                {...register('address.number', { })}
+            />    
+            <button className="login-button" type="submit" disabled={!username || !email }>
               Сохранить
             </button>
             </div>
         </form>
+        {editingItem ? (
+                <ChangePassword/>
+            ):(
+                <div onClick={handleChangePassword}>Сменить пароль</div>)}
+
+
         </>
     )
 }

@@ -3,6 +3,7 @@ import cartReducer from "./Cart.Slice";
 import productsReducer from "./Products.Slice";
 import favProductsReducer from "./FavProducts.Slice";
 import categoriesReducer from "./Categories.Slice"
+import changePasswordReducer from "./ChangePassword.Slice";
 import storage from "redux-persist/lib/storage";
 import userReducer from "./User.Slice";
 import {persistReducer} from "redux-persist";
@@ -20,6 +21,7 @@ const reducer = combineReducers({
   favProducts: favProductsReducer,
   categories: categoriesReducer,
   user: userReducer,
+  changePassword: changePasswordReducer, 
 });
 
 const persistedReducer = persistReducer(persistConfig, reducer);

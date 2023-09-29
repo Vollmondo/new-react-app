@@ -46,42 +46,41 @@ export const ProfilePageWrapper: React.FC = () => {
   }
 
   const handleEditProfile = () => {
-    setEditingItem(true);
+    setEditingItem(!editingItem);
   };
 
   return (
     <BasePage>
       {userData ? (
         <div className="profile-container">
-          <h1>Профиль пользователя</h1> 
-          <img className="profile-user-info-edit" src="../img/icons8-edit-64.png" alt="edit" onClick={handleEditProfile} />
+          <div className="profile-container-header">
+            <h1>Профиль пользователя</h1> 
+            <img className="profile-user-info-edit" src="../img/icons8-edit-64.png" alt="edit" onClick={handleEditProfile} />
+          </div>
           <div className="profile-main-block">
             <div className="profile-photo-container">
               <img className="profile-photo" src={userData.avatar} alt="avatar" />
             </div>
             {editingItem ? (<EditProfile/>):(
                 <div className="profile-user-info">
-                <div className="profile-user-info-row">
-                  <p>Потльзователь: {userData.username}</p>
-                </div>
-                <div className="profile-user-info-row">
-                  <p>ФИО: {userData.name?.lastname} {userData.name?.firstname} {userData.name?.patronymic}</p>  
-                </div>
-                <div className="profile-user-info-row">
-                  <p>Дата рождения: {userData.birthdate}</p>
-                </div>
-                <div className="profile-user-info-row">
-                  <p>E-mail: {userData.email}</p>
-                </div>
-                <div className="profile-user-info-row">
-                  <p>Тел.: {userData.phone}</p>
-                </div>
-                <div className="profile-user-info-row">
-                  <p>Адрес: {userData.address?.zipcode}, г.{userData.address?.city}, ул.{userData.address?.street}, д.{userData.address?.number}</p>
-                </div>
-              </div>
-              )
-            }
+                  <div>
+                    <div className="profile-user-info-row">Логин: {userData.username}</div>
+                    <div className="profile-user-info-row">E-mail: {userData.email}</div>
+                  </div>
+                  <div>
+                    <div className="profile-user-info-row">Фамилия: {userData.name?.lastname}</div>  
+                    <div className="profile-user-info-row">Имя: {userData.name?.firstname}</div>  
+                    <div className="profile-user-info-row">Отчетсво: {userData.name?.patronymic}</div>
+                    <div className="profile-user-info-row">Дата рождения: {userData.birthdate}</div>
+                  </div>
+                  <div>
+                    <div className="profile-user-info-row">Тел.: {userData.phone}</div>
+                    <div className="profile-user-info-row">Адрес: </div>
+                    <div className="profile-user-info-row">{userData.address?.zipcode},</div>
+                    <div className="profile-user-info-row">г.{userData.address?.city},</div>
+                    <div className="profile-user-info-row">ул.{userData.address?.street}, д.{userData.address?.number}</div>
+                  </div>
+                </div>)}
           </div>
         </div>
       ) : (
