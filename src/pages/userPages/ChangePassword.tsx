@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { ErrorMessage } from "../../components/service/ErrorMessage";
 import { changePassword } from "../../store/ChangePassword.Slice";
@@ -16,6 +16,7 @@ export function ChangePassword() {
   const [userData, setUserData] = useState<IUser | null>(null);
   const [editingItem, setEditingItem] = useState<boolean>(false);
   const { register, formState: { errors }, watch, handleSubmit } = useForm<NewPwd>();
+
   const handleChangePassword: SubmitHandler<NewPwd> = (data) => {
     const oldPwd = data.oldPwd;
     const newPwd = data.newPwd;
@@ -24,7 +25,7 @@ export function ChangePassword() {
       setUserData(userData);
     }
     setEditingItem(false);
-
+    window.location.reload()
     console.log(data);
   };
 

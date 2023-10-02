@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { MouseEventHandler, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BasePage } from "../basePage/BasePage";
@@ -9,6 +9,7 @@ import { IUser } from "../../models";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { setUser } from "../../store/User.Slice";
 import { EditProfile } from "./EditProfile";
+import { ChangePassword } from "./ChangePassword";
 
 export const ProfilePageWrapper: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -16,7 +17,9 @@ export const ProfilePageWrapper: React.FC = () => {
   const [userData, setUserData] = useState<IUser | null>(null);
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
-  const [editingItem, setEditingItem] = useState<boolean>(false);
+  const [editingProfile, setEditingProfile] = useState<boolean>(false);
+  const [editingPwd, setEditingPwd] = useState<boolean>(false);
+
 
   useEffect(() => {
     if (user) {
@@ -46,8 +49,12 @@ export const ProfilePageWrapper: React.FC = () => {
   }
 
   const handleEditProfile = () => {
-    setEditingItem(!editingItem);
+    setEditingProfile(!editingProfile);
   };
+
+  const handleChangePassword: MouseEventHandler<HTMLParagraphElement> = async (data) => {
+    setEditingPwd(!editingPwd) 
+ };
 
   return (
     <BasePage>
@@ -55,13 +62,23 @@ export const ProfilePageWrapper: React.FC = () => {
         <div className="profile-container">
           <div className="profile-container-header">
             <h1>Профиль пользователя</h1> 
-            <img className="profile-user-info-edit" src="../img/icons8-edit-64.png" alt="edit" onClick={handleEditProfile} />
           </div>
           <div className="profile-main-block">
-            <div className="profile-photo-container">
-              <img className="profile-photo" src={userData.avatar} alt="avatar" />
+            <div>
+              <div className="profile-photo-container">
+                <img className="profile-photo" src={userData.avatar} alt="avatar" />
+              </div>
+              <div className="profile-user-infoBlock">
+                {editingPwd ? (
+                  <ChangePassword/>
+                ):(
+                  <div className="profile-user-text" onClick={handleChangePassword}><p>Сменить пароль</p></div>
+                )}
+                <img className="profile-user-info-edit" src="../img/icons8-edit-64.png" alt="edit" onClick={handleChangePassword} />
+              </div>
             </div>
-            {editingItem ? (<EditProfile/>):(
+            <div className="profile-user-infoBlock">
+              {editingProfile ? (<EditProfile/>):(
                 <div className="profile-user-info">
                   <div>
                     <div className="profile-user-info-row">Логин: {userData.username}</div>
@@ -75,12 +92,13 @@ export const ProfilePageWrapper: React.FC = () => {
                   </div>
                   <div>
                     <div className="profile-user-info-row">Тел.: {userData.phone}</div>
-                    <div className="profile-user-info-row">Адрес: </div>
-                    <div className="profile-user-info-row">{userData.address?.zipcode},</div>
-                    <div className="profile-user-info-row">г.{userData.address?.city},</div>
-                    <div className="profile-user-info-row">ул.{userData.address?.street}, д.{userData.address?.number}</div>
+                    <div className="profile-user-info-row">Адрес: {userData.address?.zipcode}, г.{userData.address?.city}, ул.{userData.address?.street}, д.{userData.address?.number}
+                    </div>
                   </div>
-                </div>)}
+                </div>
+              )}
+              <img className="profile-user-info-edit" src="../img/icons8-edit-64.png" alt="edit" onClick={handleEditProfile} />
+            </div>
           </div>
         </div>
       ) : (

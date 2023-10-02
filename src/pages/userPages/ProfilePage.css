@@ -2,30 +2,41 @@
     width: 100%;
 }
 .profile-container-header{
-    display: flex;
-    justify-content: space-between;
+    text-align: center;
+    margin: 50px;
 }
 
 .profile-main-block{
     display: flex;
-    justify-content: space-between;
-    width: 45%;
+    justify-content: space-around;
+    width: 100%;
 }
 
 .profile-photo{
-    width: 150px;
-    height: 150px;
-    margin-right: 20px;
+    width: 200px;
+    height: 200px;
 }
 
 .profile-photo-container{
     display: flex;
-    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    margin: 20px;
 }
 
 .profile-user-info{
 
+}
+
+.profile-user-infoBlock{
+    min-width: 200px;
+    background-color: #e5e5e5;
+    margin: 0 50px;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 10px;
 }
 
 .profile-user-info-row{
@@ -39,4 +50,9 @@
     align-items: center;
     width: 30px;
     height: 30px;
+}
+
+.profile-user-text{
+    display: flex;
+    align-items: center;
 }

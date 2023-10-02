@@ -19,12 +19,10 @@ export function EditProfile(){
     const handleEdit: SubmitHandler<IUser> = async (data) => {
         if (user.user && user.user._id) {
         const formData = new FormData();
-        if (data.address && data.address.geolocation) {
-            formData.append('address.city', data.address.city || '');
-            formData.append('address.street', data.address.street || '');
-            formData.append('address.number', data.address.number?.toString() || '');
-            formData.append('address.zipcode', data.address.zipcode || '');
-        }
+        formData.append('address.city', data.address?.city || '');
+        formData.append('address.street', data.address?.street || '');
+        formData.append('address.number', data.address?.number?.toString() || '');
+        formData.append('address.zipcode', data.address?.zipcode || '');
         formData.append('email', data.email || '');
         formData.append('username', data.username || '');
         formData.append('password', data.password || '');
@@ -57,10 +55,7 @@ export function EditProfile(){
           patronymic: formData.get('name.patronymic') as string
         },
         phone: formData.get('phone') as string,
-        __v: parseInt(formData.get('__v') as string),
-        role: formData.get('role') as string,
         birthdate: formData.get('birthdate') as string,
-        fav: JSON.parse(formData.get('fav') as string)
       };
       console.log(userData)
       dispatch(saveUser(user.user._id, { ...userData, _id: user.user._id }));
@@ -70,9 +65,7 @@ export function EditProfile(){
     }
   };
 
-  const handleChangePassword: MouseEventHandler<HTMLParagraphElement> = async (data) => {
-    setEditingItem(!editingItem) 
- };
+  
   
     return(
         <>
@@ -149,21 +142,21 @@ export function EditProfile(){
                 className={`input-text ${errors.address?.city ? 'error' : ''} ${ !errors.address?.city && isDirty ? 'valid' : ''}`}
                 type="text"
                 defaultValue={user.user?.address?.city}
-                placeholder="Укажите телефон"
+                placeholder="Укажите город"
                 {...register('address.city', { })}
             />
             <input
                 className={`input-text ${errors.address?.street ? 'error' : ''} ${ !errors.address?.street && isDirty ? 'valid' : ''}`}
                 type="text"
                 defaultValue={user.user?.address?.street}
-                placeholder="Укажите телефон"
+                placeholder="Укажите улицу"
                 {...register('address.street', { })}
             />
             <input
                 className={`input-text ${errors.address?.number ? 'error' : ''} ${ !errors.address?.number && isDirty ? 'valid' : ''}`}
                 type="text"
                 defaultValue={user.user?.address?.number}
-                placeholder="Укажите телефон"
+                placeholder="Укажите номер дома"
                 {...register('address.number', { })}
             />    
             <button className="login-button" type="submit" disabled={!username || !email }>
@@ -171,11 +164,7 @@ export function EditProfile(){
             </button>
             </div>
         </form>
-        {editingItem ? (
-                <ChangePassword/>
-            ):(
-                <div onClick={handleChangePassword}>Сменить пароль</div>)}
-
+        
 
         </>
     )
