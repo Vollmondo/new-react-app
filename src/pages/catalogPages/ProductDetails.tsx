@@ -11,7 +11,7 @@ import { TabComp } from "./productDetailsComponents/TabComp";
 import { PhotoComp } from "./productDetailsComponents/PhotoComp";
 import { CharComp } from "./productDetailsComponents/CharComp";
 import { addToCart } from "../../store/Cart.Slice";
-import { useAppDispatch } from "../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { getProductItem } from "../../api/api";
 import { FavButton } from "../../components/service/FavButton";
 
@@ -21,16 +21,14 @@ export function ProductDetails() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [quantity, setQuantity] = useState(0);
-  const dispatch = useAppDispatch()
-  const storedUserJSON = localStorage.getItem("userJSON");
+ 
+  const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => state.user);
   const [userId, setUserId] = useState<string>("");
 
   useEffect(() => {
-    if (storedUserJSON) {
-      const user = JSON.parse(storedUserJSON);
-      setUserId(user._id);
-    }
-  }, [storedUserJSON]);
+    setUserId(user.user?._id || "");
+  }, [user.user]);
 
   async function fetchProductDetails(productId: string) {
     try {

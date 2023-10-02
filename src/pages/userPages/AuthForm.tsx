@@ -1,13 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { LoginForm } from "./LoginForm";
 import { RegistrationForm } from "./RegistrationForm";
 import './LoginForm.css'
-import { useNavigate } from "react-router-dom";
-
 
 export const AuthForm: React.FC = () => {
     const [isSign, setSign] = useState<boolean>(false);
-    const navigate = useNavigate();
 
     const handleTogglePanel = () => {
       setSign(!isSign);

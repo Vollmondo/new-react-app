@@ -3,21 +3,20 @@ import { IProduct } from "../../../models";
 import './Product.css';
 import { Link } from "react-router-dom";
 import { FavButton } from "../../../components/service/FavButton";
+import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 
 interface ProductProps {
   product: IProduct
 }
 
 export function Product({ product }: ProductProps) {
-  const storedUserJSON = localStorage.getItem("userJSON");
+  const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => state.user);
   const [userId, setUserId] = useState<string>("");
 
   useEffect(() => {
-    if (storedUserJSON) {
-      const user = JSON.parse(storedUserJSON);
-      setUserId(user._id);
-    }
-  }, [storedUserJSON]);
+    setUserId(user.user?._id || "");
+  }, [user.user]);
 
   return (
     <div className="product-el" key={product._id}>

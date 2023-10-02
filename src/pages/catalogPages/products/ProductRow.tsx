@@ -3,7 +3,7 @@ import { IProduct } from "../../../models";
 import './ProductRow.css';
 import { Link } from "react-router-dom";
 import { FavButton } from "../../../components/service/FavButton";
-import { useAppDispatch } from "../../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { addToCart } from "../../../store/Cart.Slice";
 
 interface ProductProps {
@@ -11,16 +11,13 @@ interface ProductProps {
 }
 
 export function ProductRow({ product }: ProductProps) {
-  const storedUserJSON = localStorage.getItem("userJSON");
+  const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => state.user);
   const [userId, setUserId] = useState<string>("");
-  const dispatch = useAppDispatch()
 
   useEffect(() => {
-    if (storedUserJSON) {
-      const user = JSON.parse(storedUserJSON);
-      setUserId(user._id);
-    }
-  }, [storedUserJSON]);
+    setUserId(user.user?._id || "");
+  }, [user.user]);
 
   return (
     <div className="productItem-row" key={product._id}>

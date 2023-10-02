@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useEffect, useState } from "react";
+import React, { MouseEventHandler, useState } from "react";
 import { IUser } from "../../models";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { saveUser, setUser } from "../../store/User.Slice";
