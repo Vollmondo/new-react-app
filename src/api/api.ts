@@ -112,6 +112,21 @@ export async function removeFavProduct(userId: string, productId: string): Promi
   }
 }
 
+export async function getCustomersOrders(userId: string): Promise<IOrder[]> {
+  try {
+    const response = await fetch(`http://localhost:5000/userProfile/${userId}/orders`);
+    if (!response.ok) {
+      throw new Error("Ошибка при получении избранных товаров");
+    }
+    const customersOrders = await response.json();
+
+    return customersOrders;
+  } catch (error) {
+    console.error("Ошибка при получении избранных товаров:", error);
+    return [];
+  }
+}
+
 export async function SearchProductItem(productTitle: string): Promise<IProduct[]> {
   const response = await fetch('http://localhost:5000/search', {
     method: 'POST',

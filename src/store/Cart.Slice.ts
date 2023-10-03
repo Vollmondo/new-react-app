@@ -2,8 +2,6 @@ import { PayloadAction, createSelector, createSlice, createAsyncThunk } from "@r
 import { checkout } from "../api/api";
 import { RootState } from "./store";
 import { ICartItem, IOrder } from "../models";
-import { useAppDispatch, useAppSelector } from "./hooks";
-import { log } from "console";
 
 type CheckoutState = "LOADING" | "READY" | "ERROR";
 
@@ -24,7 +22,7 @@ export const checkoutCart = createAsyncThunk("cart/checkout", async (_, thunkAPI
   const items = state.cart.items;
   const products = state.products.products;
   const user = state.user.user;
-  const orderItems: Record<string, ICartItem> = {};
+  const orderItems: { [id: string]: ICartItem } = {};
 
   Object.keys(items).forEach((id) => {
     const quantity = items[id];
@@ -33,12 +31,12 @@ export const checkoutCart = createAsyncThunk("cart/checkout", async (_, thunkAPI
   });
 
   const totalPrice = getTotalPrice(state);
- 
   const order: IOrder = {
     customer: user?._id,
-    items: orderItems,
+    items: Object.values(orderItems),
     timestamp: new Date().toISOString(),
     totalprice: Number(totalPrice),
+    status: "В обработке",
   };
   const response = await checkout(order);
   return response;

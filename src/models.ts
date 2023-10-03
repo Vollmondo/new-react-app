@@ -21,9 +21,10 @@ export interface IProduct {
 export interface IOrder {
     _id?: string;
     customer?: string;
-    items: Record<string, ICartItem>;
+    items: ICartItem[];
     timestamp: string;
     totalprice: number;
+    status: string;
 }
 
   export interface ICartItem {
