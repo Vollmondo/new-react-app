@@ -1,0 +1,42 @@
+.orders-table{
+    width: 100%;
+    font-size: 14pt;
+    margin: 20px 0;
+	border: 1px solid black;
+	border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.colID{width: 23%;}
+.colGoods{width: 45%;}
+.colDate{width: 11%;}
+.colStatus{width: 12%;}
+.colSum{width: 9%;}
+
+.orders-table-items{
+    width: 100%;
+    font-size: 14pt;
+    border: 1px solid black;
+	border-collapse: collapse;
+}
+
+.orders-table-items thead th{
+    padding: 5px 15px;
+}
+
+.orders-table thead th{
+    border: 1px solid black;
+}
+
+.orders-table tbody td {
+	text-align: left;
+	border: 1px solid black;
+	padding: 5px 15px;
+	vertical-align: top;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.orders-table-row:nth-child(even){
+	background: #f3f3f3;
+}
