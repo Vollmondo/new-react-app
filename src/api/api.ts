@@ -1,4 +1,4 @@
-import { ICategory, IProduct } from "../models";
+import { ICategory, IOrder, IProduct } from "../models";
 
 export async function getProducts(): Promise<IProduct[]> {
   const response = await fetch("http://localhost:5000/products");
@@ -24,13 +24,16 @@ export async function getProductItem(productId: string): Promise<IProduct> {
 export type CartItems = { [productID: string]: number };
 export type CheckoutResponse = { success: boolean; error?: string };
 
-export async function checkout(items: CartItems): Promise<CheckoutResponse> {
-  const modifier = Object.keys(items).length > 0 ? "success" : "error";
+export async function checkout(order: IOrder): Promise<CheckoutResponse> {
+  const modifier = Object.keys(order.items).length > 0 ? "success" : "error";
   const url = `http://localhost:5000/checkout-${modifier}.json`;
   await sleep(500);
   const response = await fetch(url, {
     method: "POST",
-    body: JSON.stringify(items),
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(order),
   });
   const data = await response.json();
   if (!data.success) {

@@ -18,6 +18,20 @@ export interface IProduct {
     value: string;
   }
 
+export interface IOrder {
+    _id?: string;
+    customer?: string;
+    items: Record<string, ICartItem>;
+    timestamp: string;
+    totalprice: number;
+}
+
+  export interface ICartItem {
+    id: string;
+    quantity: number;
+    price: number;
+  }
+
 export interface IUser{
     address?: {
         geolocation?: {
