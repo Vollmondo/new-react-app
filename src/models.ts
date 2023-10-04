@@ -59,6 +59,7 @@ export interface IUser{
     role?: string,
     birthdate?: string,
     fav?: string[],
+    credit?: number,
 }
 
 export interface ICategory{

@@ -3,11 +3,12 @@ import './Header.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { Navigation } from '../navigation/Navigation';
 import { LocationProvider } from '../../../context/LocationContext';
-import { CartLink } from '../../cart/CartLink';
+import { CartLink } from '../../../components/cart/CartLink';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { resetFavProducts } from '../../../store/FavProducts.Slice';
 import { Search } from '../../../components/service/Search';
 import { resetUser } from '../../../store/User.Slice';
+import { Wallet } from '../../../components/wallet/Wallet';
 
 export function Header() {
   const navigate = useNavigate();
@@ -52,6 +53,10 @@ export function Header() {
                   <Link to={`/userProfile/orders`}>
                     <img className='header-img orders' src='../img/icons8-box-64.png' alt='orders'/>
                   </Link>
+                  <Link to={`/#`}>
+                    <img className='header-img cart' src='../img/icons8-wallet-64.png' alt='cart'/>
+                  </Link>
+                  <Wallet />
                   <Link to={`/userProfile/cart`}>
                     <img className='header-img cart' src='../img/icons8-shopping-bag-64.png' alt='cart'/>
                   </Link>

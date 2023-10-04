@@ -31,7 +31,7 @@
 .profile-user-infoBlock{
     min-width: 200px;
     background-color: #e5e5e5;
-    margin: 0 50px;
+    margin: 20px 50px;
     display: flex;
     justify-content: space-between;
     border: 1px solid black;
@@ -50,9 +50,23 @@
     align-items: center;
     width: 30px;
     height: 30px;
+    cursor: pointer;
 }
 
 .profile-user-text{
     display: flex;
     align-items: center;
+    width: 100%;
+}
+
+.credit{
+    flex-direction: column;
+    text-align: center;
+}
+
+.debet-link{
+    text-decoration: none;
+    text-align: center;
+    color: black;
+    width: 100%;
 }

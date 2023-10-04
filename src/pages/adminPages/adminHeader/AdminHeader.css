@@ -5,7 +5,7 @@
     justify-content: center;
     position: sticky;
     top: 0;
-    background-color: lightblue;
+    background-color: rgb(173, 216, 230);
     opacity: 1;
 }
 
@@ -20,15 +20,14 @@
 }
 
 .admin-header-content{
-    display: flex;
-    justify-content: space-between;
     margin: 10px 20px;
 }
 
-.admin-header-link{
+.admin-header-link, .admin-header-sublink{
     padding: 5px 10px;
     text-decoration: none;
     color: black;
+    font-size: large;
 }
 
 .admin-header-link:last-child{
@@ -48,3 +47,49 @@
 .admin-header-link:last-child:hover{
     background-color: lightcoral;
 }
+
+
+  .topmenu > li {
+    display: inline-flex;
+    margin-right: 20px;
+    position: relative;
+    list-style: none; 
+
+  }
+  .topmenu > li:last-child {
+    margin-right: 0;
+  }
+  
+  .submenu {
+    position: absolute;
+    list-style: none; 
+    top: 100%;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+
+  }
+
+  .admin-header-content .submenu {
+    display: none;
+    background: rgb(97, 148, 165);
+  }
+
+  .admin-header-content ul li:hover .submenu {
+    display: block;
+    text-align: left;
+    min-width: max-content;
+    border: 1px solid black;
+    border-radius: 0 0 10px 10px;
+    padding: 10px;
+    
+  }
+
+  .submenu li a {
+    color: white;
+    text-decoration: none;
+  }
+
+  .submenu li a:hover {
+    color: black;
+  }

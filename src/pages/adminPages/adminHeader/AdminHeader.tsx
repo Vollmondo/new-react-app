@@ -11,12 +11,36 @@ export function AdminHeader() {
         <div className='admin-header-content-block'>
             <h1>Панель администратора</h1>
           <div className='admin-header-content'>
-              <Link to='/admin/products' className='admin-header-link'>Товары</Link>
-              <Link to='/admin/categories' className='admin-header-link'>Категории товаров</Link>
-              <Link to='/admin/users' className='admin-header-link'>Пользователи</Link>
-              <Link to='#' className='admin-header-link'>Информационные материалы</Link>
-              <Link to='#' className='admin-header-link'>Настройки сайта</Link>
-              <Link to='/' target='blank' className='admin-header-link' >Перейти к сайту</Link>
+              <ul className="topmenu">
+                <li className='admin-header-link'>Товары
+                  <ul className="submenu">
+                    <li className='admin-header-sublink'><Link to='/admin/products' >Товары</Link></li>
+                    <li className='admin-header-sublink'><Link to='/admin/categories' >Категории товаров</Link></li>
+                    <li className='admin-header-sublink'><Link to='#' >Характеристики товаров</Link></li>
+                  </ul>
+                </li>
+                <li className='admin-header-link'>Пользователи
+                  <ul className="submenu">
+                    <li className='admin-header-sublink'><Link to='/admin/users' >Пользователи</Link></li>
+                    <li className='admin-header-sublink'><Link to='#' >Категории пользователей</Link></li>
+                  </ul>
+                </li>
+                <li className='admin-header-link'>Заказы
+                  <ul className="submenu">
+                    <li className='admin-header-sublink'><Link to='#' >Заказы</Link></li>
+                    <li className='admin-header-sublink'><Link to='#' >Статусы</Link></li>
+                  </ul>
+                </li>
+                <li className='admin-header-link'>Информационные материалы
+                  <ul className="submenu">
+                    <li className='admin-header-sublink'><Link to='#' >Статьи</Link></li>
+                    <li className='admin-header-sublink'><Link to='#' >Банеры</Link></li>
+                    <li className='admin-header-sublink'><Link to='#' >Реквизиты организации</Link></li>
+                  </ul>
+                </li>
+                <li className='admin-header-link'><Link to='#'>Настройки сайта</Link></li>
+                <li className='admin-header-link'><Link to='/' target='blank' >Перейти к сайту</Link></li>
+              </ul>
             </div>
           </div>        
       </div>

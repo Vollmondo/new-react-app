@@ -1,5 +1,5 @@
 import React, { MouseEventHandler, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BasePage } from "../basePage/BasePage";
 import { Loader } from "../../components/service/Loader";
@@ -67,6 +67,10 @@ export const ProfilePageWrapper: React.FC = () => {
             <div>
               <div className="profile-photo-container">
                 <img className="profile-photo" src={userData.avatar} alt="avatar" />
+              </div>
+              <div className="profile-user-text credit">Ваш баланс: {userData.credit}</div>
+              <div className="profile-user-infoBlock credit">
+                <Link to={""} className="debet-link">Пополнить</Link>
               </div>
               <div className="profile-user-infoBlock">
                 {editingPwd ? (
