@@ -1,0 +1,45 @@
+.addCoins-container{
+    display: flex;
+    height: 150px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.addCoins-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 80%;
+    font-size: 12pt;
+}
+
+.addCoins-row{
+    display: inline-flex;
+    justify-content: center;
+}
+
+.addCoins-label{
+    width: 100px;
+    text-align: left;
+    margin-top: 10px;
+}
+
+.addCoins-el{
+    margin-top: 10px;
+    width: 200px;
+    box-sizing: border-box;
+}
+
+.addCoins-btnBlock{
+    display: inline-flex;
+    justify-content: center;
+}
+
+.addCoins-btn{
+    width: 300px;
+    height: 40px;
+    background-color: green;
+    font-size: 18pt;
+    margin: 20px 0;
+}

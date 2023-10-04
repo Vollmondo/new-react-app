@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './Header.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { Navigation } from '../navigation/Navigation';
@@ -9,16 +9,26 @@ import { resetFavProducts } from '../../../store/FavProducts.Slice';
 import { Search } from '../../../components/service/Search';
 import { resetUser } from '../../../store/User.Slice';
 import { Wallet } from '../../../components/wallet/Wallet';
+import { updateBalance } from '../../../store/Cart.Slice';
+import { ModalWindowContext } from '../../../context/ModalWindowContext';
+import { ModalWindow } from '../../../components/service/ModalWindow';
+import { AddCoins } from '../../../components/wallet/AddCoins';
 
 export function Header() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const user = useAppSelector(state => state.user); 
+  const { modalWindow, open, close } = useContext(ModalWindowContext);
 
   const handleLogout = () => {
     dispatch(resetFavProducts());
     dispatch(resetUser())
     navigate('/home');
+  };
+
+  const balanceUpdateHandler = async () => {
+    close();
+    await updateBalance;
   };
 
     return (
@@ -53,9 +63,7 @@ export function Header() {
                   <Link to={`/userProfile/orders`}>
                     <img className='header-img orders' src='../img/icons8-box-64.png' alt='orders'/>
                   </Link>
-                  <Link to={`/#`}>
-                    <img className='header-img cart' src='../img/icons8-wallet-64.png' alt='cart'/>
-                  </Link>
+                  <img className='header-img cart' src='../img/icons8-wallet-64.png' onClick={() => {open()}} alt='cart'/>
                   <Wallet />
                   <Link to={`/userProfile/cart`}>
                     <img className='header-img cart' src='../img/icons8-shopping-bag-64.png' alt='cart'/>
@@ -68,6 +76,16 @@ export function Header() {
               ) : (
                 <Link to='/login'><img className='header-img login' src='../img/icons8-enter-64.png' alt='login'/></Link>
               )}
+              {modalWindow && (
+              <ModalWindow
+                title="Пополнить баланс"
+                onClose={() => {
+                  close();
+                }}
+              >
+                <AddCoins onCreate={balanceUpdateHandler} />
+              </ModalWindow>
+            )}
             </div>
           </div>
         </div>

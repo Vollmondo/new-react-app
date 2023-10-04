@@ -12,7 +12,7 @@ export function ModalWindow({ children, title, onClose }: ModalWindowProps) {
         <>
             <div className="modal-window" onClick={onClose}></div>
             <div className="modal-window-container">
-                <h2 className="modal-window-header">{ title }</h2>
+            <h2 className="modal-window-header">{ title }</h2>
                 { children }
             </div>
         </>

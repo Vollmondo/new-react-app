@@ -106,6 +106,14 @@
     opacity: 0.5;
 }
 
+.wallet{
+    background: url(../../../../public/img/icons8-wallet-64.png) no-repeat;
+    background-size: 40px;
+    background-color: transparent;
+    background-position: center;
+    border: none;
+}
+
 .header-img.cat{
     height: 34px;
     margin: 3px 0;

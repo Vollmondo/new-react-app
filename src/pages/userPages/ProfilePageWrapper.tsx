@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useEffect, useState } from "react";
+import React, { MouseEventHandler, useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BasePage } from "../basePage/BasePage";
@@ -10,6 +10,10 @@ import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { setUser } from "../../store/User.Slice";
 import { EditProfile } from "./EditProfile";
 import { ChangePassword } from "./ChangePassword";
+import { ModalWindow } from "../../components/service/ModalWindow";
+import { ModalWindowContext } from "../../context/ModalWindowContext";
+import { AddCoins } from "../../components/wallet/AddCoins";
+import { updateBalance } from "../../store/Cart.Slice";
 
 export const ProfilePageWrapper: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -19,7 +23,7 @@ export const ProfilePageWrapper: React.FC = () => {
   const navigate = useNavigate();
   const [editingProfile, setEditingProfile] = useState<boolean>(false);
   const [editingPwd, setEditingPwd] = useState<boolean>(false);
-
+  const { modalWindow, open, close } = useContext(ModalWindowContext);
 
   useEffect(() => {
     if (user) {
@@ -56,6 +60,11 @@ export const ProfilePageWrapper: React.FC = () => {
     setEditingPwd(!editingPwd) 
  };
 
+ const balanceUpdateHandler = async () => {
+  close();
+  await updateBalance;
+};
+
   return (
     <BasePage>
       {userData ? (
@@ -70,7 +79,7 @@ export const ProfilePageWrapper: React.FC = () => {
               </div>
               <div className="profile-user-text credit">Ваш баланс: {userData.credit}</div>
               <div className="profile-user-infoBlock credit">
-                <Link to={""} className="debet-link">Пополнить</Link>
+                <button onClick={() => {open()}} className="credit-btn">Пополнить</button>
               </div>
               <div className="profile-user-infoBlock">
                 {editingPwd ? (
@@ -108,6 +117,16 @@ export const ProfilePageWrapper: React.FC = () => {
       ) : (
         <Loader />
       )}
+      {modalWindow && (
+              <ModalWindow
+                title="Пополнить баланс"
+                onClose={() => {
+                  close();
+                }}
+              >
+                <AddCoins onCreate={balanceUpdateHandler} />
+              </ModalWindow>
+            )}
     </BasePage>
   );
 };

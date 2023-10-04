@@ -39,6 +39,12 @@
     padding: 10px;
 }
 
+.credit-btn{
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
 .profile-user-info-row{
     width: 100%;
     display: inline-flex;
