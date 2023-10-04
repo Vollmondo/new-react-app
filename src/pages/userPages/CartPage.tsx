@@ -3,8 +3,9 @@ import { BasePage } from "../basePage/BasePage";
 import classNames from "classnames";
 import styles from "./CartPage.module.css";
 import { useAppSelector, useAppDispatch } from "../../store/hooks";
-import { getTotalPrice, removeFromCart, updateQuantity, checkoutCart, getMemoizedNumItems } from "../../store/Cart.Slice";
+import { getTotalPrice, removeFromCart, updateQuantity, checkoutCart, getMemoizedNumItems, updateBalance } from "../../store/Cart.Slice";
 import { ErrorMessage } from "../../components/service/ErrorMessage";
+import { IUser } from "../../models";
 
 export function CartPage() {
   const dispatch = useAppDispatch();
@@ -14,15 +15,31 @@ export function CartPage() {
   const checkoutState = useAppSelector((state) => state.cart.checkoutState);
   const errorMessage = useAppSelector(state => state.cart.errorMessage)
   const NumItems = useAppSelector(getMemoizedNumItems)
+  const user = useAppSelector((state) => state.user.user);
 
   function onQuantityChanged(e: React.FocusEvent<HTMLInputElement>, id: string){
     const quantity = Number(e.target.value) || 0;
     dispatch(updateQuantity({id, quantity}))
   }
 
-  function onCheckout(e: React.FormEvent<HTMLFormElement>){
+  function onCheckout(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    dispatch(checkoutCart());
+    if (user && user._id && user?.credit && user?.credit >= Number(totalPrice)) {
+      const balance = user.credit - Number(totalPrice);
+      const formData = new FormData();
+      formData.set('_id', user._id);
+      formData.set('credit', balance.toString());
+      const userData: IUser = {
+        _id: formData.get('_id') as string,
+        credit: formData.get('credit') ? Number(formData.get('credit')) : undefined,
+      };
+      if (user && user._id) {
+        dispatch(updateBalance(user._id, { ...userData, _id: user._id }));
+      }
+      dispatch(checkoutCart());
+    } else {
+      console.log('На счету недостаточно средств');
+    }
   }
 
   const tableClasses = classNames({

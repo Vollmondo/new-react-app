@@ -1,7 +1,9 @@
-import { PayloadAction, createSelector, createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { PayloadAction, createSelector, createSlice, createAsyncThunk, ThunkAction, Action, ThunkDispatch } from "@reduxjs/toolkit";
 import { checkout } from "../api/api";
 import { RootState } from "./store";
-import { ICartItem, IOrder } from "../models";
+import { ICartItem, IOrder, IUser } from "../models";
+import axios from "axios";
+import { setUser } from "./User.Slice";
 
 type CheckoutState = "LOADING" | "READY" | "ERROR";
 
@@ -115,3 +117,19 @@ export const getTotalPrice = createSelector(
     return total.toFixed(2);
   }
 );
+
+export const updateBalance = (userId: string, data: IUser): ThunkAction<void, RootState, unknown, Action<string>> => async (dispatch: ThunkDispatch<RootState, unknown, Action<string>>, getState: () => RootState) => {
+  if (data) {
+    try {
+      const updateData: IUser = {
+        credit: data.credit,
+        _id: data._id
+      };
+
+      await axios.post(`http://localhost:5000/updatebalance/${userId}`, updateData);
+      dispatch(setUser(updateData));
+    } catch (error) {
+      console.error('Ошибка сохранения изменений пользователя:', error);
+    }
+  }
+};
