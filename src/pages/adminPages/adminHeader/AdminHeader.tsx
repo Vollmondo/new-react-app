@@ -16,13 +16,13 @@ export function AdminHeader() {
                   <ul className="submenu">
                     <li className='admin-header-sublink'><Link to='/admin/products' >Товары</Link></li>
                     <li className='admin-header-sublink'><Link to='/admin/categories' >Категории товаров</Link></li>
-                    <li className='admin-header-sublink'><Link to='#' >Характеристики товаров</Link></li>
+                    <li className='admin-header-sublink'><Link to='/admin/prodchars' >Характеристики товаров</Link></li>
                   </ul>
                 </li>
                 <li className='admin-header-link'>Пользователи
                   <ul className="submenu">
                     <li className='admin-header-sublink'><Link to='/admin/users' >Пользователи</Link></li>
-                    <li className='admin-header-sublink'><Link to='#' >Категории пользователей</Link></li>
+                    <li className='admin-header-sublink'><Link to='/admin/roles' >Категории пользователей</Link></li>
                   </ul>
                 </li>
                 <li className='admin-header-link'>Заказы

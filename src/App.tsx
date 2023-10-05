@@ -19,6 +19,8 @@ import { FavPage } from './pages/userPages/FavPage';
 import { OrdersPage } from './pages/userPages/OrdersPage';
 import { SearchResults } from './components/service/SearchRezults';
 import { useAppSelector } from './store/hooks';
+import { UserRoles } from './pages/adminPages/adminUsers/UsersRoles';
+import { AdminProdChars } from './pages/adminPages/adminProducts/AdminProdChars';
 
 function UserProfile() {
   const user = useAppSelector((state) => state.user.user);
@@ -46,7 +48,9 @@ function Admin() {
     <Routes>
       <Route path='/' element={<AdminMainPage />}/>
       <Route path='/users' element={<UsersPage />}/>
+      <Route path='/roles' element={<UserRoles />}/>
       <Route path='/products' element={<AdminProductsPage />}/>
+      <Route path='/prodchars' element={<AdminProdChars />}/>
       <Route path='/categories' element={<AdminCategoriesPage />}/>
     </Routes>
   );
