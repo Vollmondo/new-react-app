@@ -76,7 +76,6 @@ export function MainPage(){
             <BasePage>
                 <Slider sliderData={infoSliderData} detailsPath={"about"}></Slider>
                 <Slider sliderData={prodSliderData} detailsPath={"cat"}></Slider>
-
                 {modalWindow && <ModalWindow title="Ваше местоположение" onClose={() =>{close()}}>
                     <GeoLocation onCheck={checkHandler}/>
                 </ModalWindow>}
