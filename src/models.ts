@@ -11,6 +11,7 @@ export interface IProduct {
     image?: string;
     addImg?: string[];
     chars?: Characteristic[];
+    addedDate?: string;
   }
   
   export interface Characteristic {
