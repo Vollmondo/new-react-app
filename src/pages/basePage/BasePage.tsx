@@ -26,8 +26,8 @@ export function BasePage({ children }: ContactsPageProps){
         <div className={isDarkMode ? "base-container-x dark-mode" : "base-container-x"}>
             <div className="base-container-y">
                 <Header />
-                Цвет фона<ToggleSwitch onToggle={handleToggle1} />
-                Размер букв<ToggleSwitch onToggle={handleToggle2} />
+                {/* Цвет фона<ToggleSwitch onToggle={handleToggle1} />
+                Размер букв<ToggleSwitch onToggle={handleToggle2} /> */}
                 <main className="main">{children}</main>
                 <Footer />
                 
