@@ -22,8 +22,11 @@
 }
 
 .ChartStyles-50{
-    max-width: 600px;
-    margin: 0 auto;
+    width: 600px;
+}
+
+.ChartStyles-100{
+    width: 1200px;
 }
 
 .chart-button{

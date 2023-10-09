@@ -96,7 +96,7 @@ export function CategoryCountsChart() {
   };
 
   return (
-    <div>
+    <div className="ChartStyles-100">
       {categoriesLoaded ? (
         <div>
           <div>

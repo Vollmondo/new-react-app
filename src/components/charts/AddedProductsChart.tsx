@@ -75,7 +75,7 @@ export function AddedProductsChart() {
       case "1y":
         return 365;
       default:
-        return 1;
+        return 7;
     }
   }
 
