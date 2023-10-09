@@ -1,0 +1,33 @@
+ :root{
+    --highcharts-background-color: transparent;
+    --highcharts-neutral-color-100: rgb(255, 255, 255);
+    --highcharts-neutral-color-80: rgb(1, 1, 1);
+    --highcharts-neutral-color-60: rgb(173, 173, 173);
+    --highcharts-neutral-color-40: rgb(133, 133, 133);
+    --highcharts-neutral-color-20: rgb(92, 92, 92);
+    --highcharts-neutral-color-10: rgb(1, 1, 1);
+    --highcharts-neutral-color-5: rgb(61, 61, 61);
+    --highcharts-neutral-color-3: rgb(57, 57, 57);
+    --highcharts-highlight-color-100: rgb(122, 167, 255);
+    --highcharts-highlight-color-80: rgb(108, 144, 214);
+    --highcharts-highlight-color-60: rgb(94, 121, 173);
+    --highcharts-highlight-color-20: rgb(65, 74, 92);
+    --highcharts-highlight-color-10: rgb(58, 63, 71)}
+
+
+.highcharts-container{position:relative;overflow:hidden;width:100%;height:100%;text-align:left;line-height:normal;z-index:0;-webkit-tap-highlight-color:transparent;user-select:none;touch-action:manipulation;outline:none}.highcharts-root{display:block}.highcharts-root text{stroke-width:0}.highcharts-strong{font-weight:700}.highcharts-emphasized{font-style:italic}.highcharts-anchor{cursor:pointer}.highcharts-background{fill:var(--highcharts-background-color)}
+
+.highcharts-credits{
+    display: none;
+}
+
+.ChartStyles-50{
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.chart-button{
+    margin: 0 2px;
+    padding: 2px;
+    text-transform:uppercase;
+}

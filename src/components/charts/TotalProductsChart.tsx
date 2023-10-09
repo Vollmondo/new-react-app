@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import { ICategory, IProduct } from "../../models";
+import "./ChartStyles.css";
 
 export function TotalProductsChart() {
   const [totalProducts, setTotalProducts] = useState(0);
@@ -49,7 +50,7 @@ export function TotalProductsChart() {
   };
 
   return (
-    <div>
+    <div className="ChartStyles-50">
       <HighchartsReact highcharts={Highcharts} options={options} />
     </div>
   );

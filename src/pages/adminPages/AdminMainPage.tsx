@@ -1,6 +1,6 @@
 import React from "react";
 import { AdminBasePage } from "./adminBasePage/AdminBasePage";
-import { TotalProductsChart } from "../../components/charts/CardChart";
+import { TotalProductsChart } from "../../components/charts/TotalProductsChart";
 import { CategoryCountsChart } from "../../components/charts/CategoryCountsChart";
 import { AddedProductsChart } from "../../components/charts/AddedProductsChart";
 
@@ -9,8 +9,8 @@ export function AdminMainPage(){
         <>
             <AdminBasePage>
                 <TotalProductsChart />
-                <CategoryCountsChart />
                 <AddedProductsChart />
+                <CategoryCountsChart />
             </AdminBasePage>
         </>
     )

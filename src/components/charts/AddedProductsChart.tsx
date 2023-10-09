@@ -3,6 +3,7 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import HighchartsBoost from "highcharts/modules/boost";
 import { ICategory, IProduct } from "../../models";
+import "./ChartStyles.css";
 
 HighchartsBoost(Highcharts);
 
@@ -166,12 +167,12 @@ export function AddedProductsChart() {
   };
 
   return (
-    <div>
+    <div className="ChartStyles-50">
       <div>
-        <button onClick={() => setZoomLevel("1d")}>1 день</button>
-        <button onClick={() => setZoomLevel("1w")}>1 неделя</button>
-        <button onClick={() => setZoomLevel("1m")}>1 месяц</button>
-        <button onClick={() => setZoomLevel("1y")}>1 год</button>
+        <button className="chart-button" onClick={() => setZoomLevel("1d")}>1 день</button>
+        <button className="chart-button" onClick={() => setZoomLevel("1w")}>1 неделя</button>
+        <button className="chart-button" onClick={() => setZoomLevel("1m")}>1 месяц</button>
+        <button className="chart-button" onClick={() => setZoomLevel("1y")}>1 год</button>
       </div>
       <HighchartsReact highcharts={Highcharts} options={options} />
     </div>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import { ICategory, IProduct } from "../../models";
+import "./ChartStyles.css";
 
 export function CategoryCountsChart() {
   const [categoriesLoaded, setCategoriesLoaded] = useState(false);
@@ -100,6 +101,7 @@ export function CategoryCountsChart() {
         <div>
           <div>
             <button
+              className="chart-button"
               onClick={handleCategoryChange}
               value=""
               style={{ fontWeight: selectedCategories.length === categories.length ? "bold" : "normal" }}
@@ -108,6 +110,7 @@ export function CategoryCountsChart() {
             </button>
             {categories.map((category) => (
               <button
+                className="chart-button"
                 key={category._id}
                 onClick={handleCategoryChange}
                 value={category.title}
