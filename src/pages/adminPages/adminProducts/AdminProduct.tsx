@@ -25,7 +25,7 @@ export function AdminProduct({product}: ProductProps){
                 <td className="admin-table-col">{product.price}</td>
                 <td className="admin-table-col">
                     <div className="admin-table-col-y">
-                        <Edit />
+                        <Edit object={product} headers={[]} />
                         <Delete />
                     </div>
                 </td>

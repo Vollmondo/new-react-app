@@ -1,16 +1,15 @@
 import React from "react";
 import { IUser } from "../../../models";
-import '../adminBasePage/AdminBasePage.css'
 import { Edit } from "../../../components/service/Edit";
 import { Delete } from "../../../components/service/Delete";
 
 interface UserProps {
     user: IUser
+    headers: string[];
 }
 
-export function User({user}: UserProps){
-
-    return(
+export function User({ user, headers  }: UserProps) {
+    return (
         <tr className="admin-table-row">
             <td className="admin-table-col">{user._id}</td>
             <td className="admin-table-col">{user.username}</td>
@@ -21,7 +20,7 @@ export function User({user}: UserProps){
             <td className="admin-table-col">{user.name?.patronymic}</td>
             <td className="admin-table-col">
                 <div className="admin-table-col-y">
-                    <Edit />
+                    <Edit object={user} headers={[]} />
                     <Delete />
                 </div>
             </td>

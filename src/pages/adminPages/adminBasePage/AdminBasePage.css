@@ -56,6 +56,7 @@
   .admin-table-img{
     width: 30px;
     height: 30px;
+    cursor: pointer;
   }
 
   .admin-table-img:hover{

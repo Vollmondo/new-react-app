@@ -98,7 +98,7 @@ export function AdminOrdersPage() {
                 <td className="admin-table-col">{order.totalprice}</td>
                 <td className="admin-table-col">
                     <div className="admin-table-col-y">
-                        <Edit />
+                        <Edit object={order} headers={[]} />
                         <Delete />
                     </div>
                 </td>

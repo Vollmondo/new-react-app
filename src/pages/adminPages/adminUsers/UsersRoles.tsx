@@ -71,7 +71,7 @@ export function Role({role}: RoleProps){
                 <td className="admin-table-col">{role.name}</td>
                 <td className="admin-table-col">
                 <div className="admin-table-col-y">
-                    <Edit />
+                    <Edit object={role} headers={[]} />
                     <Delete />
                 </div>
             </td>

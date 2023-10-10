@@ -93,7 +93,7 @@ function AdminProdChar({ prodChar }: ProdCharProps) {
         })}
         <td className="admin-table-col">
           <div className="admin-table-col-y">
-            <Edit />
+            <Edit object={prodChar} headers={[]} />
             <Delete />
           </div>
         </td>

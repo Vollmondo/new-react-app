@@ -17,7 +17,7 @@ export function AdminCategory({cat}: CatProps){
                 <td className="admin-table-col">XXX</td>
                 <td className="admin-table-col">
                     <div className="admin-table-col-y">
-                        <Edit/>
+                        <Edit object={cat} headers={[]}/>
                         <Delete />
                     </div>
                 </td>
