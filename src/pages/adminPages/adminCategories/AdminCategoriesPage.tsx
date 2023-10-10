@@ -62,9 +62,7 @@ export function AdminCategoriesPage() {
                   <th className="admin-table-th">
                     Количество наименований в категории
                   </th>
-                  <th className="admin-table-th">
-                    <img src="../img/icons8-create-64-w.png" alt="options" />
-                  </th>
+                  <th className="admin-table-th">Действия</th>
                 </tr>
                 {categories.map((category) => (
                   <AdminCategory cat={category} key={category._id} />

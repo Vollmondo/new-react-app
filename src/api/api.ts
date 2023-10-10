@@ -12,6 +12,12 @@ export async function getCategories(): Promise<ICategory[]> {
   return products;
 }
 
+export async function getOrders(): Promise<IOrder[]> {
+  const response = await fetch("http://localhost:5000/orders");
+  const orders = await response.json();
+  return orders;
+}
+
 export async function getProductItem(productId: string): Promise<IProduct> {
   const response = await fetch(`http://localhost:5000/products/${productId}`);
   if (!response.ok) {

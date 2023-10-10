@@ -3,6 +3,8 @@ import { AdminBasePage } from "../adminBasePage/AdminBasePage";
 import axios, { AxiosError } from "axios";
 import { Loader } from "../../../components/service/Loader";
 import { ErrorMessage } from "../../../components/service/ErrorMessage";
+import { Edit } from "../../../components/service/Edit";
+import { Delete } from "../../../components/service/Delete";
 
 type ProdCharProps = {
   prodChar: IProdChars;
@@ -91,16 +93,8 @@ function AdminProdChar({ prodChar }: ProdCharProps) {
         })}
         <td className="admin-table-col">
           <div className="admin-table-col-y">
-            <img
-              className="admin-table-img"
-              src="../img/icons8-edit-64.png"
-              alt="options"
-            />
-            <img
-              className="admin-table-img"
-              src="../img/icons8-trash-64.png"
-              alt="options"
-            />
+            <Edit />
+            <Delete />
           </div>
         </td>
       </tr>

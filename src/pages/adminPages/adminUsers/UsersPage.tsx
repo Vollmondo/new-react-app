@@ -49,6 +49,7 @@ export function UsersPage(){
                                 <th className="admin-table-th">Фамилия</th>
                                 <th className="admin-table-th">Имя</th>
                                 <th className="admin-table-th">Отчество</th>
+                                <th className="admin-table-th">Действия</th>
                             </tr>
                         {users.map(user => <User user={user} key={user._id}/>)}
                         </tbody>

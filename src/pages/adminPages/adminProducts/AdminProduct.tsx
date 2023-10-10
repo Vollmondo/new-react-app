@@ -1,6 +1,8 @@
 import React from "react";
 import { IProduct } from "../../../models";
 import './AdminProduct.css'
+import { Edit } from "../../../components/service/Edit";
+import { Delete } from "../../../components/service/Delete";
 
 
 
@@ -23,8 +25,8 @@ export function AdminProduct({product}: ProductProps){
                 <td className="admin-table-col">{product.price}</td>
                 <td className="admin-table-col">
                     <div className="admin-table-col-y">
-                        <img className="admin-table-img" src="../img/icons8-edit-64.png" alt="options" />
-                        <img className="admin-table-img" src="../img/icons8-trash-64.png" alt="options" />
+                        <Edit />
+                        <Delete />
                     </div>
                 </td>
         </tr>

@@ -4,6 +4,8 @@ import { Loader } from "../../../components/service/Loader";
 import { ErrorMessage } from "../../../components/service/ErrorMessage";
 import { AdminBasePage } from "../adminBasePage/AdminBasePage";
 import '../adminBasePage/AdminBasePage.css'
+import { Edit } from "../../../components/service/Edit";
+import { Delete } from "../../../components/service/Delete";
 
 type IRoles = {
     _id: string,
@@ -45,6 +47,7 @@ export function UserRoles(){
                             <tr className="admin-table-row">
                                 <th className="admin-table-th">ID роли</th>
                                 <th className="admin-table-th">Наименование роли</th>
+                                <th className="admin-table-th">Действия</th>
                             </tr>
                             {roles.map(role => <Role role={role} key={role._id}/>)}
                         </tbody>
@@ -66,6 +69,12 @@ export function Role({role}: RoleProps){
         <tr className="admin-table-row">
                 <td className="admin-table-col">{role._id}</td>
                 <td className="admin-table-col">{role.name}</td>
+                <td className="admin-table-col">
+                <div className="admin-table-col-y">
+                    <Edit />
+                    <Delete />
+                </div>
+            </td>
         </tr>
     )
 }

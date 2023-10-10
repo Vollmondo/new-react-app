@@ -73,9 +73,7 @@ export function AdminProductsPage() {
                   <th className="admin-table-th">Рейтинг товара</th>
                   <th className="admin-table-th">Количество отзывов</th>
                   <th className="admin-table-th">Цена товара</th>
-                  <th className="admin-table-th">
-                    <img src="../img/icons8-create-64-w.png" alt="options" />
-                  </th>
+                  <th className="admin-table-th">Действия</th>
                 </tr>
                 {products.map((product) => (
                   <AdminProduct product={product} key={product._id} />

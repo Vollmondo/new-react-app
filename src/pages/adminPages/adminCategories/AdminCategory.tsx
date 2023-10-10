@@ -1,5 +1,7 @@
 import React from "react";
 import { ICategory } from "../../../models";
+import { Edit } from "../../../components/service/Edit";
+import { Delete } from "../../../components/service/Delete";
 
 interface CatProps {
     cat: ICategory
@@ -15,8 +17,8 @@ export function AdminCategory({cat}: CatProps){
                 <td className="admin-table-col">XXX</td>
                 <td className="admin-table-col">
                     <div className="admin-table-col-y">
-                        <img className="admin-table-img" src="../img/icons8-edit-64.png" alt="options" />
-                        <img className="admin-table-img" src="../img/icons8-trash-64.png" alt="options" />
+                        <Edit/>
+                        <Delete />
                     </div>
                 </td>
         </tr>

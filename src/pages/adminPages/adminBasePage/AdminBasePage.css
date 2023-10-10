@@ -28,6 +28,7 @@
   border-collapse: collapse;
   width: 100%;
   cursor: text;
+  font-size: small;
   }
   
   .admin-table-col, .admin-table-th {
@@ -59,4 +60,8 @@
 
   .admin-table-img:hover{
     opacity: 0.5;
+  }
+
+  .admin-cat-container{
+    width: 100%;
   }
