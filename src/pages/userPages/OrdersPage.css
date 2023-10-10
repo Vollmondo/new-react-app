@@ -18,7 +18,11 @@
     font-size: 14pt;
     border: 1px solid black;
 	border-collapse: collapse;
+    table-layout: fixed;
 }
+
+.colTitle{width: 80%;}
+.colQuant{width: 20%;}
 
 .orders-table-items thead th{
     padding: 5px 15px;

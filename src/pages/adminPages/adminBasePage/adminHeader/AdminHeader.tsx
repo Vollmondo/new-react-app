@@ -27,8 +27,8 @@ export function AdminHeader() {
                 </li>
                 <li className='admin-header-link'>Заказы
                   <ul className="submenu">
-                    <li className='admin-header-sublink'><Link to='#' >Заказы</Link></li>
-                    <li className='admin-header-sublink'><Link to='#' >Статусы</Link></li>
+                    <li className='admin-header-sublink'><Link to='/admin/orders' >Заказы</Link></li>
+                    <li className='admin-header-sublink'><Link to='/admin/order_status' >Статусы</Link></li>
                   </ul>
                 </li>
                 <li className='admin-header-link'>Информационные материалы

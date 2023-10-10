@@ -21,6 +21,8 @@ import { SearchResults } from './components/service/SearchRezults';
 import { useAppSelector } from './store/hooks';
 import { UserRoles } from './pages/adminPages/adminUsers/UsersRoles';
 import { AdminProdChars } from './pages/adminPages/adminProducts/AdminProdChars';
+import { AdminOrdersPage } from './pages/adminPages/adminOrders/AdminOrdersPage';
+import { AdminOrderStatusPage } from './pages/adminPages/adminOrders/AdminOrderStatusPage';
 
 function UserProfile() {
   const user = useAppSelector((state) => state.user.user);
@@ -52,6 +54,8 @@ function Admin() {
       <Route path='/products' element={<AdminProductsPage />}/>
       <Route path='/prodchars' element={<AdminProdChars />}/>
       <Route path='/categories' element={<AdminCategoriesPage />}/>
+      <Route path='/orders' element={<AdminOrdersPage />}/>
+      <Route path='/order_status' element={<AdminOrderStatusPage />}/>
     </Routes>
   );
 }

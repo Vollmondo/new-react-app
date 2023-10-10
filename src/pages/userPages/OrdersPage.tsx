@@ -70,8 +70,8 @@ export function OrdersPage() {
                         <table className="orders-table-items">
                             <thead>
                                 <tr>
-                                    <th>Наименование</th>
-                                    <th>Кол-во</th>
+                                    <th className="colTitle">Наименование</th>
+                                    <th className="colQuant">Кол-во</th>
                                 </tr>
                             </thead>
                             <tbody>
