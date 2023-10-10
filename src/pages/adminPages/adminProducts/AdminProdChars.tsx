@@ -70,7 +70,7 @@ export function AdminProdChars() {
 }
 
 function AdminProdChar({ prodChar }: ProdCharProps) {
-    console.log(prodChar._id); // Отладочный вывод
+    console.log(prodChar._id);
     return (
       <tr className="admin-table-row">
         <td className="admin-table-col">{prodChar._id}</td>
