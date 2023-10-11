@@ -1,9 +1,10 @@
 import React, { useContext, useState } from "react";
 import "./Navigation.css";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { ModalWindow } from "../../../components/service/ModalWindow";
 import { GeoLocation } from "../../../components/service/Geolocation";
 import LocationContext from "../../../context/LocationContext";
+import { useAppSelector } from "../../../store/hooks";
 
 export function Navigation() {
   const locationContext = useContext(LocationContext);
@@ -27,6 +28,8 @@ export function Navigation() {
     setShowModal(false);
   };
 
+  const user = useAppSelector((state) => state.user.user);
+
   return (
     <nav className="navigation-menu">
       <div onClick={handleCityClick} className="nav-geolocation">
@@ -43,10 +46,20 @@ export function Navigation() {
           <p>{locationContext?.location ? locationContext.location : "Город Н"}</p>
         )}
       </div>
-      <Link to="/about" className='header-btn-link'>О нас</Link>
-      <Link to="/help" className='header-btn-link'>Помощь</Link>
-      <Link to="/contacts" className='header-btn-link'>Контакты</Link>
-      <Link to="/admin" className='header-btn-link'>Администрирование</Link>
+      {(!user || user.role !== "admin") ? (
+      <>
+        <Link to="/about" className='header-btn-link'>О нас</Link>
+        <Link to="/help" className='header-btn-link'>Помощь</Link>
+        <Link to="/contacts" className='header-btn-link'>Контакты</Link>
+      </>
+    ) : (
+      <>
+        <Link to="/about" className='header-btn-link'>О нас</Link>
+        <Link to="/help" className='header-btn-link'>Помощь</Link>
+        <Link to="/contacts" className='header-btn-link'>Контакты</Link>
+        <Link to="/admin" className='header-btn-link'>Администрирование</Link>
+      </>
+    )}
     </nav>
   );
 }

@@ -43,7 +43,7 @@ function UserProfile() {
 function Admin() {
   const user = useAppSelector((state) => state.user.user);
 
-  if (!user) {
+  if (!user || user.role !== "admin") {
     return <Navigate to="/login" />;
   }
   return (
