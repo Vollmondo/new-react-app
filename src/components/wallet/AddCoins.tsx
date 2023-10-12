@@ -28,7 +28,8 @@ export function AddCoins({ onCreate }: AddCoinsProps) {
     }
 
     if (user && user._id && user?.credit) {
-      const balance = user.credit + Number(debet);
+      const balance = Number(user.credit) + Number(debet);
+      console.log("balance"+balance)
       const formData = new FormData();
       formData.set('_id', user._id);
       formData.set('credit', balance.toString());
@@ -38,7 +39,6 @@ export function AddCoins({ onCreate }: AddCoinsProps) {
       };
       if (user && user._id) {
         dispatch(updateBalance(user._id, { ...userData, _id: user._id }));
-        close()
       }
     } else {
       console.log('Пользователь не найден');
@@ -69,7 +69,7 @@ export function AddCoins({ onCreate }: AddCoinsProps) {
         </div>
         {error && <ErrorMessage error={error} />}
         <div className="addCoins-btnBlock">
-          <button className="addCoins-btn">Пополнить</button>
+          <button className="addCoins-btn" onClick={close}>Пополнить</button>
         </div>
       </form>
     </div>

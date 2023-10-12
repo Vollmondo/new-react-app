@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import './Header.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { Navigation } from '../navigation/Navigation';
@@ -19,6 +19,8 @@ export function Header() {
   const dispatch = useAppDispatch();
   const user = useAppSelector(state => state.user); 
   const { modalWindow, open, close } = useContext(ModalWindowContext);
+  const [isWalletModalOpen, setWalletModalOpen] = useState(false);
+
 
   const handleLogout = () => {
     dispatch(resetFavProducts());
@@ -27,8 +29,10 @@ export function Header() {
   };
 
   const balanceUpdateHandler = async () => {
-    close();
-    await updateBalance;
+    setWalletModalOpen(false);
+    if (user.user?._id && user.user?.credit) {
+      updateBalance(user.user._id, user.user);
+    }
   };
 
     return (
@@ -37,12 +41,9 @@ export function Header() {
           <Link to='/home'><img className='logo-img' src='../img/icons8-shop-64.png' alt='logo'/></Link>
         </div>
         <div className='header-content-block'>
-            <LocationProvider>          <ModalWindowState>
-
-              <Navigation />          </ModalWindowState>
-
+            <LocationProvider>
+              <Navigation />
             </LocationProvider>
-
           <div className='header-content'>
             <div className='header-catButton-block'>
                 <Link to='/cat' className='header-cat-btn-link'>
@@ -54,8 +55,6 @@ export function Header() {
               </Link>
             </div>
             <Search />
-                              <ModalWindowState>
-
             <div className='header-personal-block'>
               {user.user?._id ? (
                 <>
@@ -68,7 +67,7 @@ export function Header() {
                   <Link to={`/userProfile/orders`}>
                     <img className='header-img orders' src='../img/icons8-box-64.png' alt='orders'/>
                   </Link>
-                  <img className='header-img cart' src='../img/icons8-wallet-64.png' onClick={() => {open()}} alt='cart'/>
+                  <img className='header-img cart' src='../img/icons8-wallet-64.png' onClick={() => {setWalletModalOpen(true)}} alt='cart'/>
                   <Wallet />
                   <Link to={`/userProfile/cart`}>
                     <img className='header-img cart' src='../img/icons8-shopping-bag-64.png' alt='cart'/>
@@ -81,18 +80,17 @@ export function Header() {
               ) : (
                 <Link to='/login'><img className='header-img login' src='../img/icons8-enter-64.png' alt='login'/></Link>
               )}
-              {modalWindow && (
-              <ModalWindow
-                title="Пополнить баланс"
-                onClose={() => {
-                  close();
-                }}
-              >
-                <AddCoins onCreate={balanceUpdateHandler} />
-              </ModalWindow>
-            )}
-            </div>                  </ModalWindowState>
-
+              {isWalletModalOpen && (
+                <ModalWindow
+                  title="Пополнить баланс"
+                  onClose={() => {
+                    setWalletModalOpen(false);
+                  }}
+                >
+                  <AddCoins onCreate={balanceUpdateHandler} />
+                </ModalWindow>
+              )}
+            </div>
           </div>
         </div>
       </div>
