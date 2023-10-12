@@ -10,9 +10,7 @@ interface EditProps {
 export function Edit({ object, headers }: EditProps) {
   const { modalWindow, open, close } = useContext(ModalWindowContext);
   const [fields, setFields] = useState<{ [key: string]: any }>(object);
-
   function editHandler(event: React.MouseEvent<HTMLImageElement, MouseEvent>): void {
-    console.log(fields);
     open();
   }
 

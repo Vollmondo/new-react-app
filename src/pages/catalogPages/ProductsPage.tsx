@@ -1,67 +1,55 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./ProductsPage.css";
-import { Product } from "./products/Product";
+import { useGetProductsQuery, useGetCategoriesQuery } from "../../api/api";
+
 import { ErrorMessage } from "../../components/service/ErrorMessage";
 import { Loader } from "../../components/service/Loader";
 import { BasePage } from "../basePage/BasePage";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { getCategories, getProducts } from "../../api/api";
-import { receivedProducts } from "../../store/Products.Slice";
 import { Sidebar } from "../basePage/sidebar/Sidebar";
-import { receivedCategories } from "../../store/Categories.Slice";
+import { Product } from "./products/Product";
+import { ICategory, IProduct } from "../../models";
 
 export function ProductsPage() {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const dispatch = useAppDispatch();
-  const categories = useAppSelector((state) => state.categories.categories);
   const [selectedCategory, setSelectedCategory] = useState("");
-  const products = useAppSelector((state) => state.products.products);
 
-  useEffect(() => {
-    setLoading(true);
-    Promise.all([getProducts(), getCategories()])
-      .then(([products, categories]) => {
-        dispatch(receivedProducts(products));
-        dispatch(receivedCategories(categories));
-        setLoading(false);
-      })
-      .catch((error) => {
-        setError("Не удалось загрузить товары и категории");
-        setLoading(false);
-      });
-  }, []);
+  const { data: products, isLoading: isLoadingProducts, isError: isErrorProducts } = useGetProductsQuery();
+  const { data: categories, isLoading: isLoadingCategories, isError: isErrorCategories } = useGetCategoriesQuery();
 
   const handleCategorySelect = (category: string) => {
     setSelectedCategory(category);
   };
 
+  if (isLoadingProducts || isLoadingCategories) {
+    return <Loader />;
+  }
+
+  if (isErrorProducts || isErrorCategories) {
+    return <ErrorMessage error="Не удалось загрузить товары и категории" />;
+  }
+
   return (
     <BasePage>
       <div className="products-page-container">
-        <Sidebar onCategorySelect={handleCategorySelect} categories={categories} children={[]} />
+        <Sidebar onCategorySelect={handleCategorySelect} categories={categories || []} children={[]} />
         <div className="products-page">
-            {loading && <Loader />}
-            {error && <ErrorMessage error={error} />}
-            <div className="products-container">
-                {Object.values(products)
-                    .filter((product) => {
-                        if (selectedCategory === "") {
-                            return true;
-                        } else if (product.category === selectedCategory) {
-                            return true;
-                        } else {
-                            const selectedCategoryObj = categories.find((category) => category.title === selectedCategory);
-                            if (selectedCategoryObj && selectedCategoryObj.children) {
-                                return selectedCategoryObj.children.includes(product.category);
-                            }
-                        }
-                        return false;
-                    })
-                    .map((product) => (
-                        <Product key={product._id} product={product} />
-                    ))
+          <div className="products-container">
+            {products && Object.values(products)
+              .filter((product) => {
+                if (selectedCategory === "") {
+                  return true;
+                } else if (product.category === selectedCategory) {
+                  return true;
+                } else {
+                  const selectedCategoryObj = categories?.find((category) => category.title === selectedCategory);
+                  if (selectedCategoryObj && selectedCategoryObj.children) {
+                    return selectedCategoryObj.children.includes(product.category);
+                  }
                 }
+                return false;
+              })
+              .map((product) => (
+                <Product key={product._id} product={product} />
+              ))}
           </div>
         </div>
       </div>

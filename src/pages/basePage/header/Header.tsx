@@ -10,7 +10,7 @@ import { Search } from '../../../components/service/Search';
 import { resetUser } from '../../../store/User.Slice';
 import { Wallet } from '../../../components/wallet/Wallet';
 import { updateBalance } from '../../../store/Cart.Slice';
-import { ModalWindowContext } from '../../../context/ModalWindowContext';
+import { ModalWindowContext, ModalWindowState } from '../../../context/ModalWindowContext';
 import { ModalWindow } from '../../../components/service/ModalWindow';
 import { AddCoins } from '../../../components/wallet/AddCoins';
 
@@ -37,9 +37,12 @@ export function Header() {
           <Link to='/home'><img className='logo-img' src='../img/icons8-shop-64.png' alt='logo'/></Link>
         </div>
         <div className='header-content-block'>
-          <LocationProvider>
-            <Navigation />
-          </LocationProvider>
+            <LocationProvider>          <ModalWindowState>
+
+              <Navigation />          </ModalWindowState>
+
+            </LocationProvider>
+
           <div className='header-content'>
             <div className='header-catButton-block'>
                 <Link to='/cat' className='header-cat-btn-link'>
@@ -51,6 +54,8 @@ export function Header() {
               </Link>
             </div>
             <Search />
+                              <ModalWindowState>
+
             <div className='header-personal-block'>
               {user.user?._id ? (
                 <>
@@ -86,7 +91,8 @@ export function Header() {
                 <AddCoins onCreate={balanceUpdateHandler} />
               </ModalWindow>
             )}
-            </div>
+            </div>                  </ModalWindowState>
+
           </div>
         </div>
       </div>

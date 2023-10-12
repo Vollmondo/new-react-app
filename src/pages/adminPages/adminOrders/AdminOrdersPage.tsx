@@ -7,6 +7,7 @@ import { getOrders, getProductItem } from "../../../api/api";
 import "./AdminOrders.css";
 import { Edit } from "../../../components/service/Edit";
 import { Delete } from "../../../components/service/Delete";
+import { ModalWindowState } from "../../../context/ModalWindowContext";
 
 export function AdminOrdersPage() {
   const [orders, setOrders] = useState<IOrder[]>([]);
@@ -70,7 +71,9 @@ export function AdminOrdersPage() {
             </tr>
         </thead>
         <tbody>
+        
           {orders.map((order) => (
+            <ModalWindowState>
             <tr key={order._id} className="admin-table-row">
                 <td className="admin-table-col">{order._id}</td>
                 <td className="admin-table-col">{order.customer}</td>
@@ -103,7 +106,9 @@ export function AdminOrdersPage() {
                     </div>
                 </td>
             </tr>
+            </ModalWindowState>
           ))}
+          
         </tbody>
       </table>
     </AdminBasePage>

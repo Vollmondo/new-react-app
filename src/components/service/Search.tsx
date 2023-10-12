@@ -1,24 +1,16 @@
 import React, { useState } from "react";
 import { Navigate } from "react-router-dom";
-import { SearchProductItem } from "../../api/api";
-import { IProduct } from "../../models";
+import { useSearchProductItemQuery } from "../../api/api";
 
 export function Search() {
   const [searchValue, setSearchValue] = useState("");
   const [redirectToResults, setRedirectToResults] = useState(false);
-  const [searchResults, setSearchResults] = useState<IProduct[]>([]);
-  const [error, setError] = useState("");
 
-  const handleSearch = async (e: { preventDefault: () => void; }) => {
+  const { data: searchResults, isLoading, isError } = useSearchProductItemQuery(searchValue);
+
+  const handleSearch = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
-
-    try {
-      const productItems: IProduct[] = await SearchProductItem(searchValue);
-      setSearchResults(productItems);
-      setRedirectToResults(true);
-    } catch (error) {
-      setError("Ошибка при получении товара");
-    }
+    setRedirectToResults(true);
   };
 
   const handleChange = (e: { target: { value: React.SetStateAction<string>; }; }) => {
@@ -26,13 +18,23 @@ export function Search() {
   };
 
   if (redirectToResults) {
-    return <Navigate to={`/search?query=${searchValue}`} state={{ results: searchResults }} />;
+    return (
+      <Navigate
+        to={`/search?query=${searchValue}`}
+        state={{ results: searchResults }}
+      />
+    );
   }
 
   return (
     <>
       <form className="header-search" onSubmit={handleSearch}>
-        <input className="header-search-input" value={searchValue} onChange={handleChange} placeholder="Название товара"/>
+        <input
+          className="header-search-input"
+          value={searchValue}
+          onChange={handleChange}
+          placeholder="Название товара"
+        />
         <button className="header-search-btn header-img search" type="submit"></button>
       </form>
     </>

@@ -95,7 +95,10 @@ export function ProductDetails() {
                     <input className="productDetails-quantity" type="number" min="0" max="99" required step="1" placeholder="Кол-во" value={quantity} onChange={(e) => setQuantity(parseInt(e.target.value))}></input>
                     <button className="number-plus" type="button" onClick={() => setQuantity(quantity + 1)}>+</button>
                   </div>
-                  <button className="productDetails-buyBtn" onClick={() => dispatch(addToCart(product._id))}></button>
+                  <button
+                    className="productDetails-buyBtn"
+                    onClick={() => dispatch(addToCart({ id: product._id, quantity }))}
+                  ></button>                
                 </div>
               </div>
             </div>

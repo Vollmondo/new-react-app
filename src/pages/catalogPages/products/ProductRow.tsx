@@ -36,7 +36,7 @@ export function ProductRow({ product }: ProductProps) {
         {userId && <FavButton favProduct={product} userId={userId} />}
       </div>
       <div className="productItem-row-icon-container">
-        <button className="productItem-row-btn" onClick={() => dispatch(addToCart(product._id))}></button>
+        <button className="productItem-row-btn" onClick={() => dispatch(addToCart({ id: product._id, quantity: 1 }))}></button>
       </div>
     </div>
   );

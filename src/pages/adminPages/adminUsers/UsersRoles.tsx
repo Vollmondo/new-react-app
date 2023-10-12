@@ -6,6 +6,7 @@ import { AdminBasePage } from "../adminBasePage/AdminBasePage";
 import '../adminBasePage/AdminBasePage.css'
 import { Edit } from "../../../components/service/Edit";
 import { Delete } from "../../../components/service/Delete";
+import { ModalWindowState } from "../../../context/ModalWindowContext";
 
 type IRoles = {
     _id: string,
@@ -66,6 +67,7 @@ interface RoleProps {
 export function Role({role}: RoleProps){
 
     return(
+        <ModalWindowState>
         <tr className="admin-table-row">
                 <td className="admin-table-col">{role._id}</td>
                 <td className="admin-table-col">{role.name}</td>
@@ -76,5 +78,6 @@ export function Role({role}: RoleProps){
                 </div>
             </td>
         </tr>
+        </ModalWindowState>
     )
 }

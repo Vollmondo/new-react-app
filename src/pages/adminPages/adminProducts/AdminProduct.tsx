@@ -3,6 +3,7 @@ import { IProduct } from "../../../models";
 import './AdminProduct.css'
 import { Edit } from "../../../components/service/Edit";
 import { Delete } from "../../../components/service/Delete";
+import { ModalWindowState } from "../../../context/ModalWindowContext";
 
 
 
@@ -15,6 +16,7 @@ export function AdminProduct({product}: ProductProps){
     const count = product.rating?.count ?? 0;
 
     return(
+        <ModalWindowState>
         <tr className="admin-table-row">
                 <td className="admin-table-col">{product._id}</td>
                 <td className="admin-table-col">{product.category}</td>
@@ -30,5 +32,6 @@ export function AdminProduct({product}: ProductProps){
                     </div>
                 </td>
         </tr>
+        </ModalWindowState>
     )
 }

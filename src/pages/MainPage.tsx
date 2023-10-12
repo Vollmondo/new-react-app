@@ -2,85 +2,68 @@ import React, { useContext, useEffect, useState } from "react";
 import { BasePage } from "./basePage/BasePage";
 import { GeoLocation } from "../components/service/Geolocation";
 import { ModalWindow } from "../components/service/ModalWindow";
-import { ModalWindowContext } from "../context/ModalWindowContext";
+import { ModalWindowContext, ModalWindowState } from "../context/ModalWindowContext";
 import { Slider } from "../components/service/Slider";
 import { IArticle, ISliderData } from "../models";
-import axios, { AxiosError } from "axios";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { getProducts } from "../api/api";
+import { useGetProductsQuery, useFetchNewsQuery } from "../api/api";
 import { receivedProducts } from "../store/Products.Slice";
 
-export function MainPage(){
-    const [news, setNews] = useState<IArticle[]>([])
-    const [loading, setLoading]= useState(false)
-    const [error, setError] = useState('')
-    const {modalWindow, open, close} = useContext(ModalWindowContext)
-    const dispatch = useAppDispatch();
+export function MainPage() {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const {modalWindow, open, close} = useContext(ModalWindowContext)
+  const [showModal, setShowModal] = useState(false);
+  const dispatch = useAppDispatch();
 
-    useEffect(() => {
-        getProducts().then((products) => {
-        dispatch(receivedProducts(products));
-        });
-    }, []);
+  const { data: products = [], isLoading: productsLoading } = useGetProductsQuery();
+  const { data: news = [], isLoading: newsLoading } = useFetchNewsQuery();
 
-    const products = useAppSelector ((state) => state.products.products)
-    
-    useEffect(() => {
-        const Location = localStorage.getItem("Location");
-        if (!Location) {
-            open()
-        }
-      }, []);
+  useEffect(() => {
+    dispatch(receivedProducts(products));
+  }, [dispatch, products]);
 
-    const checkHandler = () =>{
-        close()
+  useEffect(() => {
+    const location = localStorage.getItem("Location");
+    if (!location) {
+      setShowModal(true);
     }
+  }, []);
 
-    async function fetchProducts() {
-        try {
-            setError('')
-            setLoading(true)
-            const response = await axios.get<IArticle[]>('http://localhost:5000/articles/')
-            setNews(response.data)
-            setLoading(false)
-        } catch (e:unknown) {
-            const error = e as AxiosError
-            setLoading(false)
-            setError(error.message)
-        }
-        
-    }
+  const checkHandler = () => {
+    setShowModal(false);
+  };
 
-    useEffect(() => {
-        fetchProducts()
-        }, []
-    )
+  const infoSliderData: ISliderData[] = news?.map((newsIssue) => ({
+  _id: newsIssue.id ? newsIssue.id.toString() : undefined,
+  title: newsIssue.title,
+  image: newsIssue.image,
+  content: newsIssue.content,
+})) || [];
 
+  const prodSliderData: ISliderData[] = products.map((product) => ({
+    _id: product._id,
+    title: product.title,
+    image: product.image,
+    content: product.description,
+  }));
 
-    const infoSliderData: ISliderData[] = news.map((newsIssue) => ({
-        _id: newsIssue.id ? newsIssue.id.toString(16) : undefined,
-        title: newsIssue.title,
-        image: newsIssue.image,
-        content: newsIssue.content,
-      }));
-
-      const prodSliderData: ISliderData[] = Object.values(products).map((product) => ({
-        _id: product._id,
-        title: product.title,
-        image: product.image,
-        content: product.description,
-      }));
-
-    return(
-        <>
-            <BasePage>
-                <Slider sliderData={infoSliderData} detailsPath={"about"}></Slider>
-                <Slider sliderData={prodSliderData} detailsPath={"cat"}></Slider>
-                {modalWindow && <ModalWindow title="Ваше местоположение" onClose={() =>{close()}}>
-                    <GeoLocation onCheck={checkHandler}/>
-                </ModalWindow>}
-                <div className="about">Lorem ipsum, dolor sit amezzt consectetur adipisicing elit. Adipisci vero velit quisquam quia enim, ratione odio exercitationem sint expedita delectus est voluptate, accusamus earum maxime ipsum minima temporibus in vitae!</div>
-            </BasePage>
-        </>
-    )
+  return (
+    <>
+      <BasePage>
+        <Slider sliderData={infoSliderData} detailsPath={"about"}></Slider>
+        <Slider sliderData={prodSliderData} detailsPath={"cat"}></Slider>
+          <ModalWindowState>
+            {modalWindow && <ModalWindow title="Ваше местоположение" onClose={() =>{close()}}>
+            <GeoLocation onCheck={checkHandler}/>
+              </ModalWindow>}
+          </ModalWindowState>
+        <div className="about">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Adipisci vero velit quisquam quia enim, ratione
+          odio exercitationem sint expedita delectus est voluptate, accusamus earum maxime ipsum minima temporibus in
+          vitae!
+        </div>
+      </BasePage>
+    </>
+  );
 }

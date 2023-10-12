@@ -2,6 +2,7 @@ import React from "react";
 import { IUser } from "../../../models";
 import { Edit } from "../../../components/service/Edit";
 import { Delete } from "../../../components/service/Delete";
+import { ModalWindowState } from "../../../context/ModalWindowContext";
 
 interface UserProps {
     user: IUser
@@ -10,6 +11,7 @@ interface UserProps {
 
 export function User({ user, headers  }: UserProps) {
     return (
+        <ModalWindowState>
         <tr className="admin-table-row">
             <td className="admin-table-col">{user._id}</td>
             <td className="admin-table-col">{user.username}</td>
@@ -25,5 +27,6 @@ export function User({ user, headers  }: UserProps) {
                 </div>
             </td>
         </tr>
+        </ModalWindowState>
     )
 }

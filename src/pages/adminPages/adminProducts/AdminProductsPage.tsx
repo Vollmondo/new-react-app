@@ -5,7 +5,7 @@ import { Loader } from "../../../components/service/Loader";
 import { ErrorMessage } from "../../../components/service/ErrorMessage";
 import { AdminProduct } from "./AdminProduct";
 import { AdminBasePage } from "../adminBasePage/AdminBasePage";
-import { ModalWindowContext } from "../../../context/ModalWindowContext";
+import { ModalWindowContext, ModalWindowState } from "../../../context/ModalWindowContext";
 import { ModalWindow } from "../../../components/service/ModalWindow";
 import { CreateProduct } from "../../catalogPages/products/CreateProduct";
 
@@ -80,6 +80,7 @@ export function AdminProductsPage() {
                 ))}
               </tbody>
             </table>
+            <ModalWindowState>
             <button
               className="addProduct-btn"
               onClick={() => {
@@ -97,6 +98,7 @@ export function AdminProductsPage() {
                 <CreateProduct onCreate={createHandler}></CreateProduct>
               </ModalWindow>
             )}
+            </ModalWindowState>
             {error && <ErrorMessage error="Не удалось загрузить товары" />}
           </div>
         </AdminBasePage>

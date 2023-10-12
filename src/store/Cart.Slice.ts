@@ -48,12 +48,12 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addToCart(state, action: PayloadAction<string>) {
-      const id = action.payload;
+    addToCart(state, action: PayloadAction<{ id: string; quantity: number }>) {
+      const { id, quantity } = action.payload;
       if (state.items[id]) {
-        state.items[id]++;
+        state.items[id] += quantity;
       } else {
-        state.items[id] = 1;
+        state.items[id] = quantity;
       }
     },
     removeFromCart(state, action: PayloadAction<string>) {

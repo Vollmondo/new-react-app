@@ -5,6 +5,7 @@ import { ModalWindow } from "../../../components/service/ModalWindow";
 import { GeoLocation } from "../../../components/service/Geolocation";
 import LocationContext from "../../../context/LocationContext";
 import { useAppSelector } from "../../../store/hooks";
+import { ModalWindowState } from "../../../context/ModalWindowContext";
 
 export function Navigation() {
   const locationContext = useContext(LocationContext);
@@ -32,6 +33,7 @@ export function Navigation() {
 
   return (
     <nav className="navigation-menu">
+      <ModalWindowState>
       <div onClick={handleCityClick} className="nav-geolocation">
         <img
           className="geolocation-img"
@@ -46,6 +48,7 @@ export function Navigation() {
           <p>{locationContext?.location ? locationContext.location : "Город Н"}</p>
         )}
       </div>
+      </ModalWindowState>
       {(!user || user.role !== "admin") ? (
       <>
         <Link to="/about" className='header-btn-link'>О нас</Link>

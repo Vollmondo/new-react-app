@@ -6,7 +6,7 @@ import { ErrorMessage } from "../../../components/service/ErrorMessage";
 import { AdminCategory } from "./AdminCategory";
 import { AdminBasePage } from "../adminBasePage/AdminBasePage";
 import { ModalWindow } from "../../../components/service/ModalWindow";
-import { ModalWindowContext } from "../../../context/ModalWindowContext";
+import { ModalWindowContext, ModalWindowState } from "../../../context/ModalWindowContext";
 import { CreateCategory } from "../../catalogPages/products/CreateCategory";
 
 export function AdminCategoriesPage() {
@@ -69,6 +69,7 @@ export function AdminCategoriesPage() {
                 ))}
               </tbody>
             </table>
+            <ModalWindowState>
             <button
               className="addProduct-btn"
               onClick={() => {
@@ -76,9 +77,10 @@ export function AdminCategoriesPage() {
                 open();
               }}
             ></button>
+            
             {modalWindow && (
               <ModalWindow
-                title="Создать новый продукт"
+                title="Создать категорию"
                 onClose={() => {
                   close();
                 }}
@@ -86,6 +88,7 @@ export function AdminCategoriesPage() {
                 <CreateCategory onCreate={createHandler}></CreateCategory>
               </ModalWindow>
             )}
+            </ModalWindowState>
             {error && <ErrorMessage error="Не удалось загрузить товары" />}
           </div>
         </AdminBasePage>

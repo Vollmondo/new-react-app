@@ -4,7 +4,7 @@
     right: 0;
     left: 0;
     bottom: 0;
-    z-index: 1000;
+    z-index: 100000;
     height: 100%;
     width: 100%;
     background: rgba(0, 0, 0, 0.7);
@@ -15,7 +15,7 @@
     top: 200px;
     right: 200px;
     left: 200px;
-    z-index: 2000;
+    z-index: 120000;
     min-height: 200px;
     min-width: 200px;
     background: rgba(255, 255, 255, 1);
