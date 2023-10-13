@@ -4,14 +4,12 @@ import { GeoLocation } from "../components/service/Geolocation";
 import { ModalWindow } from "../components/service/ModalWindow";
 import { ModalWindowContext, ModalWindowState } from "../context/ModalWindowContext";
 import { Slider } from "../components/service/Slider";
-import { IArticle, ISliderData } from "../models";
-import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { ISliderData } from "../models";
+import { useAppDispatch } from "../store/hooks";
 import { useGetProductsQuery, useFetchNewsQuery } from "../api/api";
 import { receivedProducts } from "../store/Products.Slice";
 
 export function MainPage() {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
   const {modalWindow, open, close} = useContext(ModalWindowContext)
   const [showModal, setShowModal] = useState(false);
   const dispatch = useAppDispatch();
