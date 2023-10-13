@@ -1,22 +1,22 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import "./Navigation.css";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ModalWindow } from "../../../components/service/ModalWindow";
 import { GeoLocation } from "../../../components/service/Geolocation";
 import LocationContext from "../../../context/LocationContext";
 import { useAppSelector } from "../../../store/hooks";
-import { ModalWindowState } from "../../../context/ModalWindowContext";
+import { ModalWindowState, ModalWindowContext } from "../../../context/ModalWindowContext";
 
 export function Navigation() {
   const locationContext = useContext(LocationContext);
-  const [showModal, setShowModal] = useState(false);
+  const modalWindowContext = useContext(ModalWindowContext);
 
   const handleCityClick = () => {
-    setShowModal(true);
+    modalWindowContext.open();
   };
 
   const handleCloseModal = () => {
-    setShowModal(false);
+    modalWindowContext.close();
   };
 
   const handleCheck = () => {
@@ -26,7 +26,7 @@ export function Navigation() {
       const lastElement = locationArray[locationArray.length - 1];
       locationContext?.updateLocation(lastElement.toUpperCase());
     }
-    setShowModal(false);
+    modalWindowContext.close();
   };
 
   const user = useAppSelector((state) => state.user.user);
@@ -34,35 +34,35 @@ export function Navigation() {
   return (
     <nav className="navigation-menu">
       <ModalWindowState>
-      <div onClick={handleCityClick} className="nav-geolocation">
-        <img
-          className="geolocation-img"
-          src="../img/icons8-location-64.png"
-          alt="location"
-        />
-        {showModal ? (
-          <ModalWindow title="Ваше местоположение" onClose={handleCloseModal}>
-            <GeoLocation onCheck={handleCheck} />
-          </ModalWindow>
-        ) : (
-          <p>{locationContext?.location ? locationContext.location : "Город Н"}</p>
-        )}
-      </div>
+        <div onClick={handleCityClick} className="nav-geolocation">
+          <img
+            className="geolocation-img"
+            src="../img/icons8-location-64.png"
+            alt="location"
+          />
+          {modalWindowContext.modalWindow ? (
+            <ModalWindow title="Ваше местоположение" onClose={handleCloseModal}>
+              <GeoLocation onCheck={handleCheck} />
+            </ModalWindow>
+          ) : (
+            <p>{locationContext?.location ? locationContext.location : "Город Н"}</p>
+          )}
+        </div>
       </ModalWindowState>
-      {(!user || user.role !== "admin") ? (
-      <>
-        <Link to="/about" className='header-btn-link'>О нас</Link>
-        <Link to="/help" className='header-btn-link'>Помощь</Link>
-        <Link to="/contacts" className='header-btn-link'>Контакты</Link>
-      </>
-    ) : (
-      <>
-        <Link to="/about" className='header-btn-link'>О нас</Link>
-        <Link to="/help" className='header-btn-link'>Помощь</Link>
-        <Link to="/contacts" className='header-btn-link'>Контакты</Link>
-        <Link to="/admin" className='header-btn-link'>Администрирование</Link>
-      </>
-    )}
+      {!user || user.role !== "admin" ? (
+        <>
+          <Link to="/about" className='header-btn-link'>О нас</Link>
+          <Link to="/help" className='header-btn-link'>Помощь</Link>
+          <Link to="/contacts" className='header-btn-link'>Контакты</Link>
+        </>
+      ) : (
+        <>
+          <Link to="/about" className='header-btn-link'>О нас</Link>
+          <Link to="/help" className='header-btn-link'>Помощь</Link>
+          <Link to="/contacts" className='header-btn-link'>Контакты</Link>
+          <Link to="/admin" className='header-btn-link'>Администрирование</Link>
+        </>
+      )}
     </nav>
   );
 }
