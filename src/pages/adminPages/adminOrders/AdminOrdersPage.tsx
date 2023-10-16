@@ -1,36 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { AdminBasePage } from "../adminBasePage/AdminBasePage";
-import { ICartItem, IOrder, IProduct } from "../../../models";
+import { ICartItem, IProduct } from "../../../models";
 import { Loader } from "../../../components/service/Loader";
 import { ErrorMessage } from "../../../components/service/ErrorMessage";
-import { getOrders, getProductItem } from "../../../api/api";
+import { getProductItem, useGetOrdersQuery } from "../../../api/api";
 import "./AdminOrders.css";
 import { Edit } from "../../../components/service/Edit";
 import { Delete } from "../../../components/service/Delete";
 import { ModalWindowState } from "../../../context/ModalWindowContext";
 
 export function AdminOrdersPage() {
-  const [orders, setOrders] = useState<IOrder[]>([]);
   const [productItems, setProductItems] = useState<IProduct[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-
-  useEffect(() => {
-    setLoading(true);
-    Promise.all([getOrders()])
-      .then(([orders]) => {
-        setOrders(orders);
-        setLoading(false);
-      })
-      .catch((error) => {
-        setError("Не удалось загрузить товары и категории");
-        setLoading(false);
-      });
-  }, []);
+  const { data: orders, error: ordersError, isLoading: ordersLoading } = useGetOrdersQuery();
 
   useEffect(() => {
     const fetchProductItems = async () => {
-      if (orders.length > 0) {
+      if (orders && orders.length > 0) {
         const items = await Promise.all(
           orders.flatMap((order) =>
             order.items.map((item) => getProductItem(item.id))
@@ -72,7 +59,7 @@ export function AdminOrdersPage() {
         </thead>
         <tbody>
         
-          {orders.map((order) => (
+          {orders?.map((order) => (
             <ModalWindowState>
             <tr key={order._id} className="admin-table-row">
                 <td className="admin-table-col">{order._id}</td>
