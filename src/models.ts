@@ -30,8 +30,10 @@ export interface IOrder {
 
   export interface ICartItem {
     id: string;
+    category: string;
     quantity: number;
     price: number;
+
   }
 
 export interface IUser{

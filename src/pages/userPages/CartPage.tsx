@@ -63,7 +63,7 @@ export function CartPage() {
         </thead>
         <tbody>
         {Object.entries(items).map(([id, quantity]) => (
-          <tr>
+          <tr key={id}>
             <td>{products[id].title}</td>
             <td>&#127820;&nbsp;{products[id].price}</td>
             <td>

@@ -12,32 +12,32 @@ export function OrdersPage() {
 
 
     useEffect(() => {
-        if (user) {
-            const id = user._id;
-            if (id) {
-                getCustomersOrders(id)
-                    .then((response) => {
-                        setOrders(response);
-                    })
-                    .catch((error) => {
-                        console.error("Failed to fetch orders:", error);
-                    });
-            }
+      if (user) {
+        const id = user._id;
+        if (id) {
+          getCustomersOrders(id)
+            .then((response) => {
+              setOrders(response);
+            })
+            .catch((error) => {
+              console.error("Failed to fetch orders:", error);
+            });
         }
+      }
     }, [user]);
     
     useEffect(() => {
-        const fetchProductItems = async () => {
-          const items = await Promise.all(
-            orders.flatMap((order) =>
-              order.items.map((item) => getProductItem(item.id))
-            )
-          );
-          setProductItems(items);
-        };
+      const fetchProductItems = async () => {
+        const items = await Promise.all(
+          orders.flatMap((order) =>
+            order.items.map((item) => getProductItem(item.id))
+          )
+        );
+        setProductItems(items);
+      };
     
-        fetchProductItems();
-      }, [orders]);
+      fetchProductItems();
+    }, [orders]);
           
       const formatDateTime = (dateTimeString: string | number | Date) => {
         const dateTime = new Date(dateTimeString);
@@ -75,14 +75,17 @@ export function OrdersPage() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {Array.isArray(order.items) &&
-                                    order.items.map((item: ICartItem, index: number) => (
-                                        <tr key={item.id}>
-                                            <td>{productItems[index]?.title}</td>
-                                            <td>{item.quantity}</td>
-                                        </tr>
-                                    ))
-                                }
+                              {Array.isArray(order.items) &&
+                                order.items.map((item: ICartItem) => {
+                                  const productItem = productItems.find((product) => product._id === item.id);
+                                  return (
+                                    <tr key={item.id}>
+                                      <td>{productItem?.title}</td>
+                                      <td>{item.quantity}</td>
+                                    </tr>
+                                  );
+                                })
+                              }
                             </tbody>
                         </table>
                     </td>

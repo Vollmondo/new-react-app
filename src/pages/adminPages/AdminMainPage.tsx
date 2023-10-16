@@ -3,6 +3,7 @@ import { AdminBasePage } from "./adminBasePage/AdminBasePage";
 import { TotalProductsChart } from "../../components/charts/TotalProductsChart";
 import { CategoryCountsChart } from "../../components/charts/CategoryCountsChart";
 import { AddedProductsChart } from "../../components/charts/AddedProductsChart";
+import { OrderChart } from "../../components/charts/OrderChart";
 
 export function AdminMainPage(){
     return(
@@ -11,6 +12,7 @@ export function AdminMainPage(){
                 <TotalProductsChart />
                 <AddedProductsChart />
                 <CategoryCountsChart />
+                <OrderChart />
             </AdminBasePage>
         </>
     )

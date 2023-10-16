@@ -29,7 +29,8 @@ export const checkoutCart = createAsyncThunk("cart/checkout", async (_, thunkAPI
   Object.keys(items).forEach((id) => {
     const quantity = items[id];
     const price = products[id].price;
-    orderItems[id] = { id, quantity, price };
+    const category = products[id].category
+    orderItems[id] = { id, category, quantity, price };
   });
 
   const totalPrice = getTotalPrice(state);

@@ -14,9 +14,7 @@ export const api = createApi({
     getOrders: builder.query<IOrder[], void>({
       query: () => 'orders',
     }),
-    getProductItem: builder.query<IProduct, string>({
-      query: (productId) => `products/${productId}`,
-    }),
+
     getFavoriteProducts: builder.query<IProduct[], string>({
       query: (userId) => `userProfile/${userId}/fav`,
     }),
@@ -63,7 +61,6 @@ export const {
   useGetProductsQuery,
   useGetCategoriesQuery,
   useGetOrdersQuery,
-  useGetProductItemQuery,
   useGetFavoriteProductsQuery,
   useSaveFavProductMutation,
   useRemoveFavProductMutation,
@@ -83,6 +80,15 @@ export type CheckoutResponse = { success: boolean; error?: string };
     }
     const productItem = await response.json();
     return productItem;
+  }
+
+  export async function getOrders(): Promise<IOrder[]> {
+    const response = await fetch('http://localhost:5000/orders');
+    if (!response.ok) {
+      throw new Error("Ошибка при получении заказов");
+    }
+    const orders = await response.json();
+    return orders;
   }
   
   export async function checkout(order: IOrder): Promise<CheckoutResponse> {
