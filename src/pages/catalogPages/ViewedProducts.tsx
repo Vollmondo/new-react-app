@@ -39,9 +39,9 @@ export function ViewedProducts() {
         <h2>Ранее вы интересовались:</h2>
         <div className="productDetails-viewedProducts">
             {products.map((product) => (
-                <Link to={`/cat/${product._id}`} key={product._id} className="viewedProductsLink">
+                <div className="viewedProductsLink" key={product._id}>
                     <Product product={product} />
-                </Link>
+                </div>
             ))}
         </div>
     </div>
