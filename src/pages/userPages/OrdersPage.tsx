@@ -72,6 +72,7 @@ export function OrdersPage() {
                                 <tr>
                                     <th className="colTitle">Наименование</th>
                                     <th className="colQuant">Кол-во</th>
+                                    <th className="colQuant">Цена</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -82,6 +83,7 @@ export function OrdersPage() {
                                     <tr key={item.id}>
                                       <td>{productItem?.title}</td>
                                       <td>{item.quantity}</td>
+                                      <td>{item.price}</td>
                                     </tr>
                                   );
                                 })
