@@ -7,7 +7,7 @@ import { IOrder, ICartItem } from '../../models';
 
 accessibility(Highcharts);
 
-export const OrderChart = () => {
+export const OrderPieChart = () => {
   const [order, setOrder] = useState<IOrder[] | null>(null);
   const [products, setProducts] = useState<Record<string, number>>({});
 
@@ -45,22 +45,14 @@ export const OrderChart = () => {
   }, [order]);
 
   const categories = Object.keys(products);
-  const seriesData = categories.map((category) => products[category]);
+  const seriesData = categories.map((category) => [category, products[category]]);
 
   const options = {
     chart: {
-      type: 'column',
+      type: 'pie',
     },
     title: {
-      text: 'Количество заказанных товаров по категориям',
-    },
-    xAxis: {
-      categories: categories,
-    },
-    yAxis: {
-      title: {
-        text: 'Количество',
-      },
+      text: 'Соотношение заказанных товаров по категориям',
     },
     series: [
       {
