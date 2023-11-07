@@ -167,7 +167,7 @@ export function AddedProductsChart() {
   };
 
   return (
-    <div className="ChartStyles-50">
+    <div id="AddedProductsChart" className="ChartStyles-50">
       <div>
         <button className="chart-button" onClick={() => setZoomLevel("1d")}>1 день</button>
         <button className="chart-button" onClick={() => setZoomLevel("1w")}>1 неделя</button>

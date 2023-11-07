@@ -9,21 +9,24 @@ describe('AdminMainPage', () => {
     cy.url().should('not.include', 'login');
     // переходим в админпанель
     cy.visit('http://localhost:3000/admin');
+    cy.wait(10000);
   });
 
   it('should display the charts', () => {
-    // ожидаем появление графиков в DOM
-    cy.get('.total-products-chart').should('exist');
-    cy.get('.added-products-chart').should('exist');
-    cy.get('.category-counts-chart').should('exist');
-    cy.get('.order-chart').should('exist');
-    cy.get('.order-pie-chart').should('exist');  
+    // ожидаем отрисовку графиков
+    cy.wait(2000);
+  
+    cy.get('#TotalProductsChart').should('exist');
+    cy.get('#AddedProductsChart').should('exist');
+    cy.get('#CategoryCountsChart').should('exist');
+    cy.get('#OrderChart').should('exist');
+    cy.get('#OrderPieChart').should('exist');
+  
     // ожидаем отображение графиков
-    cy.wait(10000);
-    cy.get('.total-products-chart').should('be.visible');
-    cy.get('.added-products-chart').should('be.visible');
-    cy.get('.category-counts-chart').should('be.visible');
-    cy.get('.order-chart').should('be.visible');
-    cy.get('.order-pie-chart').should('be.visible');
+    cy.get('#TotalProductsChart').should('be.visible');
+    cy.get('#AddedProductsChart').should('be.visible');
+    cy.get('#CategoryCountsChart').should('be.visible');
+    cy.get('#OrderChart').should('be.visible');
+    cy.get('#OrderPieChart').should('be.visible');
   });
 });

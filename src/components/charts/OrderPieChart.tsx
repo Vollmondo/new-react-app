@@ -66,7 +66,7 @@ export const OrderPieChart = () => {
   };
 
   return (
-    <div className="ChartStyles-50">
+    <div id='OrderPieChart' className="ChartStyles-50">
       {order && categories.length > 0 ? (
         <HighchartsReact highcharts={Highcharts} options={options} />
       ) : (

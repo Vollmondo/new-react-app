@@ -50,7 +50,7 @@ export function TotalProductsChart() {
   };
 
   return (
-    <div className="ChartStyles-50">
+    <div id="TotalProductsChart" className="ChartStyles-50">
       <HighchartsReact highcharts={Highcharts} options={options} />
     </div>
   );
