@@ -66,7 +66,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onTogglePanel }) => {
           <ErrorMessage error={"Введите пароль"} />)}
         {errors.password && errors.password.type === "pattern" && (
           <ErrorMessage error={'Вероятно вы ошиблись во время ввода. \n Пароль должен содержать только цифры и малые латинские буквы, а также один из символов "_", "-", "*"'} />)}
-        <button className="login-button" type="submit" disabled={(!username && errors.username && errors.username.type === "required") && (!password && errors.password && errors.password.type === "required")}>
+        <button id="loginbutton" className="login-button" type="submit" disabled={(!username && errors.username && errors.username.type === "required") && (!password && errors.password && errors.password.type === "required")}>
           Войти
         </button>
         {error && <ErrorMessage error={error} />}

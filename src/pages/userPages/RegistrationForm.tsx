@@ -11,7 +11,7 @@ interface RegistrationFormProps {
 }
 
 type FormData = {
-  username: string;
+  regname: string;
   email: string;
   pass1: string;
   pass2: string;
@@ -22,7 +22,7 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = ({ onTogglePane
   const { register, handleSubmit, formState: { errors, isDirty }, reset, watch } = useForm<FormData>({ mode: 'onChange' });
   const [error, setError] = useState("");
   const [coordinates, setCoordinates] = useState<number[]>([]);
-  const username = watch("username");
+  const regname = watch("regname");
   const email = watch("email");
   const userPass1 = watch("pass1");
   const userPass2 = watch("pass2");
@@ -43,7 +43,7 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = ({ onTogglePane
         lat: coordinates[0].toString(),
         long: coordinates[1].toString(),
         email: data.email,
-        username: data.username,
+        username: data.regname,
         password: data.pass1,
       };
 
@@ -66,16 +66,16 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = ({ onTogglePane
       <form className="login-form" action="#" onSubmit={handleSubmit(onSubmit)}>
         <h1>Создайте пользователя</h1>
         <input
-          className={`input-text ${errors.username ? 'error' : ''} ${ !errors.username && isDirty ? 'valid' : ''}`}
+          className={`input-text ${errors.regname ? 'error' : ''} ${ !errors.regname && isDirty ? 'valid' : ''}`}
           type="text"
           placeholder="Придумайте имя пользователя"
-          {...register('username', { required: true, minLength: 5, maxLength: 20, pattern: /^[a-zA-Z0-9]+$/ })}
+          {...register('regname', { required: true, minLength: 5, maxLength: 20, pattern: /^[a-zA-Z0-9]+$/ })}
         />
-        {errors.username && errors.username.type === "required" && (
+        {errors.regname && errors.regname.type === "required" && (
           <ErrorMessage error={"Введите имя пользователя"} />)}
-        {errors.username && errors.username.type === "pattern" && (
+        {errors.regname && errors.regname.type === "pattern" && (
           <ErrorMessage error={"Имя пользователя может содержать только латинские буквы и цифры"} />)}
-        {errors.username && (username.length < 5 || username.length > 20) && (
+        {errors.regname && (regname.length < 5 || regname.length > 20) && (
           <ErrorMessage error={"Имя пользователя должно содержать не менее 5 и не более 20 символов"} />)}
         <input
           className={`input-text ${errors.email ? 'error' : ''}`}
@@ -106,7 +106,7 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = ({ onTogglePane
         {errors.pass2 && <ErrorMessage error={"Подтвердите пароль"} />}
         {userPass1 && userPass2 && userPass1 !== userPass2 && (
           <ErrorMessage error={'Введенные пароли не совпадают'} />)}
-        <button className="login-button" type="submit" disabled={!username || !email || !userPass1 || userPass1 !== userPass2}>
+        <button id="regbutton" className="login-button" type="submit" disabled={!regname || !email || !userPass1 || userPass1 !== userPass2}>
           Зарегистрироваться
         </button>
         {error && <ErrorMessage error={error} />}
