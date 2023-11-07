@@ -1,4 +1,4 @@
-describe('AdminMainPage', () => {
+describe('отображение графиков на AdminMainPage', () => {
   beforeEach(() => {
     // заходим в приложение под админом
     cy.visit('http://localhost:3000/login');

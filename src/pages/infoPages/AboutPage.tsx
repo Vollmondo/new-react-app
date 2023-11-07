@@ -7,8 +7,8 @@ export function AboutPage(){
     return(
         <>
             <BasePage>
+                <h1>О НАС</h1>
                 <div className="about">
-                    <h1>О НАС</h1>
                     <p className="about-p">Наша организация самая лучшая!</p>
                     <h3 className="about-h3">Наше производство:</h3>
                     <p className="about-p">Lorem ipsum, dolor sit amezzt consectetur adipisicing elit. Adipisci vero velit quisquam quia enim, ratione odio exercitationem sint expedita delectus est voluptate, accusamus earum maxime ipsum minima temporibus in vitae!</p>

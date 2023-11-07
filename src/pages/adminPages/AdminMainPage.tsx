@@ -10,11 +10,13 @@ export function AdminMainPage(){
     return(
         <>
             <AdminBasePage>
-                <TotalProductsChart />
-                <AddedProductsChart />
-                <CategoryCountsChart />
-                <OrderChart />
-                <OrderPieChart />
+                <div className="AdminMainPage">
+                    <TotalProductsChart />
+                    <AddedProductsChart />
+                    <CategoryCountsChart />
+                    <OrderChart />
+                    <OrderPieChart />
+                </div>
             </AdminBasePage>
         </>
     )
