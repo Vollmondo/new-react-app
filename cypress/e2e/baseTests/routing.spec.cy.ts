@@ -22,14 +22,14 @@ describe('Маршрутизация', () => {
     it('Переход на страницу каталога', () => {
         cy.visit(home+'/cat');
         cy.url().should('include', home+'/cat');
-        cy.get('.products-container').should('exist');
+        cy.get('.products-container', { timeout: 10000 }).should('exist', );
     });
   
-   /*  it('Переход на страницу продукта', () => {
-      cy.visit(home+'/cat/123');
-      cy.url().should('include', home+'/cat/123');
-      cy.get('h1').should('contain', 'ProductDetails');
-    }); */
+    it('Переход на страницу продукта', () => {
+        cy.visit(home+'/cat/650044a404f1344086586df6');
+        cy.url().should('include', home+'/cat/650044a404f1344086586df6');
+        cy.get('.productDetails-title').should('exist');
+    });
   
     it('Переход на страницу "О НАС"', () => {
         cy.visit(home+'/about');
@@ -50,7 +50,9 @@ describe('Маршрутизация', () => {
     });
 
   // маршрутизация по пользовательскому разделу
-    it('Переход на страницу авторизации', () => {
+  const user = home+'/userProfile'
+
+    it('Переход на страницу авторизации пользователя', () => {
         cy.visit(home+'/login');
         cy.url().should('include', home+'/login');
         cy.get('h1').should('contain', 'Войти');
@@ -58,9 +60,30 @@ describe('Маршрутизация', () => {
   
     it('Переход на страницу профиля пользователя', () => {
         auth()
-        cy.visit(home+'/userProfile/64f0733088e42d1bfd471ad2');
-        cy.url().should('include', home+'/userProfile/64f0733088e42d1bfd471ad2');
+        cy.visit(user+'/64f0733088e42d1bfd471ad2');
+        cy.url().should('include', user+'/64f0733088e42d1bfd471ad2');
         cy.get('h1').should('contain', 'Профиль пользователя');
+    });
+
+    it('Переход на страницу избранного пользователя', () => {
+        auth()
+        cy.visit(user+'/fav');
+        cy.url().should('include', user+'/fav');
+        cy.get('h1').should('contain', 'Избранное');
+    });
+
+    it('Переход на страницу заказов пользователя', () => {
+        auth()
+        cy.visit(user+'/orders');
+        cy.url().should('include', user+'/orders');
+        cy.get('h1').should('contain', 'Ваши заказы');
+    });
+
+    it('Переход на страницу корзины пользователя', () => {
+        auth()
+        cy.visit(user+'/cart');
+        cy.url().should('include', user+'/cart');
+        cy.get('h2').should('contain', 'Корзина');
     });
 
   // маршрутизация по админке
