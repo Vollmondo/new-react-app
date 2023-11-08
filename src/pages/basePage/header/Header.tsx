@@ -67,7 +67,7 @@ export function Header() {
                   <Link to={`/userProfile/orders`}>
                     <img className='header-img orders' src='../img/icons8-box-64.png' alt='orders'/>
                   </Link>
-                  <img className='header-img cart' src='../img/icons8-wallet-64.png' onClick={() => {setWalletModalOpen(true)}} alt='cart'/>
+                  <img className='header-img cart' src='../img/icons8-wallet-64.png' onClick={() => {setWalletModalOpen(true)}} alt='wallet'/>
                   <Wallet />
                   <Link to={`/userProfile/cart`}>
                     <img className='header-img cart' src='../img/icons8-shopping-bag-64.png' alt='cart'/>

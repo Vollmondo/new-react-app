@@ -9,7 +9,7 @@ export function Wallet() {
 
   return (
     <Link to="/userProfile/cart" className="link">
-      <span className="text">&nbsp;{Coins}</span>
+      <span id="walletValue" className="text">&nbsp;{Coins}</span>
     </Link>
   );
 }
