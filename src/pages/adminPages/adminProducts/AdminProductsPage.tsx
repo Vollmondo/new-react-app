@@ -52,6 +52,7 @@ export function AdminProductsPage() {
       <>
         <AdminBasePage>
           <div className="admin-products-container">
+            <h1>Товары</h1>
             <div ref={scrollToTopRef}></div>
             {loading && <Loader />}
             <div className="admin-products-options">

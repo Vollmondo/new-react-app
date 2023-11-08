@@ -42,6 +42,7 @@ export function UserRoles(){
         <>
             <AdminBasePage>
                 <div className="profile-container">
+                    <h1>Категории пользователей</h1>
                     {loading && <Loader />}
                     <table className="admin-table">
                         <tbody>

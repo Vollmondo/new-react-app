@@ -51,6 +51,7 @@ export function AdminCategoriesPage() {
       <>
         <AdminBasePage>
           <div className="admin-cat-container">
+            <h1>Категории товаров</h1>
             <div ref={scrollToTopRef}></div>
             {loading && <Loader />}
             <table className="admin-table">

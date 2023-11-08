@@ -38,6 +38,7 @@ export function UsersPage(){
         <>
             <AdminBasePage>
                 <div className="profile-container">
+                <h1>Пользователи</h1>
                     {loading && <Loader />}
                     <table className="admin-table">
                         <tbody>

@@ -22,6 +22,10 @@
     display: flex;
     flex-wrap: wrap;
 }
+.AdminMainPage{
+    display: flex;
+    flex-wrap: wrap;
+  }
 
 .admin-table {
   font-family: Arial, Helvetica, sans-serif;

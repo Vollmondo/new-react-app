@@ -49,17 +49,19 @@ export function MainPage() {
   return (
     <>
       <BasePage>
-        <Slider sliderData={infoSliderData} detailsPath={"about"}></Slider>
-        <Slider sliderData={prodSliderData} detailsPath={"cat"}></Slider>
-          <ModalWindowState>
-            {modalWindow && <ModalWindow title="Ваше местоположение" onClose={() =>{close()}}>
-            <GeoLocation onCheck={checkHandler}/>
-              </ModalWindow>}
-          </ModalWindowState>
-        <div className="about">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Adipisci vero velit quisquam quia enim, ratione
-          odio exercitationem sint expedita delectus est voluptate, accusamus earum maxime ipsum minima temporibus in
-          vitae!
+        <div className="homePage">
+          <Slider sliderData={infoSliderData} detailsPath={"about"}></Slider>
+          <Slider sliderData={prodSliderData} detailsPath={"cat"}></Slider>
+            <ModalWindowState>
+              {modalWindow && <ModalWindow title="Ваше местоположение" onClose={() =>{close()}}>
+              <GeoLocation onCheck={checkHandler}/>
+                </ModalWindow>}
+            </ModalWindowState>
+          <div className="about">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Adipisci vero velit quisquam quia enim, ratione
+            odio exercitationem sint expedita delectus est voluptate, accusamus earum maxime ipsum minima temporibus in
+            vitae!
+          </div>
         </div>
       </BasePage>
     </>
