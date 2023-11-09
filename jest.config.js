@@ -1,7 +1,7 @@
 
 module.exports = {
   preset: 'ts-jest',
-  testEnvironment: 'node',
+  testEnvironment: 'jsdom',
   transform: {
     '^.+\\.(ts|tsx)?$': 'ts-jest',
     '^.+\\.(js|jsx)$': 'babel-jest',
@@ -14,14 +14,7 @@ module.exports = {
 ],
   coverageDirectory: '<rootDir>/reports/coverage',
   coverageProvider: 'v8',
-  coverageReporters: [
-    [
-        'html',
-        {
-            subdir: 'html',
-        },
-    ],
-  ],
+  coverageReporters: ['html'],
   globals: {
     __webpack_public_path__: '__webpack_public_path__',
   },
