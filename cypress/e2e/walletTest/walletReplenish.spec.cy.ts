@@ -25,7 +25,8 @@ describe('работоспособность функции пополнения
 
       cy.get('input[name="debet"]').first().type('5', { force: true });
       cy.get('.addCoins-btn').first().click({ force: true });
-      cy.get('.modal-window').click({ force: true });
+/*       cy.wait(1000)
+ */      cy.get('.modal-window').click({ force: true });
     
       cy.get('#walletValue').invoke('text').then((newValue) => {
         cy.wait(1000)

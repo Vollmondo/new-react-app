@@ -8,7 +8,7 @@ export function CartLink() {
     const NumItems = useAppSelector(getMemoizedNumItems)
   return (
     <Link to="/userProfile/cart" className="link">
-      <span className="text">&nbsp;{NumItems ? NumItems:''}</span>
+      <span id="cartImgText" className="text">&nbsp;{NumItems ? NumItems:''}</span>
     </Link>
   );
 }
