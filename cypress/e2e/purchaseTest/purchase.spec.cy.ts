@@ -10,9 +10,9 @@ describe('работоспособность функции пополнения
     cy.url().should('not.include', 'login');
     // переходим на страницу товара
     cy.visit('http://localhost:3000/cat/650044a404f1344086586df6');
-    cy.wait(1000);
+    cy.wait(500);
     cy.get('#cartImgText').invoke('text').then((oldValue) => {
-      cy.wait(1000)
+      cy.wait(500)
       console.log('oldValue:', oldValue)
     
       cy.get('.number-plus').first().click({ force: true });
@@ -21,12 +21,16 @@ describe('работоспособность функции пополнения
       cy.wait(500)
       
       cy.get('#cartImgText').invoke('text').then((newValue) => {
-        cy.wait(1000)
+        cy.wait(500)
         console.log('newValue:', newValue)
     
         expect(Number(oldValue) + 1).to.equal(Number(newValue));
       });
+
     });
+    cy.visit('http://localhost:3000/userProfile/cart')
+    cy.get('#purchase-btn').first().click({ force: true });
+
   });
 })
   

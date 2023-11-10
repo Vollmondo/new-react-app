@@ -89,7 +89,7 @@ export function CartPage() {
       </table>
       <form id="usersCart" onSubmit={onCheckout}>
         {checkoutState === "ERROR" && errorMessage ? (<ErrorMessage error={errorMessage}/>) : null}
-        <button className={styles.button} type="submit">
+        <button id="purchase-btn" className={styles.button} type="submit">
           Оформить заказ
         </button>
       </form>                
