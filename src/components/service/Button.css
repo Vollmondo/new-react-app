@@ -1,0 +1,71 @@
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  
+  .button.default {
+    background-color: #e0e0e0;
+    color: #000;
+    border-radius: 10px;
+  }
+    
+  .button.rectangle{
+    border-radius: 0;
+  }
+
+  .button.square {
+    width: 80px;
+    height: 80px;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 20px;
+  }
+  
+  .button.round {
+    border-radius: 50%;
+  }
+  
+  .button.link {
+    background-color: transparent;
+    color: #007bff;
+    text-decoration: underline;
+  }
+  
+  .button.medium {
+    padding: 8px 16px;
+  }
+  
+  .button.small {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+  
+  .button.large {
+    padding: 12px 24px;
+    font-size: 18px;
+  }
+  
+  .button[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .button.white {
+    background-color: white;
+    color: black;
+  }
+  
+  .button.grey {
+    background-color: grey;
+    color: white;
+  }
+  
+  .button.green {
+    background-color: green;
+    color: white;
+  }

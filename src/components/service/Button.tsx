@@ -2,10 +2,13 @@ import React from "react";
 import './Button.css';
 
 export type ButtonProps = {
-    variant?: string,
+    variant?: "default" | "square" | "rectangle" | "round" | "link",
     id: string,
-    className: string,
+    className?: string,
+    size?: "medium" | "large" | "small"
     type?: "button" | "submit" | "reset",
+    color?: "white" | "grey" | "green",
+    backgroundImage?: string,
     onClick?: () => void,
     form?: string,
     autoFocus?: boolean,
@@ -15,27 +18,37 @@ export type ButtonProps = {
 };
 
 export const Button = ({
-    variant,
-    id,
-    className,
-    type = 'button',
-    onClick,
-    form,
-    autoFocus,
-    disabled,
-    value,
-    children
+  variant = "default",
+  id,
+  type = 'button',
+  size,
+  color,
+  backgroundImage,
+  className,
+  onClick,
+  form,
+  autoFocus,
+  disabled,
+  value,
+  children
 }: ButtonProps) => {
+  const buttonStyle: React.CSSProperties = {
+    backgroundImage: backgroundImage ? `url(${backgroundImage}) ` : 'none',
+  };
+
+  const buttonClassName = `button ${variant} ${color || ''} ${size} ${type} ${className || ''}`;
+
   return (
     <button
       id={id}
-      className={className}
+      className={buttonClassName}
       type={type}
       onClick={onClick}
       form={form}
       autoFocus={autoFocus}
       disabled={disabled}
       value={value}
+      style={buttonStyle}
     >
       {children}
     </button>

@@ -1,34 +1,89 @@
 import React from "react";
 import { Button, ButtonProps } from "./Button";
-import { Meta, Story } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 
-export default {
+const meta: Meta<typeof Button> = {
   title: "UI/Button",
   component: Button,
-  argTypes:{
-    variant:{
-        type: 'string',
-        description: 'Вариант внешнего вида кнопки',
-        defaultValue: 'default',
-        options: ['default', 'small','large','square','round'],
-        control:{
-            type:'radio',
-        }
-    }
-  }
-} as Meta;
-
-const Template: Story<ButtonProps> = (args) => <Button {...args} />;
-
-export const Default = () => <Button id={"noID"} className={"noClass"}>Я твоя кнопка!<br />Нажми меня полностью!</Button>
-
-export const Primary = Template.bind({});
-Primary.args = {
-  children: "Primary Button",
+  argTypes: {
+    variant: {
+      type: 'string',
+      description: 'Вариант внешнего вида кнопки',
+      defaultValue: 'default',
+      options: ['default', 'square', 'rectangle', 'round', 'link'],
+      control: {
+        type: 'radio',
+      }
+    },
+    size: {
+      type: 'string',
+      description: 'Вариант размера кнопки',
+      defaultValue: 'default',
+      options: ['medium', 'small', 'large'],
+      control: {
+        type: 'radio',
+      }
+    },
+    type: {
+      type: 'string',
+      description: 'Тип кнопки',
+      defaultValue: 'button',
+      options: ['button', 'submit', 'reset'],
+      control: {
+        type: 'radio',
+      }
+    },
+    children: {
+      type: 'string',
+      name: 'Текст кнопки',
+      defaultValue: 'Я кнопка',
+    },
+    autoFocus: {
+      control: 'boolean',
+    },
+    disabled: {
+      control: 'boolean',
+    },
+    id: {
+      control: 'text',
+    },
+    form: {
+      control: 'text',
+    },
+    value: {
+      control: 'text',
+    },
+    backgroundImage: {
+      control: 'text',
+    },
+  },
 };
 
-export const Secondary = Template.bind({});
-Secondary.args = {
-  variant: "secondary",
-  children: "Secondary Button",
+export default meta;
+
+type Story = StoryObj<typeof Button>;
+
+export const Default = () => (
+  <Button id="noID" variant="default" color="white">
+    Я твоя кнопка!
+    <br />
+    Нажми меня полностью!
+  </Button>
+);
+
+export const Primary: Story = {
+  args: {
+    variant: "rectangle",
+    children: "Primary Button",
+    size: "small",
+  },
+};
+
+export const BuyBtn: Story = {
+  args: {
+    variant: "square",
+    children: "",
+    backgroundImage: "./img/icons8-shopping-basket-64.png",
+    color: "green"
+  },
 };

@@ -156,8 +156,9 @@
     height: 79px;
     background-color: #eee;
     border: none;
+    border-top: 3px solid grey;
     border-bottom:2px solid grey;
-    border-radius: 20px;
+    border-radius: 25px;
     padding: 0;
 	margin: 0;
 	box-sizing: border-box;

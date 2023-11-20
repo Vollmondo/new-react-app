@@ -14,13 +14,14 @@ import { addToCart } from "../../store/Cart.Slice";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { getProductItem } from "../../api/api";
 import { FavButton } from "../../components/service/FavButton";
+import { Button, ButtonProps } from "../../components/service/Button";
 
 export function ProductDetails() {
   const { id } = useParams();
   const [product, setProduct] = useState<IProduct | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
  
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.user);
@@ -95,10 +96,11 @@ export function ProductDetails() {
                     <input className="productDetails-quantity" type="number" min="0" max="99" required step="1" placeholder="Кол-во" value={quantity} onChange={(e) => setQuantity(parseInt(e.target.value))}></input>
                     <button className="number-plus" type="button" onClick={() => setQuantity(quantity + 1)}>+</button>
                   </div>
-                  <button
+                  {/* <button
                     className="productDetails-buyBtn"
                     onClick={() => dispatch(addToCart({ id: product._id, quantity }))}
-                  ></button>                
+                  ></button>  */}
+                  <Button id={"buyBtn"} variant="square" backgroundImage={"../../img/icons8-shopping-basket-64.png"} color={"green"} onClick={() => dispatch(addToCart({ id: product._id, quantity }))}> </Button>               
                 </div>
               </div>
             </div>
