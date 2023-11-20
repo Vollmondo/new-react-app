@@ -21,12 +21,14 @@ describe('Маршрутизация', () => {
   
     it('Переход на страницу каталога', () => {
         cy.visit(home+'/cat');
+        cy.wait(2000);
         cy.url().should('include', home+'/cat');
         cy.get('.products-container', { timeout: 10000 }).should('exist', );
     });
   
     it('Переход на страницу продукта', () => {
         cy.visit(home+'/cat/650044a404f1344086586df6');
+        cy.wait(2000);
         cy.url().should('include', home+'/cat/650044a404f1344086586df6');
         cy.get('.productDetails-title').should('exist');
     });
@@ -68,6 +70,7 @@ describe('Маршрутизация', () => {
     it('Переход на страницу избранного пользователя', () => {
         auth()
         cy.visit(user+'/fav');
+        cy.wait(2000);
         cy.url().should('include', user+'/fav');
         cy.get('h1').should('contain', 'Избранное');
     });
@@ -75,6 +78,7 @@ describe('Маршрутизация', () => {
     it('Переход на страницу заказов пользователя', () => {
         auth()
         cy.visit(user+'/orders');
+        cy.wait(2000);
         cy.url().should('include', user+'/orders');
         cy.get('h1').should('contain', 'Ваши заказы');
     });
@@ -82,6 +86,7 @@ describe('Маршрутизация', () => {
     it('Переход на страницу корзины пользователя', () => {
         auth()
         cy.visit(user+'/cart');
+        cy.wait(2000);
         cy.url().should('include', user+'/cart');
         cy.get('h2').should('contain', 'Корзина');
     });
