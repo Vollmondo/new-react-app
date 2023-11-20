@@ -76,6 +76,7 @@ export const Primary: Story = {
     variant: "rectangle",
     children: "Primary Button",
     size: "small",
+    color: "grey"
   },
 };
 
