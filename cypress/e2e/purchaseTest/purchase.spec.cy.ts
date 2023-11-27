@@ -17,14 +17,14 @@ describe('работоспособность функции пополнения
     
       cy.get('.number-plus').first().click({ force: true });
       cy.wait(500)
-      cy.get('.productDetails-buyBtn').first().click({ force: true });
+      cy.get('#buyBtn').first().click({ force: true });
       cy.wait(500)
       
       cy.get('#cartImgText').invoke('text').then((newValue) => {
         cy.wait(500)
         console.log('newValue:', newValue)
     
-        expect(Number(oldValue) + 1).to.equal(Number(newValue));
+        expect(Number(oldValue) + 2).to.equal(Number(newValue));
       });
 
     });
