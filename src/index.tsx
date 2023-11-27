@@ -1,3 +1,4 @@
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from "react-router-dom";
 
@@ -14,17 +15,17 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-let persistor = persistStore(store)
+const persistor = persistStore(store)
 
 root.render(
   <BrowserRouter>
-    <Provider store={store}>
-      <PersistGate persistor={persistor}>
-        <ModalWindowState>
-          <App />
-        </ModalWindowState>
-      </PersistGate>
-    </Provider>
+      <Provider store={store}>
+        <PersistGate persistor={persistor}>
+          <ModalWindowState>
+            <App />
+          </ModalWindowState>
+        </PersistGate>
+      </Provider>
   </BrowserRouter>
 );
 

@@ -9,6 +9,7 @@ export function OrdersPage() {
     const [orders, setOrders] = useState<IOrder[]>([]);
     const user = useAppSelector((state) => state.user?.user);
     const [productItems, setProductItems] = useState<IProduct[]>([]);
+    const worker = new Worker(new URL("../../workers/logger.worker.js", import.meta.url));
 
 
     useEffect(() => {
@@ -37,6 +38,7 @@ export function OrdersPage() {
       };
     
       fetchProductItems();
+      worker.postMessage({ type: 'checkOrders', data: { action:'checkOrders', user, orders} });
     }, [orders]);
           
       const formatDateTime = (dateTimeString: string | number | Date) => {
@@ -48,6 +50,8 @@ export function OrdersPage() {
         });
         return `${formattedDate} ${formattedTime}`;
       };
+
+      
 
       return (
         <BasePage>

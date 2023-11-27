@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import './LoginForm.css'
 import { IUser } from "../../models";
@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 import { ErrorMessage } from "../../components/service/ErrorMessage";
 import { useAppDispatch } from "../../store/hooks";
 import { setUser } from "../../store/User.Slice";
-
 
 interface LoginFormProps {
   onTogglePanel: () => void;
@@ -25,6 +24,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onTogglePanel }) => {
   const navigate = useNavigate();
   const username = watch("username");
   const password = watch("password");
+  const worker = new Worker(new URL("../../workers/logger.worker.js", import.meta.url));
 
   const handleSignIn: SubmitHandler<FormData> = async (data) => {
     try {
@@ -34,11 +34,18 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onTogglePanel }) => {
       });
       const user = response.data;
       dispatch(setUser(user));
+      worker.postMessage({ type: 'login', data: { action:'login', user, message:'Успешный вход' } });
       navigate("/home");
+
+      
+
     } catch (error) {
       setError("Неверное имя пользователя или пароль");
+      worker.postMessage({ type: 'login', data: { action:'login', username, message:'Неверное имя пользователя или пароль'  } });
+
     }
   };
+
 
   return (
     <>

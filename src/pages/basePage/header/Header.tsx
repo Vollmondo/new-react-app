@@ -20,9 +20,11 @@ export function Header() {
   const user = useAppSelector(state => state.user); 
   const { modalWindow, open, close } = useContext(ModalWindowContext);
   const [isWalletModalOpen, setWalletModalOpen] = useState(false);
+  const worker = new Worker(new URL("../../../workers/logger.worker.js", import.meta.url));
 
 
   const handleLogout = () => {
+    worker.postMessage({ type: 'editProfile', data: { type: 'editProfile', user, message:'Вышел из профиля'} });
     dispatch(resetFavProducts());
     dispatch(resetUser())
     navigate('/home');
