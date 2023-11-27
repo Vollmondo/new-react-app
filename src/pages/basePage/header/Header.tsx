@@ -24,7 +24,7 @@ export function Header() {
 
 
   const handleLogout = () => {
-    worker.postMessage({ type: 'editProfile', data: { type: 'editProfile', user, message:'Вышел из профиля'} });
+    worker.postMessage({ type: 'logOut', data: { action: 'logOut', user, message:'Вышел из профиля'} });
     dispatch(resetFavProducts());
     dispatch(resetUser())
     navigate('/home');

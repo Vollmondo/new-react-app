@@ -16,6 +16,7 @@ export function CartPage() {
   const errorMessage = useAppSelector(state => state.cart.errorMessage)
   const NumItems = useAppSelector(getMemoizedNumItems)
   const user = useAppSelector((state) => state.user.user);
+  const worker = new Worker(new URL("../../workers/logger.worker.js", import.meta.url));
 
   function onQuantityChanged(e: React.FocusEvent<HTMLInputElement>, id: string){
     const quantity = Number(e.target.value) || 0;
@@ -37,6 +38,8 @@ export function CartPage() {
         dispatch(updateBalance(user._id, { ...userData, _id: user._id }));
       }
       dispatch(checkoutCart());
+      worker.postMessage({ type: 'checkOut', data: { action: 'checkOut', message:'Заказ успешно размещен', user} });
+
     } else {
       console.log('На счету недостаточно средств');
     }

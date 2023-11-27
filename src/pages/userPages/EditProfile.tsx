@@ -58,7 +58,7 @@ export function EditProfile(){
         phone: formData.get('phone') as string,
         birthdate: formData.get('birthdate') as string,
       };
-      worker.postMessage({ type: 'editProfile', data: { type: 'editProfile', message:'Профиль успешно изменен', user} });
+      worker.postMessage({ type: 'editProfile', data: { action: 'editProfile', message:'Профиль успешно изменен', user} });
 
       console.log(userData)
       dispatch(saveUser(user.user._id, { ...userData, _id: user.user._id }));

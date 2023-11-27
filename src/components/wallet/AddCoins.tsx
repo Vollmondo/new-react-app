@@ -16,6 +16,7 @@ export function AddCoins({ onCreate }: AddCoinsProps) {
   const user = useAppSelector((state) => state.user.user);
   const [error, setError] = useState('');
   const { close } = useContext(ModalWindowContext);
+  const worker = new Worker(new URL("../../workers/logger.worker.js", import.meta.url));
 
 
   const submitHandler = async (event: React.FormEvent) => {
@@ -38,6 +39,7 @@ export function AddCoins({ onCreate }: AddCoinsProps) {
       };
       if (user && user._id) {
         dispatch(updateBalance(user._id, { ...userData, _id: user._id }));
+        worker.postMessage({ type: 'addCoins', data: { action: 'addCoins', message:'Баланс пополнен', user} });
         close()
       }
     } else {
